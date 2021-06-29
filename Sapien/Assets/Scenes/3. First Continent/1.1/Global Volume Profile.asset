@@ -1,0 +1,138 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4986445234881992469
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5485954d14dfb9a4c8ead8edb0ded5b1, type: 3}
+  m_Name: LiftGammaGain
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  lift:
+    m_OverrideState: 1
+    m_Value: {x: 0.9239549, y: 0.910601, z: 1, w: 0}
+  gamma:
+    m_OverrideState: 1
+    m_Value: {x: 0.8840667, y: 1, z: 0.9195549, w: 0}
+  gain:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 0.82299656, z: 0.9557484, w: 0}
+--- !u!114 &-560125299925007340
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebf2d8e91706c294995992b2d2411e79, type: 3}
+  m_Name: ColorSpread
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  blend:
+    overrideState: 0
+    value: 0.5
+  size:
+    overrideState: 0
+    value: 0.5
+  k_color:
+    overrideState: 0
+    value: 1
+  p_color:
+    overrideState: 0
+    value: 1
+  growthSpeed:
+    overrideState: 0
+    value: 1
+  startTime:
+    overrideState: 0
+    value: 0
+  clickLocation:
+    overrideState: 0
+    value: {x: 0, y: 0, z: 0, w: 0}
+  noiseTex:
+    overrideState: 0
+    value: {fileID: 0}
+    defaultState: 1
+  noiseSize:
+    overrideState: 0
+    value: 1
+  noiseTexScale:
+    overrideState: 0
+    value: 1
+  startColor:
+    overrideState: 0
+    value: {r: 1, g: 1, b: 1, a: 1}
+  endColor:
+    overrideState: 0
+    value: {r: 1, g: 1, b: 1, a: 1}
+  wiggleStrength:
+    overrideState: 0
+    value: 0.5
+  k_wiggle:
+    overrideState: 0
+    value: 1
+  p_wiggle:
+    overrideState: 0
+    value: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: Global Volume Profile
+  m_EditorClassIdentifier: 
+  components:
+  - {fileID: 4275831462047925931}
+  - {fileID: -4986445234881992469}
+--- !u!114 &4275831462047925931
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
+  m_Name: ColorAdjustments
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  postExposure:
+    m_OverrideState: 1
+    m_Value: 0.68
+  contrast:
+    m_OverrideState: 1
+    m_Value: 0
+    min: -100
+    max: 100
+  colorFilter:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    hdr: 1
+    showAlpha: 0
+    showEyeDropper: 1
+  hueShift:
+    m_OverrideState: 1
+    m_Value: 0
+    min: -180
+    max: 180
+  saturation:
+    m_OverrideState: 1
+    m_Value: -2
+    min: -100
+    max: 100
