@@ -56,8 +56,17 @@ public class Inventory : MonoBehaviour
     [Header("Survive Modes")]
     public bool infinitely;
     int LerningModeId;
+
+
+    public VoicePlayback voicePlayback;
+
+
+    
+   
+
     void Start()
     {
+       
         Bomb.onClick.AddListener(bomb);
         bombSlider.value = 0;
         Bomb.interactable = false;
@@ -109,7 +118,7 @@ public class Inventory : MonoBehaviour
         
     void InitialiseFrase()
     {
-        PlayerPrefs.SetString("phrase" + 0, "How are you?");
+        PlayerPrefs.SetString("phrase" + 0, "Hello");
         PlayerPrefs.SetString("phrase" + 1, "Hello there");
         PlayerPrefs.SetString("phrase" + 2, "Nice to meet you");
         PlayerPrefs.SetString("phrase" + 3, "Good morning");
@@ -163,9 +172,16 @@ public class Inventory : MonoBehaviour
             Debug.Log("NewTask");
             if (!infinitely) StartCoroutine(InstantTask()); else StartCoroutine(InstantTaskLearning());
             StartCoroutine(Time());
+            voiceRec.StartRecordButtonOnClickHandler();
+              
+        
             indexGem++;
+            
         }
     }
+
+    
+
     public IEnumerator Time()
     { int allTime =45;
         TimeGo = true;
@@ -230,9 +246,18 @@ public class Inventory : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         if (num < RandomTask.Length)
         {
-            if (RandomTask[num] == 0) { OneWord.SetActive(true); keyBoard.InstWord(ID); }
-            else if (RandomTask[num] == 1) { keyBoard.KeyBoard(Task); }
-            else { voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task); }
+            if (RandomTask[num] == 0)
+            {
+                OneWord.SetActive(true); keyBoard.InstWord(ID); 
+            }
+            else if (RandomTask[num] == 1) 
+            {
+                keyBoard.KeyBoard(Task);
+            }
+            else
+            {
+                voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task); 
+            }
             num++;
         }
         else
