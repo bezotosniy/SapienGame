@@ -29,9 +29,12 @@ public class VoicePlayble : MonoBehaviour, IPointerDownHandler
     [Header("Voice")]
     [Space(10f)]
     [SerializeField] private AudioSource[] _audioClip;
-    [SerializeField] private VoiceRecognision _voiceRecognision;
-    [SerializeField] private string[] _task;
-    private int index = 0;
+    public AudioSource[] _characterSpeak;
+    [SerializeField] private VoiceRegontion2 _voiceRecognision;
+    public string[] Task;
+
+    public Text TaskText;
+    public int index = 0;
     private bool _isPlaying;
 
     [Header("Cut-Scene")]
@@ -63,18 +66,23 @@ public class VoicePlayble : MonoBehaviour, IPointerDownHandler
         SetStopButton();
         _isPlaying = true;
         _audioClip[index].Play();
-        _voiceRecognision.StopRecordButtonOnClickHandler();
+       // _voiceRecognision.StopRecordButtonOnClickHandler();
         StartCoroutine(EndOfPlayButton());
     }
 
     private IEnumerator EndOfPlayButton()
     {
+        
         _stopButton.GetComponent<Image>().fillAmount = 0;
         yield return new WaitForSeconds(_audioClip[index].clip.length);
         SetPlayButton();
         SetSpeakBackground();
         _voiceRecognision.StartRecordButtonOnClickHandler();
+        
     }
+
+
+ 
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -85,26 +93,19 @@ public class VoicePlayble : MonoBehaviour, IPointerDownHandler
 
     }
 
-
-    private IEnumerator Compare()
-    {
-        yield return new  WaitForSeconds(1f);
-        
-    }
-
-    private void SetSpeakBackground()
+   private void SetSpeakBackground()
     {
         _text.sprite = _textOnSpeak.sprite;
         _background.sprite = _backgroundOnSpeak.sprite;
     }
 
-    private void SetWaitBackground()
+    public void SetWaitBackground()
     {
         _text.sprite = _textOnWait.sprite;
         _background.sprite = _backgroundOnWait.sprite;
     }
 
-    private void SetRepeatBackground()
+    public void SetRepeatBackground()
     {
         _text.sprite = _textOnRepeat.sprite;
         _background.sprite = _backgroundOnSpeak.sprite;
@@ -122,5 +123,15 @@ public class VoicePlayble : MonoBehaviour, IPointerDownHandler
         _stopButton.enabled = true;
         _playButton.enabled = false;
     }
+
+
+  public void CharacterSpeak()
+  {
+     
+    _characterSpeak[index].Play();
+    
+  }
+    
+ 
 
 }

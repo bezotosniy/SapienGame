@@ -38,7 +38,7 @@ public class Inventory : MonoBehaviour
 
     [Space]
     [Header("Task")]
-    public VoiceRecognision voiceRec;
+    public VoiceRegontion2 voiceRec;
     public GameObject OneWord,OneFraze;
     public Text TimeText;
     bool TimeGo;
@@ -256,13 +256,13 @@ public class Inventory : MonoBehaviour
             }
             else
             {
-                voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task); 
+               // voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task); 
             }
             num++;
         }
         else
         {
-            voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task);
+           // voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task);
         }
     }
     IEnumerator InstantTaskLearning()
@@ -274,10 +274,10 @@ public class Inventory : MonoBehaviour
             switch (LerningModeId)
             {
                 case 0:
-                    voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task);
+                    //voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task);
                     break;
                 case 1:
-                    voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task);
+                   // voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task);
                     break;
                 case 2:
                     OneWord.SetActive(true); keyBoard.InstWord(ID);
@@ -357,12 +357,12 @@ public class Inventory : MonoBehaviour
         {
             if (RandomTask[num-1] == 0) { OneWord.SetActive(true); keyBoard.InstWord(ID); }
             else if (RandomTask[num-1] == 1) { keyBoard.KeyBoard(Task); }
-            else { voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task); }
+         //   else { voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task); }
           
         }
         else
         {
-            voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task);
+          //  voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task);
         }
 
 

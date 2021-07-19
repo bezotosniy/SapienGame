@@ -19,7 +19,7 @@ public class VoicePlayback : MonoBehaviour
     public Image waitbg;
     public Image bg;
 
-    public VoiceRecognision voiceRecognision;
+    public VoiceRegontion2 voiceRecognision;
     //public Animator TaxiAnim;
 
     //public Text result;

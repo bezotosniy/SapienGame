@@ -27,7 +27,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 		public void changeText(string Task)
 		{
 			task.text = Task;
-			responce.text = "Произнесите фразу";
+			responce.text = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ";
 		}
 		private void Start()
 		{
@@ -95,7 +95,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 			StartCoroutine(StopRecordAuthomatic());
 			_speechRecognition.StartRecord(false);
 			Debug.Log("Speak");
-			responce.text = "Слушаю";
+			responce.text = "пїЅпїЅпїЅпїЅпїЅпїЅ";
 		
 			
 		}
@@ -104,7 +104,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 		{
 			_stopRecordButton.interactable = false;
 			_startRecordButton.interactable = true;
-			responce.text = "Послушайте";
+			responce.text = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
 			StartCoroutine(StopRecordAuthomatic());
 			_speechRecognition.StopRecord();
 
@@ -113,19 +113,20 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 		{
 			while (true)
 			{
-				yield return new WaitForSeconds(1f);
+				yield return new WaitForSeconds(2f);
 				if (current < 0.07f)
 				{
 					yield return new WaitForSeconds(1f);
 					if (current < 0.07f)
 					{
-						responce.text = "Тебя не слышно!";
+						responce.text = "пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ!";
 					
 						
 						_speechRecognition.StopRecord();
 						Debug.Log("StopRecord");
 
 						_startRecordButton.interactable = true;
+						
 						yield break;
 					}
 				}
@@ -229,7 +230,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 		}
 		IEnumerator Repeat()
         {
-			responce.text = "Тебя не слышно!";
+			responce.text = "пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ!";
 			
 			yield return new WaitForSeconds(2);
 			StartRecordButtonOnClickHandler(); 
@@ -286,13 +287,13 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 
 				if (other.Contains(task.text))
 				{
-					responce.text = "Правильно!";
+					responce.text = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!";
 
 					inv.CrashGem((int)inv.damage);
 				}
 				else
 				{
-					responce.text = "Неверно :(";
+					responce.text = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ :(";
 					inv.CrashGem(0);
 				} }
 		}
@@ -303,13 +304,13 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 			
 		        if (other.Contains(task.text))
 				{
-					responce.text = "Правильно!";
+					responce.text = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!";
 
 					
 				}
 				else
 				{
-					responce.text = "Неверно :(";
+					responce.text = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ :(";
 					
 				}
 			
