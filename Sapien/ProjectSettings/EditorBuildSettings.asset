@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/3. First Continent/1.1.unity
     guid: 483b1528ba47c4bafb01cb97444bee35
+  - enabled: 1
+    path: Assets/Scenes/1.Home/Home.unity
+    guid: 6daf89cb6bf53466eb5873a1797ec977
+  - enabled: 1
+    path: Assets/Scenes/ShopScene.unity
+    guid: ed273ae54bb0260449d41c4d6ac3ef4b
   m_configObjects: {}

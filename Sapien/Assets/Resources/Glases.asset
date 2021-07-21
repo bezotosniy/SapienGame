@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07f57b5edb96edf4d9118a4fefaaa4f7, type: 3}
+  m_Name: Glases
+  m_EditorClassIdentifier: 
+  selectedIndex: 0
+  itemsInfo:
+  - image: {fileID: 7190574641910658461, guid: dfcc2f8a089561940b4d336273463f5d, type: 3}
+    prefab: {fileID: 5568365034296485354, guid: b86b7926eab4f7d45aabc981ec43efe3, type: 3}
+    price: 5000
+    name: Glases 1
+    isUnlocked: 0
+  - image: {fileID: 7190574641910658461, guid: dfcc2f8a089561940b4d336273463f5d, type: 3}
+    prefab: {fileID: 3531516182456360571, guid: 8e753fbaf4bb8b84fb541c15080b96c9, type: 3}
+    price: 3000
+    name: Glases 2
+    isUnlocked: 0
+  - image: {fileID: 7190574641910658461, guid: dfcc2f8a089561940b4d336273463f5d, type: 3}
+    prefab: {fileID: 4207470974099180768, guid: b917bcdfbc5b6cb439784bd9e6a193ab, type: 3}
+    price: 2000
+    name: Glases 3
+    isUnlocked: 0
+  - image: {fileID: 7190574641910658461, guid: dfcc2f8a089561940b4d336273463f5d, type: 3}
+    prefab: {fileID: 7864199123611922394, guid: 68ce5b8fed0b5824c96e7acc94159922, type: 3}
+    price: 1000
+    name: Glases 4
+    isUnlocked: 0
+  - image: {fileID: 7190574641910658461, guid: dfcc2f8a089561940b4d336273463f5d, type: 3}
+    prefab: {fileID: 3736824934306292961, guid: 683740ba48763bc409da46da34808d8f, type: 3}
+    price: 1000
+    name: Glses 5
+    isUnlocked: 0

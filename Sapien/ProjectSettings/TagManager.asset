@@ -11,6 +11,15 @@ TagManager:
   - FxTemporaire
   - LongWord
   - portal
+  - Furniture
+  - Clothes
+  - Plot
+  - OtherObjectsInventory
+  - Paint
+  - Carpet
+  - Glases
+  - Head
+  - Bag
   layers:
   - Default
   - TransparentFX
