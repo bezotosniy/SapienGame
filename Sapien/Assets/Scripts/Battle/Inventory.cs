@@ -38,7 +38,7 @@ public class Inventory : MonoBehaviour
 
     [Space]
     [Header("Task")]
-    public VoiceRecognision voiceRec;
+    public VoiceRegontion2 voiceRec;
     public GameObject OneWord,OneFraze;
     public Text TimeText;
     bool TimeGo;
@@ -56,8 +56,17 @@ public class Inventory : MonoBehaviour
     [Header("Survive Modes")]
     public bool infinitely;
     int LerningModeId;
+
+
+    public VoicePlayback voicePlayback;
+
+
+    
+   
+
     void Start()
     {
+       
         Bomb.onClick.AddListener(bomb);
         bombSlider.value = 0;
         Bomb.interactable = false;
@@ -109,7 +118,7 @@ public class Inventory : MonoBehaviour
         
     void InitialiseFrase()
     {
-        PlayerPrefs.SetString("phrase" + 0, "How are you?");
+        PlayerPrefs.SetString("phrase" + 0, "Hello");
         PlayerPrefs.SetString("phrase" + 1, "Hello there");
         PlayerPrefs.SetString("phrase" + 2, "Nice to meet you");
         PlayerPrefs.SetString("phrase" + 3, "Good morning");
@@ -163,9 +172,16 @@ public class Inventory : MonoBehaviour
             Debug.Log("NewTask");
             if (!infinitely) StartCoroutine(InstantTask()); else StartCoroutine(InstantTaskLearning());
             StartCoroutine(Time());
+            voiceRec.StartRecordButtonOnClickHandler();
+              
+        
             indexGem++;
+            
         }
     }
+
+    
+
     public IEnumerator Time()
     { int allTime =45;
         TimeGo = true;
@@ -230,14 +246,23 @@ public class Inventory : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         if (num < RandomTask.Length)
         {
-            if (RandomTask[num] == 0) { OneWord.SetActive(true); keyBoard.InstWord(ID); }
-            else if (RandomTask[num] == 1) { keyBoard.KeyBoard(Task); }
-            else { voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task); }
+            if (RandomTask[num] == 0)
+            {
+                OneWord.SetActive(true); keyBoard.InstWord(ID); 
+            }
+            else if (RandomTask[num] == 1) 
+            {
+                keyBoard.KeyBoard(Task);
+            }
+            else
+            {
+               // voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task); 
+            }
             num++;
         }
         else
         {
-            voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task);
+           // voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task);
         }
     }
     IEnumerator InstantTaskLearning()
@@ -249,10 +274,10 @@ public class Inventory : MonoBehaviour
             switch (LerningModeId)
             {
                 case 0:
-                    voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task);
+                    //voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task);
                     break;
                 case 1:
-                    voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task);
+                   // voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task);
                     break;
                 case 2:
                     OneWord.SetActive(true); keyBoard.InstWord(ID);
@@ -332,12 +357,12 @@ public class Inventory : MonoBehaviour
         {
             if (RandomTask[num-1] == 0) { OneWord.SetActive(true); keyBoard.InstWord(ID); }
             else if (RandomTask[num-1] == 1) { keyBoard.KeyBoard(Task); }
-            else { voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task); }
+         //   else { voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task); }
           
         }
         else
         {
-            voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task);
+          //  voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task);
         }
 
 

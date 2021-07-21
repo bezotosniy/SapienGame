@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour
         difVector = transform.position - Player.position;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         Vector3 difVecNow = difVector + Player.position;
