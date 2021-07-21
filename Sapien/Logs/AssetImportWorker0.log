@@ -1,134 +1,452 @@
 Using pre-set license
+Built from '2020.3/staging' branch; Version is '2020.3.0f1 (c7b5465681fb) revision 13088070'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Home Single Language; OS build 19041.1110; Version 2004; 64bit' Language: 'uk' Physical Memory: 8075 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
  COMMAND LINE ARGUMENTS:
-/Applications/Unity/Hub/Editor/2020.3.0f1/Unity.app/Contents/MacOS/Unity
+D:\Unity\2020.3.0f1\Editor\Unity.exe
 -adb2
 -batchMode
 -noUpm
 -name
 AssetImportWorker0
 -projectPath
-/Users/nikita/Desktop/Sapien English/Продукт/Back-ups/11 июня Back up с битвой /Sapien
+C:/Users/romic/OneDrive/Документи/GitHub/SapienGame/Sapien
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-60500
-Successfully changed project path to: /Users/nikita/Desktop/Sapien English/Продукт/Back-ups/11 июня Back up с битвой /Sapien
-/Users/nikita/Desktop/Sapien English/Продукт/Back-ups/11 июня Back up с битвой /Sapien
+59242
+Successfully changed project path to: C:/Users/romic/OneDrive/Документи/GitHub/SapienGame/Sapien
+C:/Users/romic/OneDrive/Документи/GitHub/SapienGame/Sapien
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 454.78 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 386.90 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.0f1 (c7b5465681fb)
-[Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/2020.3.0f1/Unity.app/Contents/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path /Users/nikita/Desktop/Sapien English/Продукт/Back-ups/11 июня Back up с битвой /Sapien/Assets
+[Subsystems] Discovering subsystems at path D:/Unity/2020.3.0f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/romic/OneDrive/Документи/GitHub/SapienGame/Sapien/Assets
 GfxDevice: creating device client; threaded=0
-2021-06-29 16:14:38.173 Unity[28248:2597289] Color LCD preferred device: AMD Radeon Pro 460 (high power)
-2021-06-29 16:14:38.173 Unity[28248:2597289] Metal devices available: 2
-2021-06-29 16:14:38.173 Unity[28248:2597289] 0: AMD Radeon Pro 460 (high power)
-2021-06-29 16:14:38.173 Unity[28248:2597289] 1: Intel(R) HD Graphics 530 (low power)
-2021-06-29 16:14:38.174 Unity[28248:2597289] Using device AMD Radeon Pro 460 (high power)
-Initializing Metal device caps: AMD Radeon Pro 460
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GT 750M (ID=0xfe4)
+    Vendor:   
+    VRAM:     2020 MB
+    Driver:   23.21.13.8857
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
 Initialize mono
-Mono path[0] = '/Applications/Unity/Hub/Editor/2020.3.0f1/Unity.app/Contents/Managed'
-Mono path[1] = '/Applications/Unity/Hub/Editor/2020.3.0f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit'
-Mono config path = '/Applications/Unity/Hub/Editor/2020.3.0f1/Unity.app/Contents/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56248
+Mono path[0] = 'D:/Unity/2020.3.0f1/Editor/Data/Managed'
+Mono path[1] = 'D:/Unity/2020.3.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'D:/Unity/2020.3.0f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56740
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: /Applications/Unity/Hub/Editor/2020.3.0f1/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
-Register platform support module: /Applications/Unity/Hub/Editor/2020.3.0f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
-Registered in 0.001165 seconds.
-Native extension for OSXStandalone target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 541.12 ms, found 1 plugins.
+Register platform support module: D:/Unity/2020.3.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001120 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 380.92 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.545 seconds
+- Completed reload, in  1.959 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.005455 seconds.
+Registered in 0.006188 seconds.
 Begin MonoManager ReloadAssembly
-Native extension for OSXStandalone target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 553.51 ms, found 1 plugins.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 436.83 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.208 seconds
+- Completed reload, in  1.545 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Launching external process: /Applications/Unity/Hub/Editor/2020.3.0f1/Unity.app/Contents/Tools/UnityShaderCompiler
-Launched and connected shader compiler UnityShaderCompiler after 0.02 seconds
-Refreshing native plugins compatible for Editor in 6.75 ms, found 1 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.10 seconds
+Refreshing native plugins compatible for Editor in 7.62 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2773 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 256.4 MB.
-System memory in use after: 256.5 MB.
+Unloading 2776 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 176.4 MB.
+System memory in use after: 176.6 MB.
 
-Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 3239.
-Total: 2.822455 ms (FindLiveObjects: 0.447414 ms CreateObjectMapping: 0.173211 ms MarkObjects: 2.065865 ms  DeleteObjects: 0.134751 ms)
-
-========================================================================
-Received Import Request.
-  path: Assets/Scenes/0. Start Menu/StartMenu.unity
-  artifactKey: Guid(b59cac2993dc6654a91bab27c398f465) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/0. Start Menu/StartMenu.unity using Guid(b59cac2993dc6654a91bab27c398f465) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b890c791f55b598a83b6eeceee1e4ef7') in 0.014420 seconds
-  Import took 0.024802 seconds .
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 3229.
+Total: 8.717100 ms (FindLiveObjects: 0.897600 ms CreateObjectMapping: 0.476700 ms MarkObjects: 7.161900 ms  DeleteObjects: 0.178000 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000302 seconds.
-  path: Assets/Scenes/ForPrefabs.unity
-  artifactKey: Guid(9eec8bb5ff97b21469fa344722ce7ab5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/ForPrefabs.unity using Guid(9eec8bb5ff97b21469fa344722ce7ab5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c15388ee1aacadaed798613a78780f74') in 0.001481 seconds
-  Import took 0.007696 seconds .
+  path: Assets/Scripts/VoiceRecognision/VoiceRecognision.cs
+  artifactKey: Guid(3a9777d35244d8b469a216eb3c3bd832) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/VoiceRecognision/VoiceRecognision.cs using Guid(3a9777d35244d8b469a216eb3c3bd832) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8f9df68add2af63045c272849195da7d') in 0.252011 seconds
+  Import took 0.269285 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000325 seconds.
-  path: Assets/Scenes/0. Start Menu
-  artifactKey: Guid(78d613b4ffd09764288b74b7e50ca88f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/0. Start Menu using Guid(78d613b4ffd09764288b74b7e50ca88f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5c7d8e19bd668729da0cb93515c97bb5') in 0.001241 seconds
-  Import took 0.007525 seconds .
+  Time since last request: 0.000715 seconds.
+  path: Assets/Scripts/VoiceRecognision
+  artifactKey: Guid(d8ea0e339a63e3649955e6010aa2e275) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/VoiceRecognision using Guid(d8ea0e339a63e3649955e6010aa2e275) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1ea65c36ed26cf063ce7112c7e9ed7e8') in 0.005387 seconds
+  Import took 0.020965 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 2.014531 seconds.
-  path: Assets/Scenes/ForPrefabs.unity
-  artifactKey: Guid(9eec8bb5ff97b21469fa344722ce7ab5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/ForPrefabs.unity using Guid(9eec8bb5ff97b21469fa344722ce7ab5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c15388ee1aacadaed798613a78780f74') in 0.003267 seconds
-  Import took 0.010347 seconds .
+  Time since last request: 3.735077 seconds.
+  path: Assets/Scripts/HideEnemyWillFind.cs
+  artifactKey: Guid(4d705cf6f30b87d45bfd81882eaa64e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/HideEnemyWillFind.cs using Guid(4d705cf6f30b87d45bfd81882eaa64e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ba8afc507422579f4cf53c176176515') in 0.008672 seconds
+  Import took 0.019746 seconds .
 
 ========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.006982 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for OSXStandalone target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 4.85 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.626 seconds
-Platform modules already initialized, skipping
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Refreshing native plugins compatible for Editor in 4.31 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2536 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 240.9 MB.
-System memory in use after: 241.1 MB.
+Received Import Request.
+  Time since last request: 0.007694 seconds.
+  path: Assets/Scripts/HideEnemyWillFind.cs
+  artifactKey: Guid(4d705cf6f30b87d45bfd81882eaa64e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/HideEnemyWillFind.cs using Guid(4d705cf6f30b87d45bfd81882eaa64e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ba8afc507422579f4cf53c176176515') in 0.003278 seconds
+  Import took 0.015713 seconds .
 
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 3242.
-Total: 3.152794 ms (FindLiveObjects: 0.462657 ms CreateObjectMapping: 0.196553 ms MarkObjects: 2.411409 ms  DeleteObjects: 0.080298 ms)
+========================================================================
+Received Import Request.
+  Time since last request: 12.872884 seconds.
+  path: Assets/ASSETS ARCHIVE/Monsters Ultimate Pack 01 Cute Series/Bat Lord Cute Series/FBX/Bat Lord@Bite Attack.FBX
+  artifactKey: Guid(7a3668342236b4b45a12dda5b252640c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ASSETS ARCHIVE/Monsters Ultimate Pack 01 Cute Series/Bat Lord Cute Series/FBX/Bat Lord@Bite Attack.FBX using Guid(7a3668342236b4b45a12dda5b252640c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '56ebb6584700203e022fd3dce826b870') in 1.100398 seconds
+  Import took 1.138472 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000312 seconds.
+  path: Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Prefabs/Props/BattleGround/SM_Prop_Arrow_Volley_Small_02.prefab
+  artifactKey: Guid(28e7bab4022b5024ab4eb1f9ae13b46a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Prefabs/Props/BattleGround/SM_Prop_Arrow_Volley_Small_02.prefab using Guid(28e7bab4022b5024ab4eb1f9ae13b46a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f872dee1915bd8e40a3e9d9a0c71351f') in 0.117572 seconds
+  Import took 0.130626 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000225 seconds.
+  path: Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Models/SM_Prop_Arrow_Volley_02.fbx
+  artifactKey: Guid(4a364926d0fe2ac4486bddeb996e6a10) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Models/SM_Prop_Arrow_Volley_02.fbx using Guid(4a364926d0fe2ac4486bddeb996e6a10) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '79f2478d7f09f094db06984a21c1bc2f') in 0.051723 seconds
+  Import took 0.062175 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000245 seconds.
+  path: Assets/ASSETS ARCHIVE/Monsters Ultimate Pack 01 Cute Series/Bat Lord Cute Series/FBX/Bat Lord@Idle.FBX
+  artifactKey: Guid(c9ef27e999ba1214fa0b91ff78ba45d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ASSETS ARCHIVE/Monsters Ultimate Pack 01 Cute Series/Bat Lord Cute Series/FBX/Bat Lord@Idle.FBX using Guid(c9ef27e999ba1214fa0b91ff78ba45d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '92c0e75b237bad0f60597f8a185042a7') in 0.080271 seconds
+  Import took 0.094344 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000219 seconds.
+  path: Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Models/Convex/SM_Prop_Arrow_Volley_Small_01_Convex.asset
+  artifactKey: Guid(353f8709a0c6ec04e8cf5ed66e1fd7a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Models/Convex/SM_Prop_Arrow_Volley_Small_01_Convex.asset using Guid(353f8709a0c6ec04e8cf5ed66e1fd7a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2c69fcb34493d4f6e4ab7b219a803389') in 0.017831 seconds
+  Import took 0.029223 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000220 seconds.
+  path: Assets/MODELS ARCHIVE/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Weapons_T/revolver.prefab
+  artifactKey: Guid(1bff4569365714a78b2a5d4cf009ad14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/polyperfect/Low Poly Ultimate Pack/T/- Prefabs_T/Weapons_T/revolver.prefab using Guid(1bff4569365714a78b2a5d4cf009ad14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab31dd6c8717ad68c2bce5d442dd82eb') in 0.645562 seconds
+  Import took 0.656781 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000234 seconds.
+  path: Assets/MODELS ARCHIVE/PolygonDungeon/Models/FX_CubePivot.fbx
+  artifactKey: Guid(0731b2ab7b5255640a6ab9e8f2c9d9e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/PolygonDungeon/Models/FX_CubePivot.fbx using Guid(0731b2ab7b5255640a6ab9e8f2c9d9e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33d4d470d1a52c59217db919764813ef') in 0.041423 seconds
+  Import took 0.052396 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000237 seconds.
+  path: Assets/MODELS ARCHIVE/PolygonDungeon/Models/SM_Env_Volcanic_01.fbx
+  artifactKey: Guid(acd31ce06bdc07e44900c2ce9d651c00) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/PolygonDungeon/Models/SM_Env_Volcanic_01.fbx using Guid(acd31ce06bdc07e44900c2ce9d651c00) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7cc4a4c22823a340c987574ec0106000') in 0.042907 seconds
+  Import took 0.054893 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000207 seconds.
+  path: Assets/MODELS ARCHIVE/polyperfect/Low Poly Ultimate Pack/M/- Prefabs_M/Weapons_M/revolver.prefab
+  artifactKey: Guid(c11754706658c4b47aefdcd5c852b0d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/polyperfect/Low Poly Ultimate Pack/M/- Prefabs_M/Weapons_M/revolver.prefab using Guid(c11754706658c4b47aefdcd5c852b0d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '406364b926a93686be060c3b18e033e6') in 0.049328 seconds
+  Import took 0.059926 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000254 seconds.
+  path: Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Models/Convex/SM_Prop_Arrow_Volley_03_Convex.asset
+  artifactKey: Guid(9021c367de6d6e24983f3847da98c76a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Models/Convex/SM_Prop_Arrow_Volley_03_Convex.asset using Guid(9021c367de6d6e24983f3847da98c76a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7103232ee5d838471a6a49edffb55672') in 0.018075 seconds
+  Import took 0.033019 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000304 seconds.
+  path: Assets/ASSETS ARCHIVE/Monsters Ultimate Pack 01 Cute Series/Bat Lord Cute Series/FBX/Bat Lord@Fly Forward In Place.FBX
+  artifactKey: Guid(d5e1a3e942edaae4aab8019b75aff7c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ASSETS ARCHIVE/Monsters Ultimate Pack 01 Cute Series/Bat Lord Cute Series/FBX/Bat Lord@Fly Forward In Place.FBX using Guid(d5e1a3e942edaae4aab8019b75aff7c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '46fad6f1dd7f4027ff547e1ae07078da') in 0.122964 seconds
+  Import took 0.138841 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000405 seconds.
+  path: Assets/ASSETS ARCHIVE/Monsters Ultimate Pack 01 Cute Series/Bat Lord Cute Series/FBX/Bat Lord@Cast Spell.FBX
+  artifactKey: Guid(f462213228aed874381713ed95dfc214) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ASSETS ARCHIVE/Monsters Ultimate Pack 01 Cute Series/Bat Lord Cute Series/FBX/Bat Lord@Cast Spell.FBX using Guid(f462213228aed874381713ed95dfc214) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23faaf0e9069bd2685198e145dd4104e') in 0.098218 seconds
+  Import took 0.111725 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000286 seconds.
+  path: Assets/Scenes/test/Global Volume Profile.asset
+  artifactKey: Guid(390c81c63e052144786388c57c023bdb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/test/Global Volume Profile.asset using Guid(390c81c63e052144786388c57c023bdb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c25dfad777e08bcf7bb27f4a38c3382') in 0.009410 seconds
+  Import took 0.022071 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000241 seconds.
+  path: Assets/ASSETS ARCHIVE/Monsters Ultimate Pack 01 Cute Series/Bat Lord Cute Series/FBX/Bat Lord@Kick Attack.FBX
+  artifactKey: Guid(909a27b4597cae745bc62169ffced200) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ASSETS ARCHIVE/Monsters Ultimate Pack 01 Cute Series/Bat Lord Cute Series/FBX/Bat Lord@Kick Attack.FBX using Guid(909a27b4597cae745bc62169ffced200) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7468917a281347c59d7edd511cc085f') in 0.089193 seconds
+  Import took 0.103420 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000292 seconds.
+  path: Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Models/SM_Prop_Arrow_Volley_01.fbx
+  artifactKey: Guid(6d2ec0d0ffcd2c04bb5a8f3ddbefa5f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Models/SM_Prop_Arrow_Volley_01.fbx using Guid(6d2ec0d0ffcd2c04bb5a8f3ddbefa5f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc5e1ddaa80959ff39ebaa5a286f930d') in 0.045306 seconds
+  Import took 0.056789 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000324 seconds.
+  path: Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Prefabs/Props/BattleGround/SM_Prop_Arrow_Volley_03.prefab
+  artifactKey: Guid(f942df82b6ac80a439a5a2af0c41b10b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Prefabs/Props/BattleGround/SM_Prop_Arrow_Volley_03.prefab using Guid(f942df82b6ac80a439a5a2af0c41b10b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'add988f284398eec71c3cd5253079d64') in 0.102234 seconds
+  Import took 0.115449 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000321 seconds.
+  path: Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Models/SM_Prop_Arrow_Volley_Small_01.fbx
+  artifactKey: Guid(840645eb507bc8f4592405e056433e23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Models/SM_Prop_Arrow_Volley_Small_01.fbx using Guid(840645eb507bc8f4592405e056433e23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4dd7d6a8f1f931df29fc5dcc25d72e3a') in 0.046261 seconds
+  Import took 0.059497 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000261 seconds.
+  path: Assets/MODELS ARCHIVE/PolygonDungeon/Models/FX_CubePivot_Mesh.fbx
+  artifactKey: Guid(39507b9ce3ffc4948b27dfdb77a84488) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/PolygonDungeon/Models/FX_CubePivot_Mesh.fbx using Guid(39507b9ce3ffc4948b27dfdb77a84488) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a3f3c5bb03e371128dee62b4e7679b91') in 0.044079 seconds
+  Import took 0.056828 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000246 seconds.
+  path: Assets/MODELS ARCHIVE/PolygonKids/Prefabs/Characters/SM_Chr_Kid_Survivor_Armoured_01.prefab
+  artifactKey: Guid(dda3acc6d7f707049aefb25bbefb9113) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/PolygonKids/Prefabs/Characters/SM_Chr_Kid_Survivor_Armoured_01.prefab using Guid(dda3acc6d7f707049aefb25bbefb9113) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fd4fd08e5873eae6a46c8b7be714cb1b') in 0.218804 seconds
+  Import took 0.235884 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000253 seconds.
+  path: Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Models/Convex/SM_Prop_Arrow_Volley_01_Convex.asset
+  artifactKey: Guid(1ef02876096626f45816223d5133f7ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Models/Convex/SM_Prop_Arrow_Volley_01_Convex.asset using Guid(1ef02876096626f45816223d5133f7ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '300ce9a564115baf02860d15ef79aec8') in 0.016219 seconds
+  Import took 0.026120 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000218 seconds.
+  path: Assets/MODELS ARCHIVE/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Western_T/revolver.fbx
+  artifactKey: Guid(01b1cd07df9464ac5aca0c6c09808787) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Western_T/revolver.fbx using Guid(01b1cd07df9464ac5aca0c6c09808787) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4958a5c43c0dfee62de45485751e10ad') in 0.021626 seconds
+  Import took 0.032269 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000241 seconds.
+  path: Assets/ASSETS ARCHIVE/Monsters Ultimate Pack 01 Cute Series/Bat Lord Cute Series/FBX/Bat Lord@Fly Forward W Root.FBX
+  artifactKey: Guid(5ff57f2b60b3b6d47b8711a8c4b73652) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ASSETS ARCHIVE/Monsters Ultimate Pack 01 Cute Series/Bat Lord Cute Series/FBX/Bat Lord@Fly Forward W Root.FBX using Guid(5ff57f2b60b3b6d47b8711a8c4b73652) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '217701b73a21f000c7e66dbb32f07643') in 0.088171 seconds
+  Import took 0.100659 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000215 seconds.
+  path: Assets/MODELS ARCHIVE/PolygonKids/Models/Characters_Kids.fbx
+  artifactKey: Guid(a890656eebef5d94ab6c86843cebd735) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/PolygonKids/Models/Characters_Kids.fbx using Guid(a890656eebef5d94ab6c86843cebd735) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a4beeac17f9b1c3d17bef7d38b2fe56a') in 1.158547 seconds
+  Import took 1.172349 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000230 seconds.
+  path: Assets/MODELS ARCHIVE/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Weapons_M/revolver.fbx
+  artifactKey: Guid(723c58db443fbaa4a9fc81bbf9c509eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Weapons_M/revolver.fbx using Guid(723c58db443fbaa4a9fc81bbf9c509eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fd194fa47787f303529be5303bf6df38') in 0.072590 seconds
+  Import took 0.082937 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001025 seconds.
+  path: Assets/ASSETS ARCHIVE/Monsters Ultimate Pack 01 Cute Series/Bat Lord Cute Series/FBX/Bat Lord@Die.FBX
+  artifactKey: Guid(458447bf50fc4104c9cb6cace3240d0a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ASSETS ARCHIVE/Monsters Ultimate Pack 01 Cute Series/Bat Lord Cute Series/FBX/Bat Lord@Die.FBX using Guid(458447bf50fc4104c9cb6cace3240d0a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a3167f613db26c67bb1267c3dd351336') in 0.081841 seconds
+  Import took 0.095805 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000275 seconds.
+  path: Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Models/SM_Prop_Arrow_Volley_Small_02.fbx
+  artifactKey: Guid(d8de08d9eb5254b4caf6b22c8bb79589) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Models/SM_Prop_Arrow_Volley_Small_02.fbx using Guid(d8de08d9eb5254b4caf6b22c8bb79589) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c62acc0c3a7c0032a75df9cb9cce735') in 0.021372 seconds
+  Import took 0.033321 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000240 seconds.
+  path: Assets/MODELS ARCHIVE/PolygonDungeon/Prefabs/Environments/Misc/SM_Env_Volcanic_01.prefab
+  artifactKey: Guid(14a2a6aefc4a6e7469991cd18bc527d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/PolygonDungeon/Prefabs/Environments/Misc/SM_Env_Volcanic_01.prefab using Guid(14a2a6aefc4a6e7469991cd18bc527d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9e4eb318bcad672c9215d592fc482c72') in 0.419354 seconds
+  Import took 0.430011 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000264 seconds.
+  path: Assets/Scenes/3. First Continent/1.1/Global Volume Profile.asset
+  artifactKey: Guid(3e24324e222ef2146a62bfc3f6a79475) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/3. First Continent/1.1/Global Volume Profile.asset using Guid(3e24324e222ef2146a62bfc3f6a79475) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e96d7a532b41d95dae3ad9d9ccbbd9f') in 0.006006 seconds
+  Import took 0.016679 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000235 seconds.
+  path: Assets/MODELS ARCHIVE/PolygonKids/Prefabs/Characters/SM_Chr_Kid_Survivor_01.prefab
+  artifactKey: Guid(02acb01c1c0dc3c4d9a76e52258b6323) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/PolygonKids/Prefabs/Characters/SM_Chr_Kid_Survivor_01.prefab using Guid(02acb01c1c0dc3c4d9a76e52258b6323) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '627e5affc22c3219f2340923e1d17419') in 0.149403 seconds
+  Import took 0.166664 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000245 seconds.
+  path: Assets/MODELS ARCHIVE/PolygonKids/Prefabs/Characters/SM_Chr_Kid_Survivor_Vest_01.prefab
+  artifactKey: Guid(78937ed8cf6224247b759c90ed55f99f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/PolygonKids/Prefabs/Characters/SM_Chr_Kid_Survivor_Vest_01.prefab using Guid(78937ed8cf6224247b759c90ed55f99f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a9a303584767be52a27cec4a7114f5d') in 0.155297 seconds
+  Import took 0.172370 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000287 seconds.
+  path: Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Models/Convex/SM_Prop_Arrow_Volley_02_Convex.asset
+  artifactKey: Guid(21f3e0b8593355d4e85307c0228aa2f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Models/Convex/SM_Prop_Arrow_Volley_02_Convex.asset using Guid(21f3e0b8593355d4e85307c0228aa2f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd828a4e7452f02acb9bbe4c4c1a76162') in 0.017196 seconds
+  Import took 0.027799 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000264 seconds.
+  path: Assets/MODELS ARCHIVE/POLYGON - Particle FX Pack/PolygonParticles/Models/FX_Star_Pivot.fbx
+  artifactKey: Guid(a95782c1aa2915647a6294f31ef1dfb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/POLYGON - Particle FX Pack/PolygonParticles/Models/FX_Star_Pivot.fbx using Guid(a95782c1aa2915647a6294f31ef1dfb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '11d922b08a9711ce53992ac5eb2c6e5a') in 0.054222 seconds
+  Import took 0.065398 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000240 seconds.
+  path: Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Prefabs/Props/BattleGround/SM_Prop_Arrow_Volley_01.prefab
+  artifactKey: Guid(ec46ee30df70aa3478c890a1a4d52ae5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Prefabs/Props/BattleGround/SM_Prop_Arrow_Volley_01.prefab using Guid(ec46ee30df70aa3478c890a1a4d52ae5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42c777c38cf31090d91435c5b72ed4cd') in 0.071695 seconds
+  Import took 0.085701 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000218 seconds.
+  path: Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Prefabs/Props/BattleGround/SM_Prop_Arrow_Volley_02.prefab
+  artifactKey: Guid(46a966ce30f507c4483bec1c9c030ce1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Prefabs/Props/BattleGround/SM_Prop_Arrow_Volley_02.prefab using Guid(46a966ce30f507c4483bec1c9c030ce1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0bb25f41d2b2edef5d9693d001302bf7') in 0.065400 seconds
+  Import took 0.079496 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000227 seconds.
+  path: Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Models/SM_Prop_Arrow_Volley_03.fbx
+  artifactKey: Guid(f8a24aebb65718245884e32a343c6ebe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Models/SM_Prop_Arrow_Volley_03.fbx using Guid(f8a24aebb65718245884e32a343c6ebe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '95b50490c86dbc8e5012324874700088') in 0.033393 seconds
+  Import took 0.045634 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000216 seconds.
+  path: Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Prefabs/Props/BattleGround/SM_Prop_Arrow_Volley_Small_01.prefab
+  artifactKey: Guid(102a1539484d57f45b707c42e0393d3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MODELS ARCHIVE/PolygonFantasyKingdom/Prefabs/Props/BattleGround/SM_Prop_Arrow_Volley_Small_01.prefab using Guid(102a1539484d57f45b707c42e0393d3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6a99569ded54f5094290ddfe4c90ef64') in 0.064438 seconds
+  Import took 0.077944 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 101.378017 seconds.
+  path: Assets/Scripts/1. Home
+  artifactKey: Guid(29f1153fa485f1a44b45e5a732cedde9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/1. Home using Guid(29f1153fa485f1a44b45e5a732cedde9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2462fd863a2c8c96a0cae1d88c6cd11a') in 0.011088 seconds
+  Import took 0.023313 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.903367 seconds.
+  path: Assets/Scenes/1.Home
+  artifactKey: Guid(e71ac0cb3e0b144ea8fd0d5e9bd1cf60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/1.Home using Guid(e71ac0cb3e0b144ea8fd0d5e9bd1cf60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7e141ff8a4f472dcab666361526eee5b') in 0.013986 seconds
+  Import took 0.030974 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.010307 seconds.
+  path: Assets/Scenes/1.Home/Home.unity
+  artifactKey: Guid(6daf89cb6bf53466eb5873a1797ec977) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/1.Home/Home.unity using Guid(6daf89cb6bf53466eb5873a1797ec977) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9dd66397023c47f553fc7662e5747b9f') in 0.013341 seconds
+  Import took 0.025624 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.554407 seconds.
+  path: Assets/Scenes/3. First Continent/1.1
+  artifactKey: Guid(e76eb50e65d67b84dae45e90c979ef82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/3. First Continent/1.1 using Guid(e76eb50e65d67b84dae45e90c979ef82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b755e6cb66b1492108951421c143ce95') in 0.013303 seconds
+  Import took 0.029573 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.036944 seconds.
+  path: Assets/Scenes/3. First Continent/1.1/NavMesh.asset
+  artifactKey: Guid(7251c6845b4c06a4eb4feca83048d8b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/3. First Continent/1.1/NavMesh.asset using Guid(7251c6845b4c06a4eb4feca83048d8b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f67c1095ea5e6c923b380cff9f4c326') in 0.011050 seconds
+  Import took 0.026646 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000523 seconds.
+  path: Assets/Scenes/3. First Continent/1.1/Sphere Volume Profile.asset
+  artifactKey: Guid(03cbb509319ce9541a4d25a9b475cdcd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/3. First Continent/1.1/Sphere Volume Profile.asset using Guid(03cbb509319ce9541a4d25a9b475cdcd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5d1a834c6e4733dc3ce42006d794c85e') in 0.013392 seconds
+  Import took 0.033379 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.284259 seconds.
+  path: Assets/Scenes/3. First Continent/1.1.unity
+  artifactKey: Guid(483b1528ba47c4bafb01cb97444bee35) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/3. First Continent/1.1.unity using Guid(483b1528ba47c4bafb01cb97444bee35) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '75d80a0faabc54a41765258a0a02caef') in 0.012853 seconds
+  Import took 0.031324 seconds .
 
