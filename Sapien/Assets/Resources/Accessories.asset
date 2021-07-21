@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07f57b5edb96edf4d9118a4fefaaa4f7, type: 3}
+  m_Name: Accessories
+  m_EditorClassIdentifier: 
+  selectedIndex: 0
+  itemsInfo:
+  - image: {fileID: 3979034029394921280, guid: e4fc3c85a3821a3459663e7fa5424d7e, type: 3}
+    prefab: {fileID: 2071170281688363380, guid: 6e011ec493d6b834a9b99b0d51ddd234, type: 3}
+    price: 1000
+    name: Bag 1
+    isUnlocked: 0
+  - image: {fileID: 3979034029394921280, guid: e4fc3c85a3821a3459663e7fa5424d7e, type: 3}
+    prefab: {fileID: 1075809710305827518, guid: 330e7496d7be6844f9e7990e145fbd47, type: 3}
+    price: 1000
+    name: Bag 2
+    isUnlocked: 0
+  - image: {fileID: 3979034029394921280, guid: e4fc3c85a3821a3459663e7fa5424d7e, type: 3}
+    prefab: {fileID: 7117280948445998936, guid: 05f62330e26c13b42837b317ad81dd6d, type: 3}
+    price: 1000
+    name: Bag 3
+    isUnlocked: 0
+  - image: {fileID: 3979034029394921280, guid: e4fc3c85a3821a3459663e7fa5424d7e, type: 3}
+    prefab: {fileID: 2325590030563250195, guid: 958d92b002cacb845b456ee7691cb824, type: 3}
+    price: 1000
+    name: Bag 4
+    isUnlocked: 0
+  - image: {fileID: 3979034029394921280, guid: e4fc3c85a3821a3459663e7fa5424d7e, type: 3}
+    prefab: {fileID: 9211282131923183637, guid: dcfbd02808a44ef49af07262a91caf45, type: 3}
+    price: 1000
+    name: Bag 5
+    isUnlocked: 0

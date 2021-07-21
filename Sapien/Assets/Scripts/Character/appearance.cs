@@ -5,12 +5,12 @@ using UnityEngine;
 public class appearance : MonoBehaviour
 {
     public SkinnedMeshRenderer eye, cloth;
-    public MeshFilter hair;
+   // public MeshFilter hair;
     [Space]
     public Mesh[] eyes_boy,eyes_girl;
     [Space]
     public Mesh[] cloth_Boy,cloth_Girl; 
-    public Mesh[] hair_Boy,hair_Girl; 
+   // public Mesh[] hair_Boy,hair_Girl; 
     // Start is called before the first frame update
     void Start()
     {
@@ -18,13 +18,13 @@ public class appearance : MonoBehaviour
         {
             cloth.sharedMesh = cloth_Boy[0];
             eye.sharedMesh = eyes_boy[0];
-            hair.sharedMesh = hair_Boy[0];
+            //hair.sharedMesh = hair_Boy[0];
         }
         else
         {
             cloth.sharedMesh = cloth_Girl[0];
             eye.sharedMesh = eyes_girl[0];
-            hair.sharedMesh = hair_Girl[0];
+           // hair.sharedMesh = hair_Girl[0];
         }
      
 

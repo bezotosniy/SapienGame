@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07f57b5edb96edf4d9118a4fefaaa4f7, type: 3}
+  m_Name: CLothesHead
+  m_EditorClassIdentifier: 
+  selectedIndex: 2
+  itemsInfo:
+  - image: {fileID: 1970651028441663764, guid: be9ae931f673f734097d3c50ae665893, type: 3}
+    prefab: {fileID: 5658099891815096197, guid: e4079ecb4dda24549b06f585114cd4e7, type: 3}
+    price: 1000
+    name: Head 1
+    isUnlocked: 1
+  - image: {fileID: 1970651028441663764, guid: be9ae931f673f734097d3c50ae665893, type: 3}
+    prefab: {fileID: 2811133666139019503, guid: b153f396165cabb40a02c6c8cf1ebe52, type: 3}
+    price: 1000
+    name: Head 2
+    isUnlocked: 0
+  - image: {fileID: 1970651028441663764, guid: be9ae931f673f734097d3c50ae665893, type: 3}
+    prefab: {fileID: 3609539504285784934, guid: dfea18f9a0f220a4481aadc13ceced73, type: 3}
+    price: 2000
+    name: Head 3
+    isUnlocked: 0
+  - image: {fileID: 1970651028441663764, guid: be9ae931f673f734097d3c50ae665893, type: 3}
+    prefab: {fileID: 361314792308170044, guid: 662b537da27109a4b8ee5f7e4976b0f6, type: 3}
+    price: 3000
+    name: Head 4
+    isUnlocked: 0
+  - image: {fileID: 1970651028441663764, guid: be9ae931f673f734097d3c50ae665893, type: 3}
+    prefab: {fileID: 1953815996350916334, guid: 75dc9f96646392a468075e289089dd66, type: 3}
+    price: 2000
+    name: Head 5
+    isUnlocked: 0
