@@ -9,28 +9,22 @@ public class NavigationManager : MonoBehaviour
 
     private Vector3 targetPosition;
     private RectTransform pointer;
-    private Transform pointerObj;
     public Transform target;
     public float border = 100f;
+    public string targetName;
 
     private void Awake()
     {
-        target = GameObject.Find("SM_Prop_ParkingMeter_02").GetComponent<Transform>();
-        targetPosition = new Vector3(target.position.x, target.position.y, target.position.z);
+        target = GameObject.Find(targetName).GetComponent<Transform>();
         pointer = GameObject.Find("NavigatorPointer").GetComponent<RectTransform>();
-        pointerObj = GameObject.Find("PointerObj").GetComponent<Transform>();
     }
 
     void Update()
     {
-        /*Vector3 toPosition = targetPosition;
-        Vector3 fromPosition = GameObject.Find("Player").GetComponent<Transform>().position;
-        Vector3 Direction = (toPosition - fromPosition).normalized;
-        float angle = UtilsClass.GetAngleFromVectorFloat(Direction);
-        pointer.localEulerAngles = new Vector3(0, 0, angle);*/
-
+        targetPosition = new Vector3(target.position.x, target.position.y, target.position.z);
         Vector3 TargetPositionScreenPoint = Camera.main.WorldToScreenPoint(targetPosition);
         bool isOffScreen = TargetPositionScreenPoint.x <= 0 || TargetPositionScreenPoint.x >= Screen.width || TargetPositionScreenPoint.y <= 0 || TargetPositionScreenPoint.y >= Screen.height || targetPosition.z <= Camera.main.transform.position.z;
+
         Debug.Log(isOffScreen + " " + TargetPositionScreenPoint);
 
         if (isOffScreen)
@@ -80,36 +74,24 @@ public class NavigationManager : MonoBehaviour
             UI_Element.anchoredPosition = WorldObject_ScreenPosition;
         }
 
-        /*pointerObj.position = targetPosition;
-        pointer.position = Camera.main.WorldToScreenPoint(pointerObj.position);
-
-        bool isOffScreen = pointer.position.x <= 0 || pointer.position.x >= Screen.width || pointer.position.y <= 0 || pointer.position.y >= Screen.height;
-        Debug.Log(isOffScreen + " " + pointer);
-
-        if (isOffScreen)
+        if (Input.GetMouseButtonDown(0))
         {
-            Vector3 cappedTargetScreenPosition = pointer.position;
-            if (cappedTargetScreenPosition.x < border)
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit))
             {
-                cappedTargetScreenPosition.x = border;
-                Debug.Log("Right");
+                if (hit.transform.name == targetName)
+                { print(targetName + " is clicked by mouse"); }
+                TargetChange("SM_Veh_Car_Taxi_01");
             }
-            else if (cappedTargetScreenPosition.x > Screen.width - border)
-            {
-                cappedTargetScreenPosition.x = Screen.width - border;
-                Debug.Log("Left");
-            }
-            if (cappedTargetScreenPosition.y < border)
-            {
-                cappedTargetScreenPosition.y = border;
-                Debug.Log("Down");
-            }
-            else if (cappedTargetScreenPosition.y > Screen.height - border)
-            {
-                cappedTargetScreenPosition.y = Screen.height - border;
-                Debug.Log("Top");
-            }
-            pointer.position = cappedTargetScreenPosition;
-        }*/
+        }
+    }
+
+    public void TargetChange(string name)
+    {
+        targetName = name;
+        target = GameObject.Find(name).GetComponent<Transform>();
+        Debug.Log("Click");
     }
 }

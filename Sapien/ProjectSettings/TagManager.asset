@@ -20,6 +20,10 @@ TagManager:
   - Glases
   - Head
   - Bag
+  - Start of fragment
+  - Battle
+  - Story quest
+  - Wish mission
   layers:
   - Default
   - TransparentFX
