@@ -6,149 +6,191 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 {
 public class VoiceRegontion2 : MonoBehaviour
 {
-    [SerializeField] private VoicePlayble _voicePlayble;
+	[Header("Inheritance")]
+	[SerializeField] private UIController _uiController;
+    [SerializeField] private VoicePlayBack _voicePlayback;
+    [SerializeField] private DoubleDialogUI _doubleUiController;
+	[SerializeField] private VoicePlaybleDouble _voicePlaybackDouble;
+	[SerializeField] private GCSpeechRecognition _speechRecognition;
 
-    [Header("Combo and Best")]
-    [Space(10f)]
-    [SerializeField] private Text _comboText;
-    [SerializeField] private Text _bestText;
-    [SerializeField] private int _countCombo;
-    [SerializeField] private int _countbest;
-    
+	[Header("Task(YOU CAN CHANGE)")]
+	[Space(10f)]
+	public string[] Task;
+	public string[] DoubleTask;
+	public string Sure;
 
-    [Space(20f)]
-      [SerializeField] private int _countTask;
-      [SerializeField] private Text resp;
-		public Text _resultText;
+	[Header("VoiceRecognision")]
+	[Space(10f)]
+	[SerializeField] private Button _startRecordButton;
+	public Text responce;
+	[SerializeField] private Image _voiceLevelImage;
+	[SerializeField] private float _max; 
+	[SerializeField] private float _current;
+	[SerializeField] private float _maxCurrent;
+	private string _resultText;
+	public int MistakeCounter; 
 
-		private GCSpeechRecognition _speechRecognition;
+    [Header("DoubleTask")]
+	[Space(10f)]
+	public  int Counter;
+	public int CounterNeed; 
 
+	[Header("Combo and Best")]
+	[Space(10f)]
+	[SerializeField] private Text _comboText;
+	[SerializeField] private Text _bestText;
+	public int comboCount;
+	private int bestCount;
+       
 
-		public Image _voiceLevelImage;
-
-		public Button _startRecordButton;
-
-		public float MaxVol, Current;
-
-		private bool isRecording;
+		
 		private void Start()
 		{
-            _countCombo =   PlayerPrefs.GetInt("combo", _countCombo);
-            _countbest =   PlayerPrefs.GetInt("best", _countCombo);
-            
-
+			comboCount = PlayerPrefs.GetInt("combo", comboCount);
+		    bestCount = PlayerPrefs.GetInt("best", bestCount);
+		    SetComboAndBest();
+			_uiController.SetTask(Task[_voicePlayback.AudioCount]);
+		
 
 			_speechRecognition = GCSpeechRecognition.Instance;
 			_speechRecognition.RecognizeSuccessEvent += RecognizeSuccessEventHandler;
-			_speechRecognition.RecognizeFailedEvent += RecognizeFailedEventHandler;
-
+			_speechRecognition.LongRunningRecognizeSuccessEvent += LongRunningRecognizeSuccessEventHandler;
 			_speechRecognition.FinishedRecordEvent += FinishedRecordEventHandler;
-
+			_speechRecognition.StartedRecordEvent += StartedRecordEventHandler;
 			_speechRecognition.RecordFailedEvent += RecordFailedEventHandler;
 
 			_speechRecognition.BeginTalkigEvent += BeginTalkigEventHandler;
 			_speechRecognition.EndTalkigEvent += EndTalkigEventHandler;
 
+			_startRecordButton.onClick.AddListener(StartRecordButtonOnClickHandler);
+			
+
+
+			_startRecordButton.interactable = true;
+			
+
+
 			_speechRecognition.SetMicrophoneDevice(_speechRecognition.GetMicrophoneDevices()[PlayerPrefs.GetInt("SavedMic")]);
+
 
 		}
 
 		private void Update()
 		{
-            _voicePlayble.TaskText.text = _voicePlayble.Task[_countTask];
-            SetComboAndBestText();
-             if(_countCombo > _countbest)
-                    {
-                        _countbest = _countCombo;
-                    }
-            
 			if (_speechRecognition.IsRecording)
 			{
 				if (_speechRecognition.GetMaxFrame() > 0)
 				{
-					MaxVol = (float)_speechRecognition.configs[_speechRecognition.currentConfigIndex].voiceDetectionThreshold;
-					Current = _speechRecognition.GetLastFrame() / MaxVol;
+					_max = (float)_speechRecognition.configs[_speechRecognition.currentConfigIndex].voiceDetectionThreshold;
+					_current = _speechRecognition.GetLastFrame() / _max;
 
-					if (Current >= 1f)
+					if (_current >= 1f)
 					{
-						_voiceLevelImage.fillAmount = Mathf.Lerp(_voiceLevelImage.fillAmount, Mathf.Clamp(Current / 2f, 0, 1f), 30 * Time.deltaTime);
+						_voiceLevelImage.fillAmount = Mathf.Lerp(_voiceLevelImage.fillAmount, Mathf.Clamp(_current / 2f, 0, 1f), 30 * Time.deltaTime);
 					}
 					else
 					{
-						_voiceLevelImage.fillAmount = Mathf.Lerp(_voiceLevelImage.fillAmount, Mathf.Clamp(Current / 2f, 0, 0.5f), 30 * Time.deltaTime);
+						_voiceLevelImage.fillAmount = Mathf.Lerp(_voiceLevelImage.fillAmount, Mathf.Clamp(_current / 2f, 0, 0.5f), 30 * Time.deltaTime);
 					}
 
-					_voiceLevelImage.color = Current >= 1f ? Color.green : Color.red;
+					_voiceLevelImage.color = _current >= 1f ? Color.green : Color.red;
 				}
 			}
 			else
 			{
 				_voiceLevelImage.fillAmount = 0f;
-
 			}
 		}
 
+
+
 		public void StartRecordButtonOnClickHandler()
 		{
-            
-        
-			isRecording = true;
 			_startRecordButton.interactable = false;
-			_resultText.text = string.Empty;
-			StopRecordButtonOnClickHandler();
-			_speechRecognition.StartRecord(true);
+		
+
+			_resultText = string.Empty;
+			StartCoroutine(StopRecordAuthomatic());
+			_speechRecognition.StartRecord(false);
+			Debug.Log("Speak");
+			responce.text = "Record";
+		
+			
 		}
- 
-        public void StopRecordButtonOnClickHandler()
+
+		public void StopRecordButtonOnClickHandler()
 		{
 			
 			_startRecordButton.interactable = true;
-			resp.text = "Stop Record";
-			
+			responce.text = "Stop Record";
+			StartCoroutine(StopRecordAuthomatic());
 			_speechRecognition.StopRecord();
 
 		}
-	
 
 
+		public void StopRecord()
+		{
+			_speechRecognition.StopRecord();
+		}
+		public IEnumerator StopRecordAuthomatic()
+		{
+			while (true)
+			{
+				yield return new WaitForSeconds(1f);
+				if (_current < _maxCurrent)
+				{
+					yield return new WaitForSeconds(1f);
+					if (_current < _maxCurrent)
+					{
+						responce.text = "Stop Record";
+					
+						
+						_speechRecognition.StopRecord();
+						Debug.Log("StopRecord");
+
+						_startRecordButton.interactable = true;
+						
+						yield break;
+					}
+				}
+			}
+		}
+
+		private void StartedRecordEventHandler()
+		{
+
+		}
 
 		private void RecordFailedEventHandler()
 		{
-
-         
-			_resultText.text = "<color=red>Start record Failed. Please check microphone device and try again.</color>";
-
+			
 			_startRecordButton.interactable = true;
 		}
 
 		private void BeginTalkigEventHandler()
 		{
-			
-			_resultText.text = "<color=blue>Talk Began.</color>";
+
 		}
 
 		private void EndTalkigEventHandler(AudioClip clip, float[] raw)
 		{
-			
-			_resultText.text += "\n<color=blue>Talk Ended.</color>";
-
 			FinishedRecordEventHandler(clip, raw);
 		}
 
 		private void FinishedRecordEventHandler(AudioClip clip, float[] raw)
 		{
-		
-			string message = "";
+
 			if (clip == null)
 				return;
-
+			string Phrases = "phrase, phrase2, phrase3";
 			RecognitionConfig config = RecognitionConfig.GetDefault();
 			config.languageCode = (Enumerators.LanguageCode.en_US.Parse());
 			config.speechContexts = new SpeechContext[]
 			{
 				new SpeechContext()
 				{
-					phrases = message.Replace(" ", string.Empty).Split(',')
+					phrases = Phrases.Replace(" ", string.Empty).Split(',')
 				}
 			};
 			config.audioChannelCount = clip.channels;
@@ -166,34 +208,86 @@ public class VoiceRegontion2 : MonoBehaviour
 				//},
 				config = config
 			};
+
 			_speechRecognition.Recognize(recognitionRequest);
-			
+
 		}
 
 
-		private void RecognizeFailedEventHandler(string error)
-		{
-			_resultText.text = "Recognize Failed: " + error;
-		}
-
-	
 		private void RecognizeSuccessEventHandler(RecognitionResponse recognitionResponse)
 		{
-			_resultText.text = "Recognize Success.";
+
 			InsertRecognitionResponseInfo(recognitionResponse);
 		}
 
-		private void InsertRecognitionResponseInfo(RecognitionResponse recognitionResponse)
+		private void LongRunningRecognizeSuccessEventHandler(Operation operation)
 		{
-		
+			if (operation.error != null || !string.IsNullOrEmpty(operation.error.message))
+				return;
+
+
+
+			if (operation != null && operation.response != null && operation.response.results.Length > 0)
+			{
+
+				_resultText += "\n" + operation.response.results[0].alternatives[0].transcript;
+
+				string other = "\nDetected alternatives:\n";
+
+				foreach (var result in operation.response.results)
+				{
+					foreach (var alternative in result.alternatives)
+					{
+						if (operation.response.results[0].alternatives[0] != alternative)
+						{
+							other += alternative.transcript + ", ";
+						}
+					}
+				}
+
+				_resultText += other;
+			}
+			else
+			{
+				_resultText = "Long Running Recognize Success. Words not detected.";
+			}
+		}
+		IEnumerator Repeat()
+        {
+			responce.text = "Repeat!";
+		    _uiController.RepeatUI();
+			if(MistakeCounter == 2 && _voicePlaybackDouble.IsDoublePlayingNow == false)
+			{
+				StopRecordButtonOnClickHandler();
+				_uiController.IncorrectUI();
+			    _voicePlayback.IsMistake = true;
+				
+
+			}
+			else if(MistakeCounter == 2 && _voicePlaybackDouble.IsDoublePlayingNow == true)
+			{
+				StopRecordButtonOnClickHandler();
+				_voicePlayback.IsMistake = true;
+				_doubleUiController.InCorrect();
+				
+			}
+			else
+			{
+               yield return new WaitForSeconds(2);
+			   
+			  StartRecordButtonOnClickHandler(); 
+			}
+			
+		}
+		public void InsertRecognitionResponseInfo(RecognitionResponse recognitionResponse)
+		{
 			if (recognitionResponse == null || recognitionResponse.results.Length == 0)
 			{
-				//StartCoroutine(Repeat());
-				resp.text = "Не неси херню";
+				StartCoroutine(Repeat());
 				return;
 			}
 
-			_resultText.text += "\n" + recognitionResponse.results[0].alternatives[0].transcript;
+			_resultText += "\n" + recognitionResponse.results[0].alternatives[0].transcript;
 
 			var words = recognitionResponse.results[0].alternatives[0].words;
 
@@ -206,12 +300,12 @@ public class VoiceRegontion2 : MonoBehaviour
 					times += "<color=green>" + item.word + "</color> -  start: " + item.startTime + "; end: " + item.endTime + "\n";
 				}
 
-				_resultText.text += "\n" + times;
+				_resultText += "\n" + times;
 			}
 
 			string other = "\nDetected alternatives: ";
 
-			foreach (var result in recognitionResponse.results) //���� ��������� �������� ������
+			foreach (var result in recognitionResponse.results)
 			{
 				foreach (var alternative in result.alternatives)
 				{
@@ -221,84 +315,111 @@ public class VoiceRegontion2 : MonoBehaviour
 					}
 				}
 			}
-			resp.text = "";
-			SravnTask(_resultText.text + other);
+
+			_resultText += other;
+			responce.text = "";
+			SravnTask(_resultText + other);
 			//_resultText.text += other;
 		}
-
-
-    
-       private IEnumerator SetTask()
-       {
-           
-           yield return new WaitForSeconds(1.5f);
-           _countTask++;
-		   _voicePlayble.index += 1;
-            
-       }
-
-
-
-        private IEnumerator Repeat()
-        {
-            resp.text = "Не говори херню";
-            yield return new WaitForSeconds(1.5f);
-            StartRecordButtonOnClickHandler();
-        }
 		public void SravnTask(string other)
-        {
-			if (other.Contains(_voicePlayble.Task[_countTask]))
-            {
+		{
+			if(other.Contains(Task[_voicePlayback.AudioCount]))
+			{
+				comboCount++;
+				responce.text = "Correct";
+				SetComboAndBest();
+				_voicePlayback.AudioCount++;
+				Counter++;
+				MistakeCounter = 0;
+				if(Counter == CounterNeed )
+				{
+				 StartCoroutine(_uiController.OnCorrect());
+				  StartCoroutine(_voicePlaybackDouble.ListenInterlocutor());
+				}
+				else
+				{
+				   StartCoroutine(_uiController.OnCorrect());
+				   StartCoroutine(_voicePlayback.InterlocutorSay());
+                }
+			}
+			else if(other.Contains(DoubleTask[_voicePlaybackDouble.index]) && _voicePlaybackDouble.IsDoublePlayingNow == true)
+			{
 				
-               resp.text = "Правильно!";
-               StartCoroutine(SetTask());
-               _voicePlayble.SetWaitBackground();
-               StartCoroutine(CharacterSpeakCourutine());
-              _countCombo++;
-		    }
-            else if(!other.Contains(_voicePlayble.Task[_countTask]))
-            {
-               _voicePlayble.SetRepeatBackground();
-				resp.text = "Не правильно!";
-				StartRecordButtonOnClickHandler();
-				_countCombo = 0;
-            }
+				_voicePlaybackDouble.ListenToTryAgain();
+				_uiController._microphonePanel.SetActive(false);
+				_doubleUiController._doublePanel.SetActive(false);
+				_voicePlaybackDouble.isSure = true;
+				comboCount = 0;
+				SetComboAndBest();
+				MistakeCounter = 0;
+			}
+			else if((other.Contains(DoubleTask[_voicePlaybackDouble.index + 1])) && _voicePlaybackDouble.IsDoublePlayingNow == true)
+			{
+                _doubleUiController.OnCorrectDouble();
+				StartCoroutine(_voicePlayback.InterlocutorSay());
+				_voicePlaybackDouble.IsDoublePlayingNow = false;
+				comboCount++;
+				SetComboAndBest();
+				_voicePlayback.AudioCount++;
+				
+			}
+			else if((!other.Contains(DoubleTask[_voicePlaybackDouble.index]) && _voicePlaybackDouble.IsDoublePlayingNow == true) || ((!other.Contains(DoubleTask[_voicePlaybackDouble.index + 1])) && _voicePlaybackDouble.IsDoublePlayingNow == true))
+			{
+				MistakeCounter++;
+                StartCoroutine(Repeat());
+				comboCount = 0;
+				SetComboAndBest();
+			}
+			else if(_voicePlaybackDouble.isSure == true && other.Contains(Sure))
+			{
+				StartCoroutine(_uiController.OnCorrect());
+				StartCoroutine(_voicePlaybackDouble.ListenInterlocutor());
+				_voicePlaybackDouble.isSure = false;
+				MistakeCounter = 0;
+				comboCount++;
+				SetComboAndBest();
+			}
+			else if(_voicePlaybackDouble.isSure == true && !other.Contains(Sure))
+			{
+				MistakeCounter++;
+                StartCoroutine(Repeat());
+				comboCount = 0;
+				SetComboAndBest();
+			}
+			else 
+			{
+                MistakeCounter++;
+                StartCoroutine(Repeat());
+				comboCount = 0;
+				SetComboAndBest();
+			
+			}
+
+
+			
+			
+		}
+			
+			
+		
+
+
+		public void SetComboAndBest()
+        {
+        _comboText.text = comboCount.ToString();
+		PlayerPrefs.SetInt("combo", comboCount);
+		if(comboCount > bestCount)
+		{
+           bestCount = comboCount;
+		}
+		PlayerPrefs.SetInt("best", bestCount);
+	    _bestText.text = bestCount.ToString();
         }
 
-                
-                private void SetComboAndBestText()
-                {
-                    
-                    _comboText.text = _countCombo.ToString();
-                    _bestText.text = "Best" + _countbest;
-                    PlayerPrefs.SetInt("combo", _countCombo);
-                    PlayerPrefs.SetInt("best", _countbest);
-                  
-                }
-				  
 
 
-                private IEnumerator CharacterSpeakCourutine()
-				{
-					yield return new WaitForSeconds(1);
-					_voicePlayble.CharacterSpeak();
-					StartCoroutine(OnClickPlayButtonCourutine());
-					StopRecordButtonOnClickHandler();
-				}
-
-			    private IEnumerator OnClickPlayButtonCourutine()
-				{
-					
-					yield return new WaitForSeconds(_voicePlayble._characterSpeak[_voicePlayble.index].clip.length + 1);
-					_voicePlayble.OnClickPlayButton();
-				}
-
-
-            
-            
-
-
-       
+	
+		
 	}
 }
 

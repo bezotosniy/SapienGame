@@ -2,17 +2,20 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+
 namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 {
-	public class VoiceRecognision : MonoBehaviour
-	{
-		public GCSpeechRecognition _speechRecognition;
+public class VoiceregonsionForBattle : MonoBehaviour
+{
+        public GCSpeechRecognition _speechRecognition;
+		[SerializeField] private BattleController _battleController;
+	
 
-		public Button _startRecordButton,
-					   _stopRecordButton;
+		public Button _startRecordButton,_stopRecordButton;
 
 		private string _resultText;
 		public Text task;
+		
 		public Text responce;
 		public Image _voiceLevelImage;
 		public float max, current;
@@ -27,13 +30,13 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 		public void changeText(string Task)
 		{
 			task.text = Task;
-			responce.text = "����������� �����";
+			responce.text = "Yes";
 		}
 		private void Start()
 		{
 			
-		
-
+		    
+            task.text = _battleController.VoiceTask;
 			_speechRecognition = GCSpeechRecognition.Instance;
 			_speechRecognition.RecognizeSuccessEvent += RecognizeSuccessEventHandler;
 			_speechRecognition.LongRunningRecognizeSuccessEvent += LongRunningRecognizeSuccessEventHandler;
@@ -90,12 +93,11 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 		{
 			_startRecordButton.interactable = false;
 			_stopRecordButton.interactable = true;
-
-			_resultText = string.Empty;
+            _resultText = string.Empty;
 			StartCoroutine(StopRecordAuthomatic());
 			_speechRecognition.StartRecord(false);
 			Debug.Log("Speak");
-			responce.text = "������";
+			responce.text = "Record";
 		
 			
 		}
@@ -104,7 +106,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 		{
 			_stopRecordButton.interactable = false;
 			_startRecordButton.interactable = true;
-			responce.text = "����������";
+			responce.text = "StopRecord";
 			StartCoroutine(StopRecordAuthomatic());
 			_speechRecognition.StopRecord();
 
@@ -113,13 +115,13 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 		{
 			while (true)
 			{
-				yield return new WaitForSeconds(2f);
-				if (current < 0.07f)
+				yield return new WaitForSeconds(1f);
+				if (current < 0.11f)
 				{
 					yield return new WaitForSeconds(1f);
-					if (current < 0.07f)
+					if (current < 0.11f)
 					{
-						responce.text = "���� �� ������!";
+						responce.text = "Check!";
 					
 						
 						_speechRecognition.StopRecord();
@@ -230,7 +232,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 		}
 		IEnumerator Repeat()
         {
-			responce.text = "���� �� ������!";
+			responce.text = "Repeat!";
 			
 			yield return new WaitForSeconds(2);
 			StartRecordButtonOnClickHandler(); 
@@ -279,43 +281,24 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 		}
 		public void SravnTask(string other)
 		{
-			Inventory inv;
-			if (FindObjectOfType<Inventory>() != null)
-			{
-				inv = FindObjectOfType<Inventory>().GetComponent<Inventory>();
+			
 
 
 				if (other.Contains(task.text))
 				{
-					responce.text = "���������!";
+					responce.text = "Correct!";
 
-					inv.CrashGem((int)inv.damage);
+					_battleController.CrashGem((int)_battleController.damage);
+					_battleController.LerningModeId++;
 				}
 				else
 				{
-					responce.text = "������� :(";
-					inv.CrashGem(0);
-				} }
+					responce.text = "InCorrect :(";
+					StartCoroutine(_battleController.Repeat());
+				} 
 		}
 
 
-		public void CompareTask(string other)
-        {
-			
-		        if (other.Contains(task.text))
-				{
-					responce.text = "���������!";
-
-					
-				}
-				else
-				{
-					responce.text = "������� :(";
-					
-				}
-			
-		}
-	}
-
-
+		
+}
 }

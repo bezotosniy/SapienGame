@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using CartoonFX;
 using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class Inventory : MonoBehaviour
 {
@@ -38,11 +39,12 @@ public class Inventory : MonoBehaviour
 
     [Space]
     [Header("Task")]
-    public VoiceRegontion2 voiceRec;
+    public VoiceregonsionForBattle voiceRec;
     public GameObject OneWord,OneFraze;
     public Text TimeText;
     bool TimeGo;
     string Task;
+    public string VoiceTask;
     [Space]
     private Camera Cam;
     private Ray RayMouse;
@@ -52,6 +54,9 @@ public class Inventory : MonoBehaviour
     public Slider bombSlider;
     public Text RESULT_TEXT;
     public Button GoHome;
+    [SerializeField] private AudioSource _mainMusik;
+    private float _volumeofMusik;
+    [SerializeField] private bool _isPlayMusik;
     [Space]
     [Header("Survive Modes")]
     public bool infinitely;
@@ -66,7 +71,7 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-       
+       _mainMusik.Play();
         Bomb.onClick.AddListener(bomb);
         bombSlider.value = 0;
         Bomb.interactable = false;
@@ -76,14 +81,16 @@ public class Inventory : MonoBehaviour
         InitialiseFrase();
         Cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         keyBoard = GetComponent<KeyBordController>();
-       
+       _volumeofMusik = _mainMusik.GetComponent<AudioSource>().volume;
         CanvasAnim = GetComponent<Animator>();
         StartCoroutine(StartFight());
-        CreateRandom();
+       CreateRandom();
 
     }
-    void CreateRandom()
+   void CreateRandom()
     {
+        
+        
         for (int i = RandomTask.Length - 1; i > 0; i--)
         {
             var r = new System.Random();
@@ -93,7 +100,16 @@ public class Inventory : MonoBehaviour
             RandomTask[j] = t;
         }
     }
-    void Update()
+
+        private void Update(){
+            if(_isPlayMusik == false)
+            {
+              _volumeofMusik -= 0.1f;
+            }
+        }
+
+
+    void FixedUpdate()
     {
        
         if (Input.GetButtonDown("Fire1"))
@@ -124,7 +140,7 @@ public class Inventory : MonoBehaviour
         PlayerPrefs.SetString("phrase" + 3, "Good morning");
    
         int i = 0;
-        string[] a;
+       
         while(PlayerPrefs.GetString("phrase" + i) != "")
         {
            TaskString[i] = PlayerPrefs.GetString("phrase" + i);
@@ -160,19 +176,21 @@ public class Inventory : MonoBehaviour
         Debug.Log("Scale");
         if (indexGem <= 3)
         {
-            float i = gem[indexGem].transform.localScale.x;
+           /* float i = gem[indexGem].transform.localScale.x;
             for (float q = i; q < i * 2; q += .1f)
             {
                 gem[indexGem].transform.localScale = new Vector3(q, q, q);
                 yield return new WaitForFixedUpdate();
-            }
+            }*/
+            gem[indexGem].transform.DOScale(new Vector3(1.7f, 1.7f, 1.7f), 0.5f);
             yield return new WaitForSeconds(1);
+            _isPlayMusik = false;
             CanvasAnim.SetTrigger("NewTask");
             TimeGo = true;
             Debug.Log("NewTask");
             if (!infinitely) StartCoroutine(InstantTask()); else StartCoroutine(InstantTaskLearning());
             StartCoroutine(Time());
-            voiceRec.StartRecordButtonOnClickHandler();
+            
               
         
             indexGem++;
@@ -183,7 +201,8 @@ public class Inventory : MonoBehaviour
     
 
     public IEnumerator Time()
-    { int allTime =45;
+    {
+         int allTime =45;
         TimeGo = true;
         while (true) {
             yield return new WaitForSeconds(1f);
@@ -195,7 +214,7 @@ public class Inventory : MonoBehaviour
                 if (allTime == 0)
                 {
                     if (num - 1 == 0) keyBoard.PostTaskAnswer();
-                    else if (num - 1 == 2) voiceRec.SravnTask("");
+                   else if (num - 1 == 2) voiceRec.SravnTask("");
                 }
                 yield break;
             }
@@ -241,9 +260,10 @@ public class Inventory : MonoBehaviour
     }
     IEnumerator InstantTask()
     {
+        voiceRec.StartRecordButtonOnClickHandler();
         Debug.Log("newTask");
         ChooseFrase();
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(3f);
         if (num < RandomTask.Length)
         {
             if (RandomTask[num] == 0)
@@ -256,13 +276,13 @@ public class Inventory : MonoBehaviour
             }
             else
             {
-               // voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task); 
+               voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task); 
             }
             num++;
         }
         else
         {
-           // voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task);
+           voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task);
         }
     }
     IEnumerator InstantTaskLearning()
@@ -357,12 +377,12 @@ public class Inventory : MonoBehaviour
         {
             if (RandomTask[num-1] == 0) { OneWord.SetActive(true); keyBoard.InstWord(ID); }
             else if (RandomTask[num-1] == 1) { keyBoard.KeyBoard(Task); }
-         //   else { voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task); }
+            else { voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task); }
           
         }
         else
         {
-          //  voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task);
+          voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task);
         }
 
 

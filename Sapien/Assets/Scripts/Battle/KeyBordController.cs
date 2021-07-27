@@ -1,15 +1,14 @@
 
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
+using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition;
 
 
 public class KeyBordController : MonoBehaviour
 {
-    Inventory inv;
+    private BattleController _battleController;
+    [SerializeField] private VoiceregonsionForBattle _voiceRecognision;
     string textTask;
 
     public Transform position;
@@ -35,6 +34,7 @@ public class KeyBordController : MonoBehaviour
     public ColiderLongFrase[] Cl;
     public string TaskSum;
     Spriteword sp;
+    public int _counter;
     private void Start()
     {
         removeAll.onClick.AddListener(RemoveAll);
@@ -42,7 +42,7 @@ public class KeyBordController : MonoBehaviour
         remove.onClick.AddListener(Remove);
         EnterText.onClick.AddListener(PostTaskAnswer);
         position.gameObject.SetActive(false);
-        inv = GetComponent<Inventory>();
+        _battleController = GetComponent<BattleController>();
     }
     public void KeyBoard(string Task)
     {
@@ -56,9 +56,21 @@ public class KeyBordController : MonoBehaviour
     {
         ID = id;
         enter.interactable = false;
+        /*if(_counter > 1)
+        {
+        Instantiate(instWord);
+        }*/
         instWord = Instantiate(LetterList[ID].gameObject, transform);
         sp = instWord.GetComponent<Spriteword>();
-        sp.GenerateTask();
+        if(_battleController.LerningModeId == 2)
+        {
+           sp.GenerateTask();
+       }
+        else if(_battleController.LerningModeId == 3)
+        {
+            sp.GenerateTaskHarder();
+        }
+       
         textTaskChar = "";
         sp.textTaskOneWord.text = textTaskChar;
         normalChar = false;
@@ -161,16 +173,23 @@ public class KeyBordController : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         numberLetter = 0;
-        Destroy(instWord);
+        _counter++;
+        //Destroy(instWord);
         if (sp.textTaskOneWord.text == sp.TextTask)
-            inv.CrashGem((int)inv.damage);
+        {
+            _battleController.CrashGem((int)_battleController.damage);
+            _battleController.LerningModeId++;
+        }   
         else
-            inv.CrashGem(0);
+        {
+            RemoveAll();
+            _voiceRecognision.responce.text = "Try Again";            
+        }
     }
   
     void InstFrase()
     {
-        int[] rand;
+        //int[] rand;
         
         Debug.Log("One");
         position.gameObject.SetActive(true);
@@ -217,11 +236,11 @@ public class KeyBordController : MonoBehaviour
 
         if(System.String.Compare(TaskSum, textTask, System.Globalization.CultureInfo.CurrentCulture, System.Globalization.CompareOptions.IgnoreCase | System.Globalization.CompareOptions.IgnoreSymbols) == 0)
         {
-            inv.CrashGem((int)inv.damage);
+            _battleController.CrashGem((int)_battleController.damage);
         }
         else
         {
-            inv.CrashGem(0);
+            _battleController.CrashGem(0);
         }
         var obj = FindObjectsOfType<ButtonFrase>();
         foreach (ButtonFrase i in obj)
@@ -238,4 +257,7 @@ public class KeyBordController : MonoBehaviour
             MoveObject();
         }
     }
+
+
+  
 }
