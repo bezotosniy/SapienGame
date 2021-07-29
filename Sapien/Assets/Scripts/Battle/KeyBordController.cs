@@ -1,4 +1,4 @@
-
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,9 +19,14 @@ public class KeyBordController : MonoBehaviour
     [Header("Char")]
     public Transform pointLetterInst;
     public Spriteword[] LetterList;  
+
+    [SerializeField] private Spriteword[] _letterListIfNotInfenetly;
     public Button[] buttonLetter;
     public Button space, remove, removeAll, enter;
-    GameObject instWord;
+    public GameObject[] instWord;
+
+    [SerializeField] private GameObject[] _instWordNotInfenetly; 
+    [SerializeField] private int _randomWord;
     [Space]
     [Header("Phrase")]
     [Range(1, 400)]
@@ -52,16 +57,19 @@ public class KeyBordController : MonoBehaviour
     }
 
     public void InstWord(int id)
-        
     {
+        IsButtonLetterInteractable(true);
+        if(_counter != 0)
+        {
+            _randomWord = Random.Range(0, instWord.Length);
+        }
+        
         ID = id;
         enter.interactable = false;
-        /*if(_counter > 1)
-        {
-        Instantiate(instWord);
-        }*/
-        instWord = Instantiate(LetterList[ID].gameObject, transform);
-        sp = instWord.GetComponent<Spriteword>();
+        instWord[_randomWord] = Instantiate(LetterList[_randomWord].gameObject, transform);
+        instWord[_randomWord].transform.DOScale(new Vector3(0.5f, 0.5f, 0.5f), 0.01f);
+        instWord[_randomWord].transform.DOMove(new Vector3(1039, 465, 0), 0.01f);
+        sp = instWord[_randomWord].GetComponent<Spriteword>();
         if(_battleController.LerningModeId == 2)
         {
            sp.GenerateTask();
@@ -70,6 +78,47 @@ public class KeyBordController : MonoBehaviour
         {
             sp.GenerateTaskHarder();
         }
+       
+        textTaskChar = "";
+        sp.textTaskOneWord.text = textTaskChar;
+        normalChar = false;
+        int i = 0;
+        int random = buttonLetter.Length - 1;
+        
+        for (; i < buttonLetter.Length; i++)
+        {
+            if (Random.Range(i, buttonLetter.Length) == random && !normalChar)
+            {
+                normalChar = true;
+                buttonLetter[i].GetComponentInChildren<Text>().text = sp.TextTask[numberLetter].ToString();
+            }
+            else
+            {
+                System.Random rand = new System.Random();
+                char ch = (char)rand.Next(0x0061, 0x007A);
+                if (ch == 'z')
+                    ch = (char)((int)'a'+ i);
+                else
+                    ch = (char)((int)ch + i);
+                buttonLetter[i].GetComponentInChildren<Text>().text = ch.ToString();
+            }
+        }
+        numberLetter++;
+    }
+    public void InstWordNotInfenetly(int id)
+    {
+        IsButtonLetterInteractable(true);
+       
+            _randomWord = Random.Range(0, _instWordNotInfenetly.Length);
+        
+        ID = id;
+        enter.interactable = false;
+        _instWordNotInfenetly[_randomWord] = Instantiate(_letterListIfNotInfenetly[_randomWord].gameObject, transform);
+        _instWordNotInfenetly[_randomWord].transform.DOScale(new Vector3(0.5f, 0.5f, 0.5f), 0.01f);
+        _instWordNotInfenetly[_randomWord].transform.DOMove(new Vector3(1039, 465, 0), 0.01f);
+        sp = _instWordNotInfenetly[_randomWord].GetComponent<Spriteword>();
+        
+        sp.GenerateTask();
        
         textTaskChar = "";
         sp.textTaskOneWord.text = textTaskChar;
@@ -146,7 +195,7 @@ public class KeyBordController : MonoBehaviour
         else
         {
             enter.interactable = true;
-            
+            IsButtonLetterInteractable(false);
         }
     }
     void buttonDoneLetter()
@@ -155,6 +204,7 @@ public class KeyBordController : MonoBehaviour
     }
     void Remove()
     {
+        
         numberLetter-=2;
         if(numberLetter < 0)
         {
@@ -162,29 +212,54 @@ public class KeyBordController : MonoBehaviour
         }
         LetterInButton("");
         sp.textTaskOneWord.text = sp.textTaskOneWord.text.Remove(sp.textTaskOneWord.text.Length - 1);
+        
+        IsButtonLetterInteractable(true);
+        
     }
     void RemoveAll()
     {
         numberLetter =0;
         LetterInButton("");
         sp.textTaskOneWord.text ="";
+        IsButtonLetterInteractable(true);
     }
     IEnumerator closeLetter()
     {
         yield return new WaitForSeconds(1);
         numberLetter = 0;
-        _counter++;
-        //Destroy(instWord);
+    
+        
         if (sp.textTaskOneWord.text == sp.TextTask)
         {
+            _battleController.TimeGo = false;
             _battleController.CrashGem((int)_battleController.damage);
             _battleController.LerningModeId++;
+            _counter = 0;
         }   
+        else if(sp.textTaskOneWord.text != sp.TextTask)
+        {
+            _battleController.TimeGo = false;
+            StartCoroutine(_battleController.Repeat());
+            _counter++;
+            //_voiceRecognision.responce.text = "Try Again";            
+        }
+        StartCoroutine(DestroyInstWord());
+        
+    }
+
+
+    private IEnumerator DestroyInstWord()
+    {
+        yield return new WaitForSeconds(3f);
+        if(_battleController.infinitely)
+        {
+            Destroy(instWord[_randomWord]);
+        }
         else
         {
-            RemoveAll();
-            _voiceRecognision.responce.text = "Try Again";            
+            Destroy(_instWordNotInfenetly[_randomWord]);
         }
+        
     }
   
     void InstFrase()
@@ -255,6 +330,15 @@ public class KeyBordController : MonoBehaviour
         if (Input.GetMouseButton(0) && canPressed)
         {
             MoveObject();
+        }
+    }
+
+
+    private void IsButtonLetterInteractable(bool IsInteractable)
+    {
+        for(int i = 0; i < buttonLetter.Length; i++)
+        {
+            buttonLetter[i].interactable = IsInteractable;
         }
     }
 

@@ -31,6 +31,6 @@ public class InfentlyButtonInformation : MonoBehaviour, IPointerEnterHandler, IP
     public void OnPointerEnter(PointerEventData eventData)
     {
         _background.transform.DOScale(new Vector3(1, 1, 1), 0.4f);
-        _background.transform.DOMoveY(320, 0.5f);
+        _background.transform.DOMoveY(280, 0.5f);
     }
 }

@@ -34,19 +34,20 @@ public class BattleController : MonoBehaviour
     [Header("Enemy")]
     public EnemyController EnemyControll;
 
-    int indexGem = 0;
+    public int indexGem = 0;
     int CurrentUron;
 
     [Space]
     [Header("Task")]
-    public VoiceRegontion2 voiceRec;
+    public VoiceregonsionForBattle voiceRec;
     public GameObject OneWord,OneFraze;
     public Text TimeText;
-    bool TimeGo;
+    public bool TimeGo;
     string Task;
     public string VoiceTask;
     public int[] RandomTask;
     [SerializeField] private AudioSource _dictorAudio;
+    public AudioSource[] _dictorNotInfentlySaid;
     [Space]
     private Camera Cam;
     private Ray RayMouse;
@@ -70,7 +71,18 @@ public class BattleController : MonoBehaviour
     [SerializeField] private Button _secondButton;
 
     [SerializeField] private UIAnimation _animation;
-    [SerializeField] private VoicePlayBack _voicePlayback;
+    [SerializeField] private VoicePlaybackForBattle _voicePlayback;
+    [SerializeField] private VoiceregonsionForBattle _voiceRecognision;
+    [SerializeField] private UIController _uiController;
+     int allTime = 45;
+     [SerializeField] private int _firstTaskTime;
+     [SerializeField] private int _secondTaskTime;
+     [SerializeField] private int _thirdTaskTime;
+     [SerializeField] private int _fourthTaskTime;
+
+     public int RandomString;
+     [SerializeField] private Text _taskText;
+     [SerializeField] private GameObject _pharsePanel;
     
 
 
@@ -79,11 +91,17 @@ public class BattleController : MonoBehaviour
     private void Start()
     {
         
-       InfentlyMode();
-       //CreateRandom();
-       _mainMusik.Play();
+       
+       if(!infinitely)
+       {
+            CreateRandom();
+       }
+        InfentlyMode();
+        _mainMusik.Play();
         Bomb.onClick.AddListener(bomb);
         _infentlyInstrument.onClick.AddListener(ClickOnGems);
+        _firstButton.onClick.AddListener(ClickOnGems);
+        _secondButton.onClick.AddListener(ClickOnGems);
         bombSlider.value = 0;
         Bomb.interactable = false;
         Start_hp_Person = HP_Person;
@@ -98,7 +116,7 @@ public class BattleController : MonoBehaviour
     
     }
 
-     /*private void CreateRandom()
+     private void CreateRandom()
     {
         
         
@@ -110,7 +128,7 @@ public class BattleController : MonoBehaviour
             RandomTask[i] = RandomTask[j];
             RandomTask[j] = t;
         }
-    }*/
+    }
 
     private void Update()
     {
@@ -136,7 +154,16 @@ public class BattleController : MonoBehaviour
       private IEnumerator StartFight()
     {
         yield return new WaitForSeconds(17.5f);
-        _infentlyInstrument.transform.DOMoveY(80, 0.5f);
+        if(infinitely)
+        {
+            _infentlyInstrument.transform.DOMoveY(80, 0.5f);
+        }
+        else
+        {
+            _firstButton.transform.DOMoveY(80, 0.5f);
+            _secondButton.transform.DOMoveY(80, 0.5f);
+        }
+        
         EnemyControll.MouseBar.gameObject.SetActive(true);
     }
 
@@ -154,36 +181,55 @@ public class BattleController : MonoBehaviour
     {
         yield return new WaitForSeconds(4);
         StartCoroutine(WaitForChangeScale());
-        _infentlyInstrument.transform.DOMoveY(-70,0.5f);
+        if(infinitely)
+        {
+            _infentlyInstrument.transform.DOMoveY(-70,0.5f);
+            _infentlyInstrument.GetComponent<Image>().enabled = false;
+        }
+        else
+        {
+            
+            _secondButton.transform.DOMoveY(-70,0.5f);
+            _firstButton.GetComponent<Image>().enabled = false;
+            _secondButton.GetComponent<Image>().enabled = false;
+        }
+       
         
     }
 
      private IEnumerator WaitForChangeScale()
     {
+        
         Debug.Log("Scale");
         if (indexGem <= 3)
         {
-            
-            voiceRec.gameObject.SetActive(true);
-           /* float i = gem[indexGem].transform.localScale.x;
+            float i = gem[indexGem].transform.localScale.x;
             for (float q = i; q < i * 2; q += .1f)
             {
+                 yield return new WaitForFixedUpdate();
                 gem[indexGem].transform.localScale = new Vector3(q, q, q);
-                yield return new WaitForFixedUpdate();
-            }*/
-            gem[indexGem].transform.DOScale(new Vector3(1.7f, 1.7f, 1.7f), 0.5f);
+               
+            }
+            RandomString = Random.Range(0,_voiceRecognision.TaskNotInfently.Length);
+            _taskText.text = voiceRec.TaskNotInfently[RandomString];
+            voiceRec.gameObject.SetActive(true);
             yield return new WaitForSeconds(1);
             _mainMusik.Stop();
-            //CanvasAnim.SetTrigger("NewTask");
             _animation.OpenPanel();
             TimeGo = true;
             Debug.Log("NewTask");
             if (infinitely) 
             {
+              
                StartCoroutine(InstantTaskLearning());
             }
+            else
+            {
+               
+                StartCoroutine(InstantTaskNotInfently());
+            }
             
-            //StartCoroutine(InstantTask()); else StartCoroutine(InstantTaskLearning());
+            
             
             
               
@@ -210,12 +256,15 @@ public class BattleController : MonoBehaviour
                     StartCoroutine(ListenToDictor());
                     break;
                 case 1:
+                    _uiController.InterLocutorSaid();
                     StartCoroutine(Speak());
                     break;
                 case 2:
+                    _uiController.ChooseLettersUI();
                     OneWord.SetActive(true); keyBoard.InstWord(0);
                     break;
                 case 3:
+                    _uiController.ChooseLettersUI();
                     OneWord.SetActive(true); keyBoard.InstWord(0);
                     break;
 
@@ -224,51 +273,117 @@ public class BattleController : MonoBehaviour
         }
     }
 
+    private IEnumerator InstantTaskNotInfently()
+    {
+        StartCoroutine(Time());
+        if(LerningModeId< 4f)
+        {
+            yield return new WaitForSeconds(1.5f);
+            switch(LerningModeId)
+            {
+                case 0:
+                StartCoroutine(ListenToDictorNotinfently());
+                break;
+                case 1:
+                _uiController.InterLocutorSaid();
+                StartCoroutine(SpeakIfNotInfently());
+                break;
+                case 2:
+                _uiController.ChooseLettersUI();
+                OneWord.SetActive(true); 
+                keyBoard.InstWordNotInfenetly(0);
+                break;
+                case 3:
+                _uiController.DoPharses();
+                _pharsePanel.SetActive(true); 
+                keyBoard.KeyBoard(voiceRec.TaskNotInfently[RandomString]);
+                break;
+            }
+        }
+    }
+
 
     public IEnumerator Repeat()
     {
         
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         _animation.ClosePanel();
         yield return new WaitForSeconds(2f);
         _animation.OpenPanel();
         StartCoroutine(Time());
         
         yield return new WaitForSeconds(1.5f);
+        
        switch (LerningModeId)
             {
                 case 0:
-                    voiceRec.responce.text = "Repeat";
+                if(infinitely)
+                    
                     StartCoroutine(ListenToDictor());
-                 
                     break;
                 case 1:
-                    voiceRec.responce.text = "Repeat";
+                if(infinitely)
+                    
+                    _uiController.InterLocutorSaid();
                     StartCoroutine(Speak());
+               
                     break;
                 case 2:
+                    _uiController.ChooseLettersUI();
                     OneWord.SetActive(true); keyBoard.InstWord(0);
-                    voiceRec.responce.text = "Remove all and try again";
+                   
                     break;
                 case 3:
+                    _uiController.ChooseLettersUI();
                     OneWord.SetActive(true); keyBoard.InstWord(0);
-                    voiceRec.responce.text = "Remove all and try again";
+                    
                     break;
 
             }
        
     }
 
+
+    public IEnumerator ClosePanel()
+    {
+       
+        yield return new WaitForSeconds(2);
+        _animation.ClosePanel();
+        StartCoroutine(WaitForChange());
+    }
+
+    private IEnumerator WaitForChange(){
+        yield return new WaitForSeconds(3);
+        gem[indexGem - 1].transform.DOScale(new Vector3(1,1,1), 0.5f);
+        gem[indexGem - 1].GetComponent<MeshRenderer>().material.DOColor(Color.black, 0.7f);
+        StartCoroutine(WaitForChangeScale());
+    }
+
     private IEnumerator ListenToDictor()
     {
-        yield return new WaitForSeconds(1);
         _voicePlayback.OnClickPlayButton();
+        yield return new WaitForSeconds(1);
     }
 
     private IEnumerator Speak()
     {
-       yield return new WaitForSeconds(_dictorAudio.clip.length);
+       yield return new WaitForSeconds(1);
+       _uiController.SpeakUI();
        voiceRec.StartRecordButtonOnClickHandler();
+    }
+
+    private IEnumerator SpeakIfNotInfently(){
+        yield return new WaitForSeconds(1);
+        _uiController.SpeakUI();
+
+        voiceRec.StartRecordButtonOnClickHandler();
+    }
+
+    private IEnumerator ListenToDictorNotinfently()
+    {
+     
+        _voicePlayback.OnClickPlayButton();
+        yield return new WaitForSeconds(1);
     }
 
       public void CrashGem(int Plus)
@@ -281,12 +396,12 @@ public class BattleController : MonoBehaviour
     IEnumerator CrashGemCoroutine()
     {
         Debug.Log("CrashGem");
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         _animation.ClosePanel();
         TimeGo = false;
         yield return new WaitForSeconds(0.5f);
         OneWord.SetActive(false); OneFraze.SetActive(false); voiceRec.gameObject.SetActive(false);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         tranfGem.position = gem[indexGem - 1].transform.position;
         gem[indexGem - 1].SetActive(false);
         Instantiate(ParticleCrashGem, tranfGem.transform);
@@ -297,18 +412,46 @@ public class BattleController : MonoBehaviour
 
     public IEnumerator Time()
     {
-        int allTime =45;
+        //int allTime = 45;
+        switch(LerningModeId)
+        {
+            case 0:
+            allTime = _firstTaskTime;
+            break;
+
+            case 1:
+            allTime = _secondTaskTime;
+            break;
+
+            case 2:
+            allTime = _thirdTaskTime;
+            break;
+
+            case 3: 
+            allTime = _fourthTaskTime;
+            break;
+        }
         TimeGo = true;
         while (true) {
             yield return new WaitForSeconds(1f);
             
             TimeText.text = allTime.ToString();
             allTime--;
-            if(allTime == 0||!TimeGo)
+            if(allTime < 0||!TimeGo)
             {
-                if (allTime == 0)
+                if (allTime < 0)
                 {
-                    StartCoroutine(Repeat());
+                    if(infinitely)
+                    {
+                        StartCoroutine(Repeat());
+                    }
+                    else
+                    {
+                        StartCoroutine(ClosePanel());
+                        LerningModeId++;
+                    }
+                    
+                    
                 }
                 yield break;
             }
@@ -355,6 +498,8 @@ public class BattleController : MonoBehaviour
         RESULT_TEXT.gameObject.SetActive(true);
         GoHome.gameObject.SetActive(true);
         GoHome.onClick.AddListener(GoHomeVoid);
+        _firstButton.GetComponent<Image>().enabled = true;
+        _firstButton.transform.DOMoveY(-70,0.5f);
 
         if (HP_Person <= 0)
         {
@@ -402,6 +547,14 @@ public class BattleController : MonoBehaviour
             ClickOnGem.GetComponent<Image>().enabled = false;
             _firstButton.GetComponent<Image>().enabled = false;
             _secondButton.GetComponent<Image>().enabled = false;
+        }
+        else
+        {
+            _bombUI.SetActive(true);
+            _infentlyInstrument.GetComponent<Image>().enabled = false;
+             ClickOnGem.GetComponent<Image>().enabled = false;
+            _firstButton.GetComponent<Image>().enabled = false;
+            _secondButton.GetComponent<Image>().enabled = true;
         }
     }
 

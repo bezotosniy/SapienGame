@@ -11,11 +11,13 @@ public class Spriteword : MonoBehaviour
     public string TextTask; 
     public Image OneTask;
     public Text textTaskOneWord;
-
+    public string text;
    
 
     public Text Backtext;
+ 
 
+ 
     
     public void GenerateTask()
     {

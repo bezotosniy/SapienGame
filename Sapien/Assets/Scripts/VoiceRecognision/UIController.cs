@@ -19,15 +19,15 @@ public class UIController : MonoBehaviour
     [SerializeField] private Image _textOnSpeak;
     [SerializeField] private Image _textOnWait;
     [SerializeField] private Image _textOnRepeat;
-    [SerializeField] private Image _textOnTap;
+    [SerializeField] private Image _textOnChoose;
 
 
     [Header("Microphone Image")]
     [Space(10f)]
     
     [SerializeField] private Image _imageofMicrophone;
-    [SerializeField] private Image _imageOfmouse;
-
+    [SerializeField] private Image _keyboardImage;
+   
 
     [Header("Dialog Item UI")]
     [Space(10f)]
@@ -48,22 +48,22 @@ public class UIController : MonoBehaviour
     private bool _isPlaying;
 
 
-    [Header("Combo and Best ")]
-    [Space(10f)]
-    [SerializeField] private GameObject _comboPanel;
-    [SerializeField] private GameObject _bestPanel;
+    
 
 
     [Header("Inheritance")]
     [Space(10f)]
-    [SerializeField] private VoicePlayBack _voicePlayback;
-    [SerializeField] private VoiceRegontion2 _voiceRecognision;
+    [SerializeField] private VoicePlaybackForBattle _voicePlayback;
+    [SerializeField] private VoiceregonsionForBattle _voiceRecognision;
+    [SerializeField] private BattleController _battleController;
+    
 
 
     [Header("Other UI")]
-    [SerializeField] private GameObject _repeatPanel;
+    //[SerializeField] private GameObject _repeatPanel;
     [SerializeField] private GameObject _dialogPanel;
     public GameObject _microphonePanel;
+    [SerializeField] private GameObject _scrollbar;
 
 
     [Header("Courutine")]
@@ -73,26 +73,29 @@ public class UIController : MonoBehaviour
 
     private void Update()
     {
-        if(_isPlaying)
+        if(_isPlaying && _battleController.infinitely)
         {
-            _stopButton.GetComponent<Image>().fillAmount += Time.deltaTime / _voicePlayback.AudioTask[(int)_voicePlayback.AudioCount].clip.length;
+            _stopButton.GetComponent<Image>().fillAmount += Time.deltaTime / _voicePlayback.AudioTask[0].clip.length;
+        }
+        else if(_isPlaying && !_battleController.infinitely)
+        {
+            _stopButton.GetComponent<Image>().fillAmount += Time.deltaTime / _battleController._dictorNotInfentlySaid[_battleController.RandomString].clip.length;
         }
     }
     
     public void InterLocutorSaid()
     {
-       _microphonePanel.SetActive(false);
-       _dialogPanel.SetActive(false);
+        _scrollbar.SetActive(true);
+       //_microphonePanel.SetActive(false);
+       //_dialogPanel.SetActive(false);
        _mainText.sprite = _textOnWait.sprite;
        _background.sprite = _backgroundOnWait.sprite;
        _imageofMicrophone.enabled = true;
-       _imageOfmouse.enabled = false;
+      // _imageOfmouse.enabled = false;
        _dialogBackground.DOColor(Color.white, 0.01f);
-       _playButton.enabled = false;
-       _stopButtonSquare.enabled = true;
-       _stopButton.enabled = true;
-       _comboPanel.SetActive(false);
-       _bestPanel.SetActive(false);
+       _playButton.enabled = true;
+       _stopButtonSquare.enabled = false;
+       _stopButton.enabled = false;
        DoFadeAll(0.5f);
     } 
     
@@ -103,7 +106,7 @@ public class UIController : MonoBehaviour
        _mainText.sprite = _textOnWait.sprite;
        _background.sprite = _backgroundOnWait.sprite;
        _imageofMicrophone.enabled = true;
-       _imageOfmouse.enabled = false;
+      
        _dialogBackground.DOColor(Color.white, 0.01f);
        _playButton.enabled = false;
        _stopButtonSquare.enabled = true;
@@ -118,7 +121,7 @@ public class UIController : MonoBehaviour
        _mainText.sprite = _textOnWait.sprite;
        _background.sprite = _backgroundOnWait.sprite;
        _imageofMicrophone.enabled = true;
-       _imageOfmouse.enabled = false;
+       
        _dialogBackground.DOColor(Color.white, 0.01f);
        _playButton.enabled = false;
        _stopButtonSquare.enabled = true;
@@ -136,8 +139,7 @@ public class UIController : MonoBehaviour
        _stopButtonSquare.enabled = false;
        _playButton.enabled = true;
        _isPlaying = false;
-        _comboPanel.SetActive(true);
-       _bestPanel.SetActive(true);
+      
         DoFadeAll(1);
        _stopButton.GetComponent<Image>().fillAmount = 0;
        StopAllCoroutines();
@@ -145,7 +147,9 @@ public class UIController : MonoBehaviour
     
      public IEnumerator OnCorrect()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.3f);
+        _scrollbar.SetActive(true);
+        _taskText.enabled = true;
         _mainText.sprite = _textOnSpeak.sprite;
        _background.sprite = _backgroundOnSpeak.sprite;
        _dialogBackground.DOColor(Color.green, 1f);
@@ -164,18 +168,18 @@ public class UIController : MonoBehaviour
        _stopButton.enabled = false;
        _stopButtonSquare.enabled = false;
        _playButton.enabled = true;
-       _repeatPanel.SetActive(true);
+      // _repeatPanel.SetActive(true);
        DoFadeAll(1);
        StartCoroutine(FadepanelClose());
     }
     
     public void IncorrectUI()
     {
+        _scrollbar.SetActive(true);
+        _taskText.enabled = true;
         _voiceRecognision.StopRecordButtonOnClickHandler();
-        _mainText.sprite = _textOnTap.sprite;
+       // _mainText.sprite = _textOnTap.sprite;
         _background.sprite = _backgroundOnSpeak.sprite;
-        _imageOfmouse.enabled = true;
-        _imageofMicrophone.enabled = false;
         _stopButton.enabled = false;
         _stopButtonSquare.enabled = false;
         _playButton.enabled = true;
@@ -183,6 +187,32 @@ public class UIController : MonoBehaviour
         StartCoroutine(ChangeIncorectColor());
         
     }
+
+    public void ChooseLettersUI()
+    {
+        _scrollbar.SetActive(false);
+        _taskText.enabled = false;
+       _mainText.sprite = _textOnChoose.sprite;
+       _background.sprite = _backgroundOnSpeak.sprite;
+       _dialogBackground.DOColor(Color.white, 0.01f);
+       _stopButton.enabled = false;
+       _stopButtonSquare.enabled = false;
+       _playButton.enabled = false;
+       _isPlaying = false;
+       _imageofMicrophone.enabled = false;
+       _keyboardImage.enabled = true;
+        DoFadeAll(1);
+       _stopButton.GetComponent<Image>().fillAmount = 0;
+       StopAllCoroutines();
+    }
+
+
+    public void DoPharses()
+    {
+        _microphonePanel.SetActive(false);
+        _dialogPanel.SetActive(false);
+    }
+
     
     public void DoFadeAll(float value)
     {
@@ -198,7 +228,7 @@ public class UIController : MonoBehaviour
     private IEnumerator FadepanelClose()
     {
         yield return new WaitForSeconds(2f);
-        _repeatPanel.SetActive(false);
+        //_repeatPanel.SetActive(false);
     }
     
     public void SetTask(string task)
@@ -211,11 +241,7 @@ public class UIController : MonoBehaviour
        yield return new WaitForSeconds(0.3f);
        _dialogBackground.DOColor(Color.green, 0.3f);
        _dialogBackground.DOFade(0.5f, 0.3f);
-         if(index == 3)
-        {
-            index = 0;
-            yield break;
-        }
+          index++;
        StartCoroutine(ChangeCorrectSecond());
     }
     
@@ -224,7 +250,11 @@ public class UIController : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         _dialogBackground.DOColor(Color.white, 0.3f);
         _dialogBackground.DOFade(1f, 0.3f);
-        index++;
+        if(index == 3)
+        {
+            index = 0;
+            yield break;
+        }
         StartCoroutine(ChangeCorrectColor());
     }
     
@@ -232,12 +262,7 @@ public class UIController : MonoBehaviour
         yield return new WaitForSeconds(0.7f);
         _dialogBackground.DOColor(Color.red, 0.6f);
         _dialogBackground.DOFade(0.5f, 0.6f);
-        if(_voicePlayback.IsMistake == false)
-        {
-           
-            yield break;
-            
-        }
+        index++;
        StartCoroutine(ChangeInCorrectSecond());
     }
     
@@ -246,7 +271,13 @@ public class UIController : MonoBehaviour
         yield return new WaitForSeconds(0.7f);
         _dialogBackground.DOColor(Color.white, 0.6f);
         _dialogBackground.DOFade(1, 0.6f);
-        index++;
+       
+           if(index == 1)
+        {
+           
+            yield break;
+            
+        }
         StartCoroutine(ChangeIncorectColor());
     }
 }

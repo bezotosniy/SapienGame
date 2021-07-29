@@ -9,14 +9,15 @@ public class VoiceregonsionForBattle : MonoBehaviour
 {
         public GCSpeechRecognition _speechRecognition;
 		[SerializeField] private BattleController _battleController;
-	
+	    [SerializeField] private UIController _uiController;
 
-		public Button _startRecordButton,_stopRecordButton;
+		
 
 		private string _resultText;
-		public Text task;
+		public string Task;
+		public string[] TaskNotInfently;
 		
-		public Text responce;
+		//public Text responce;
 		public Image _voiceLevelImage;
 		public float max, current;
 
@@ -29,14 +30,14 @@ public class VoiceregonsionForBattle : MonoBehaviour
 
 		public void changeText(string Task)
 		{
-			task.text = Task;
-			responce.text = "Yes";
+			
+		
 		}
 		private void Start()
 		{
 			
 		    
-            task.text = _battleController.VoiceTask;
+            Task = _battleController.VoiceTask;
 			_speechRecognition = GCSpeechRecognition.Instance;
 			_speechRecognition.RecognizeSuccessEvent += RecognizeSuccessEventHandler;
 			_speechRecognition.LongRunningRecognizeSuccessEvent += LongRunningRecognizeSuccessEventHandler;
@@ -47,12 +48,10 @@ public class VoiceregonsionForBattle : MonoBehaviour
 			_speechRecognition.BeginTalkigEvent += BeginTalkigEventHandler;
 			_speechRecognition.EndTalkigEvent += EndTalkigEventHandler;
 
-			_startRecordButton.onClick.AddListener(StartRecordButtonOnClickHandler);
-			_stopRecordButton.onClick.AddListener(StopRecordButtonOnClickHandler);
+			
 
 
-			_startRecordButton.interactable = true;
-			_stopRecordButton.interactable = false;
+		
 
 
 			_speechRecognition.SetMicrophoneDevice(_speechRecognition.GetMicrophoneDevices()[PlayerPrefs.GetInt("SavedMic")]);
@@ -91,22 +90,20 @@ public class VoiceregonsionForBattle : MonoBehaviour
 
 		public void StartRecordButtonOnClickHandler()
 		{
-			_startRecordButton.interactable = false;
-			_stopRecordButton.interactable = true;
+		
             _resultText = string.Empty;
 			StartCoroutine(StopRecordAuthomatic());
 			_speechRecognition.StartRecord(false);
 			Debug.Log("Speak");
-			responce.text = "Record";
+			
 		
 			
 		}
 
 		public void StopRecordButtonOnClickHandler()
 		{
-			_stopRecordButton.interactable = false;
-			_startRecordButton.interactable = true;
-			responce.text = "StopRecord";
+			
+			
 			StartCoroutine(StopRecordAuthomatic());
 			_speechRecognition.StopRecord();
 
@@ -121,13 +118,11 @@ public class VoiceregonsionForBattle : MonoBehaviour
 					yield return new WaitForSeconds(1f);
 					if (current < 0.11f)
 					{
-						responce.text = "Check!";
-					
+						
 						
 						_speechRecognition.StopRecord();
 						Debug.Log("StopRecord");
-
-						_startRecordButton.interactable = true;
+	
 						
 						yield break;
 					}
@@ -142,8 +137,7 @@ public class VoiceregonsionForBattle : MonoBehaviour
 
 		private void RecordFailedEventHandler()
 		{
-			_stopRecordButton.interactable = false;
-			_startRecordButton.interactable = true;
+			
 		}
 
 		private void BeginTalkigEventHandler()
@@ -232,8 +226,8 @@ public class VoiceregonsionForBattle : MonoBehaviour
 		}
 		IEnumerator Repeat()
         {
-			responce.text = "Repeat!";
 			
+			_uiController.RepeatUI();
 			yield return new WaitForSeconds(2);
 			StartRecordButtonOnClickHandler(); 
 		}
@@ -275,7 +269,7 @@ public class VoiceregonsionForBattle : MonoBehaviour
 			}
 
 			_resultText += other;
-			responce.text = "";
+		
 			SravnTask(_resultText + other);
 			//_resultText.text += other;
 		}
@@ -284,17 +278,28 @@ public class VoiceregonsionForBattle : MonoBehaviour
 			
 
 
-				if (other.Contains(task.text))
+				if ((other.Contains(Task) && _battleController.infinitely) || (other.Contains(TaskNotInfently[_battleController.RandomString]) && !_battleController.infinitely))
 				{
-					responce.text = "Correct!";
-
+					
+                    StartCoroutine(_uiController.OnCorrect());
 					_battleController.CrashGem((int)_battleController.damage);
 					_battleController.LerningModeId++;
 				}
 				else
 				{
-					responce.text = "InCorrect :(";
-					StartCoroutine(_battleController.Repeat());
+					
+					_uiController.IncorrectUI();
+					_battleController.TimeGo = false;
+					if(_battleController.infinitely)
+					{
+                        StartCoroutine(_battleController.Repeat());
+					}
+					else
+					{
+						_battleController.LerningModeId++;
+						StartCoroutine(_battleController.ClosePanel());
+					}
+					
 				} 
 		}
 
