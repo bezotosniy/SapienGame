@@ -61,7 +61,7 @@ public class UIController : MonoBehaviour
 
     [Header("Other UI")]
     //[SerializeField] private GameObject _repeatPanel;
-    [SerializeField] private GameObject _dialogPanel;
+    public GameObject _dialogPanel;
     public GameObject _microphonePanel;
     [SerializeField] private GameObject _scrollbar;
 
@@ -86,16 +86,17 @@ public class UIController : MonoBehaviour
     public void InterLocutorSaid()
     {
         _scrollbar.SetActive(true);
-       //_microphonePanel.SetActive(false);
-       //_dialogPanel.SetActive(false);
+       _microphonePanel.SetActive(true);
+       _dialogPanel.SetActive(true);
        _mainText.sprite = _textOnWait.sprite;
        _background.sprite = _backgroundOnWait.sprite;
        _imageofMicrophone.enabled = true;
-      // _imageOfmouse.enabled = false;
+       _keyboardImage.enabled = false;
        _dialogBackground.DOColor(Color.white, 0.01f);
        _playButton.enabled = true;
        _stopButtonSquare.enabled = false;
        _stopButton.enabled = false;
+       _taskText.enabled = true;
        DoFadeAll(0.5f);
     } 
     
@@ -106,12 +107,13 @@ public class UIController : MonoBehaviour
        _mainText.sprite = _textOnWait.sprite;
        _background.sprite = _backgroundOnWait.sprite;
        _imageofMicrophone.enabled = true;
-      
+       _keyboardImage.enabled = false;
        _dialogBackground.DOColor(Color.white, 0.01f);
        _playButton.enabled = false;
        _stopButtonSquare.enabled = true;
        _stopButton.enabled = true;
        _isPlaying = true;
+       _taskText.enabled = true;
        DoFadeAll(0.5f);
     }
     

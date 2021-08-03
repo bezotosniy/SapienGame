@@ -35,7 +35,7 @@ public class BattleController : MonoBehaviour
     public EnemyController EnemyControll;
 
     public int indexGem = 0;
-    int CurrentUron;
+    public int CurrentUron;
 
     [Space]
     [Header("Task")]
@@ -69,6 +69,7 @@ public class BattleController : MonoBehaviour
     [SerializeField] private Button _infentlyInstrument;
     [SerializeField] private Button _firstButton;
     [SerializeField] private Button _secondButton;
+    [SerializeField] private Button _hammerButton;
 
     [SerializeField] private UIAnimation _animation;
     [SerializeField] private VoicePlaybackForBattle _voicePlayback;
@@ -84,8 +85,18 @@ public class BattleController : MonoBehaviour
      [SerializeField] private Text _taskText;
      [SerializeField] private GameObject _pharsePanel;
     
+     [SerializeField] private Image _firstButtonImage;
 
-
+     [SerializeField] private int _random;
+     [SerializeField] private EnemyController _enemyContoller;
+    
+     [SerializeField] private int _minDamage;
+     [SerializeField] private int _maxDamage;
+     [SerializeField] private GameObject _diamond;
+     [SerializeField] private GameObject[] _enemies;
+     [SerializeField] private GameObject _hammerPanel;
+     [SerializeField] private HammerBattle _hammerBattle;
+     
 
 
     private void Start()
@@ -95,13 +106,15 @@ public class BattleController : MonoBehaviour
        if(!infinitely)
        {
             CreateRandom();
+            gem[3].SetActive(false);
        }
         InfentlyMode();
         _mainMusik.Play();
-        Bomb.onClick.AddListener(bomb);
+       
         _infentlyInstrument.onClick.AddListener(ClickOnGems);
-        _firstButton.onClick.AddListener(ClickOnGems);
+        _firstButton.onClick.AddListener(bomb);
         _secondButton.onClick.AddListener(ClickOnGems);
+        _hammerButton.onClick.AddListener(OnHammerButtonCLick);
         bombSlider.value = 0;
         Bomb.interactable = false;
         Start_hp_Person = HP_Person;
@@ -112,6 +125,7 @@ public class BattleController : MonoBehaviour
        _volumeofMusik = _mainMusik.GetComponent<AudioSource>().volume;
        // CanvasAnim = GetComponent<Animator>();
         StartCoroutine(StartFight());
+        _firstButtonImage = _firstButton.GetComponent<Image>();
         
     
     }
@@ -132,8 +146,39 @@ public class BattleController : MonoBehaviour
 
     private void Update()
     {
+        /*if(LerningModeId == 4)
+        {
+            _firstButton.transform.DOMoveY(80, 0.5f);
+            _firstButtonImage.enabled = true;
+            
+        }*/
     }
+    void FixedUpdate()
+    {
+       
+        if (Input.GetButtonDown("Fire1") && _enemyContoller.IsAttack == true)
+        {
+            if (Cam != null)
+            {
+                RaycastHit hit;
+                var mousePos = Input.mousePosition;
+                RayMouse = Cam.ScreenPointToRay(mousePos);
 
+                if (Physics.Raycast(RayMouse.origin, RayMouse.direction, out hit, 40))
+                {
+                    if (hit.collider.tag == "Enemy")
+                    {   
+                        StartCoroutine(person.ClickOnEnemy(hit.collider.gameObject.transform.position));
+                        damage = Random.Range(_minDamage, _maxDamage);
+                        bombSlider.value = 0;
+                        Bomb.interactable = false;
+                        _enemyContoller.IsAttack = false;
+                    }
+                }
+            }
+            else { Debug.Log("No camera"); }
+        }
+    }
     /*private void InitialiseFrase()
     {
         PlayerPrefs.SetString("phrase" + 0, "Hello");
@@ -154,30 +199,45 @@ public class BattleController : MonoBehaviour
       private IEnumerator StartFight()
     {
         yield return new WaitForSeconds(17.5f);
-        if(infinitely)
+       StartFightPanel();
+    }
+
+
+      public void StartFightPanel()
+      {
+          _hammerButton.transform.DOMoveY(80, 0.5f);
+          
+           if(infinitely)
         {
             _infentlyInstrument.transform.DOMoveY(80, 0.5f);
         }
         else
         {
-            _firstButton.transform.DOMoveY(80, 0.5f);
+            _firstButtonImage.enabled = true;
+            //_secondButton.transform.DOMoveY(80, 0.5f);
             _secondButton.transform.DOMoveY(80, 0.5f);
         }
         
         EnemyControll.MouseBar.gameObject.SetActive(true);
-    }
+      }
 
       public void ClickOnGems()
     {
         if (indexGem == 0)
         {
+            for(int i = 0; i < gem.Length - 1; i++)
+               {
+                   gem[i].GetComponent<MeshRenderer>().material.DOColor(Color.magenta, 0.01f);
+                   gem[i].SetActive(true);
+                   gem[i].transform.DOScale(new Vector3(1,1,1), 0.5f);
+               }
             gems.SetTrigger("Pick");
             StartCoroutine(WaitToStart());
         }
         _infentlyInstrument.interactable = false;
     }
 
-     private IEnumerator WaitToStart()
+     public IEnumerator WaitToStart()
     {
         yield return new WaitForSeconds(4);
         StartCoroutine(WaitForChangeScale());
@@ -201,7 +261,32 @@ public class BattleController : MonoBehaviour
     {
         
         Debug.Log("Scale");
-        if (indexGem <= 3)
+       if(infinitely)
+       {
+          if (indexGem <= 3)
+        {
+            float i = gem[indexGem].transform.localScale.x;
+            for (float q = i; q < i * 2; q += .1f)
+            {
+                 yield return new WaitForFixedUpdate();
+                gem[indexGem].transform.localScale = new Vector3(q, q, q);
+               
+            }
+            
+            RandomString = Random.Range(0,_voiceRecognision.TaskNotInfently.Length);
+            _taskText.text = voiceRec.TaskNotInfently[RandomString];
+            voiceRec.gameObject.SetActive(true);
+            yield return new WaitForSeconds(1);
+            _mainMusik.Stop();
+            _animation.OpenPanel();
+            TimeGo = true;
+            Debug.Log("NewTask");
+            StartCoroutine(InstantTaskLearning());
+        }
+       }
+       else if(!infinitely)
+       {
+           if (indexGem <= 2)
         {
             float i = gem[indexGem].transform.localScale.x;
             for (float q = i; q < i * 2; q += .1f)
@@ -218,33 +303,74 @@ public class BattleController : MonoBehaviour
             _animation.OpenPanel();
             TimeGo = true;
             Debug.Log("NewTask");
-            if (infinitely) 
-            {
-              
-               StartCoroutine(InstantTaskLearning());
-            }
-            else
-            {
-               
-                StartCoroutine(InstantTaskNotInfently());
-            }
-            
-            
-            
-            
-              
-           indexGem++;
-            
+            StartCoroutine(InstantTaskNotInfently());
+                /*if(indexGem == 2)
+                {
+                    _enemyContoller.IsAttack = true;
+                    for(int a = 0; i < gem.Length; i++)
+                    {
+                        gem[a].SetActive(false);
+                    }
+                }*/
             
         }
+        else 
+        {
+            _enemyContoller.IsAttack = true;
+        }
+         
     }
+   
+    }
+        /*if (indexGem <= 3)
+        {
+            float i = gem[indexGem].transform.localScale.x;
+            for (float q = i; q < i * 2; q += .1f)
+            {
+                 yield return new WaitForFixedUpdate();
+                gem[indexGem].transform.localScale = new Vector3(q, q, q);
+               
+            }
+            RandomString = Random.Range(0,_voiceRecognision.TaskNotInfently.Length);
+            _taskText.text = voiceRec.TaskNotInfently[RandomString];
+            voiceRec.gameObject.SetActive(true);
+            yield return new WaitForSeconds(1);
+            _mainMusik.Stop();
+            
+            TimeGo = true;
+            Debug.Log("NewTask");
+            if (infinitely) 
+            {
+              _animation.OpenPanel();
+               StartCoroutine(InstantTaskLearning());
+            }
+            else if(!infinitely && indexGem <= 2)
+            {
+               _animation.OpenPanel();
+                StartCoroutine(InstantTaskNotInfently());
+                if(indexGem == 2)
+                {
+                    _enemyContoller.IsAttack = true;
+                    for(int a = 0; i < gem.Length; i++)
+                    {
+                        gem[a].SetActive(false);
+                    }
+                }
+            }
+        }
+        else 
+        {
+            _enemyContoller.IsAttack = true;
+        }*/
+        
+    
 
 
   
         
       IEnumerator InstantTaskLearning()
     {
-        
+        indexGem++;
         StartCoroutine(Time());
         if (LerningModeId < 4f)
         {
@@ -271,34 +397,52 @@ public class BattleController : MonoBehaviour
             }
             
         }
+       
     }
 
     private IEnumerator InstantTaskNotInfently()
     {
+        indexGem++;
+        _random = Random.Range(0,2);
         StartCoroutine(Time());
-        if(LerningModeId< 4f)
+        if(LerningModeId <= 2f)
         {
             yield return new WaitForSeconds(1.5f);
             switch(LerningModeId)
             {
                 case 0:
-                StartCoroutine(ListenToDictorNotinfently());
+                
+                if(_random == 0)
+                {
+                    _uiController.InterLocutorSaid();
+                    StartCoroutine(ListenToDictorNotinfently());
+                }
+                else
+                {
+                    _uiController.InterLocutorSaid();
+                    StartCoroutine(SpeakIfNotInfently());
+                }
+                
                 break;
                 case 1:
-                _uiController.InterLocutorSaid();
-                StartCoroutine(SpeakIfNotInfently());
-                break;
-                case 2:
+                keyBoard.InstWordNotInfenetly(0);
+                _uiController.ChooseLettersUI();
                 _uiController.ChooseLettersUI();
                 OneWord.SetActive(true); 
-                keyBoard.InstWordNotInfenetly(0);
+                
                 break;
-                case 3:
+                case 2:
+                 OneWord.SetActive(false);
+                 keyBoard.KeyBoard(voiceRec.TaskNotInfently[RandomString]);
                 _uiController.DoPharses();
                 _pharsePanel.SetActive(true); 
-                keyBoard.KeyBoard(voiceRec.TaskNotInfently[RandomString]);
+                
                 break;
             }
+        }
+        else 
+        {
+                Debug.Log("End");
         }
     }
 
@@ -346,10 +490,15 @@ public class BattleController : MonoBehaviour
 
     public IEnumerator ClosePanel()
     {
+       LerningModeId++;
        
         yield return new WaitForSeconds(2);
         _animation.ClosePanel();
+        _uiController._dialogPanel.SetActive(false);
+        _uiController._microphonePanel.SetActive(false);
         StartCoroutine(WaitForChange());
+        if(LerningModeId == 1)
+        keyBoard.DestroyInstWord();
     }
 
     private IEnumerator WaitForChange(){
@@ -388,6 +537,7 @@ public class BattleController : MonoBehaviour
 
       public void CrashGem(int Plus)
     {
+        
         CurrentUron += Plus;
         bombSlider.value += 0.3f; if (bombSlider.value >= 1) Bomb.interactable = true;
         StartCoroutine(CrashGemCoroutine());
@@ -444,11 +594,19 @@ public class BattleController : MonoBehaviour
                     if(infinitely)
                     {
                         StartCoroutine(Repeat());
+                        if(LerningModeId == 2)
+                        {
+                            keyBoard.DestroyInstWord();
+                        }
                     }
                     else
                     {
                         StartCoroutine(ClosePanel());
-                        LerningModeId++;
+                        TimeGo = false;
+                        if(LerningModeId == 1)
+                        {
+                            keyBoard.DestroyInstWord();
+                        }
                     }
                     
                     
@@ -461,7 +619,7 @@ public class BattleController : MonoBehaviour
 
     }
 
-      private void HP_Person_Controller(int damage)
+      public void HP_Person_Controller(int damage)
     {
         hpPersonSlider.maxValue = Start_hp_Person;
         HP_Person -= damage;
@@ -486,6 +644,7 @@ public class BattleController : MonoBehaviour
         }
         else
         {
+            EnemyControll.MouseBar.sprite = EnemyControll.attack;
             StartCoroutine(EnemyControll.EnemyGiveUron((int)damage));
         }
 
@@ -530,14 +689,41 @@ public class BattleController : MonoBehaviour
     {
         if(bombSlider.value >= 1)
         {
-            damage = 999;
+            //damage = Random.Range(_minDamage, _maxDamage);
             bombSlider.value = 0;
             Bomb.interactable = false;
+            
         }
     }
 
+   private void OnHammerButtonCLick(){
+       for(int i = 0; i < gem.Length; i++)
+       {
+           gem[i].SetActive(false);
+       }
+       for(int  i = 0; i< _enemies.Length; i++)
+       {
+            _enemies[i].SetActive(false);
+       }
+       _diamond.transform.DOMove(new Vector3(-33.35f, 5.447f, -85.975f), 1.5f);
+       StartCoroutine(WaitForOpenPanel());
+       
+   }
 
 
+    public IEnumerator WaitForOpenPanel(){
+        yield return new WaitForSeconds(3);
+        _uiController._microphonePanel.SetActive(false);
+        _uiController._dialogPanel.SetActive(false);
+        _hammerPanel.SetActive(true);
+        _animation.OpenPanel();
+        _hammerButton.transform.DOMoveY(-70, 0.5f);
+        _secondButton.transform.DOMoveY(-70, 0.5f);
+        StartCoroutine(_hammerBattle.DialogPlay());
+        
+       
+        
+    }
     private void InfentlyMode()
     {
        if(infinitely == true)
@@ -557,6 +743,8 @@ public class BattleController : MonoBehaviour
             _secondButton.GetComponent<Image>().enabled = true;
         }
     }
+
+
 
     
 

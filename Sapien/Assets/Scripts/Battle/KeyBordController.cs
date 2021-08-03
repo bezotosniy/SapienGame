@@ -40,6 +40,8 @@ public class KeyBordController : MonoBehaviour
     public string TaskSum;
     Spriteword sp;
     public int _counter;
+    [SerializeField] private  GameObject _microphonePanel;
+    [SerializeField] private GameObject _DialogPanel;
     private void Start()
     {
         removeAll.onClick.AddListener(RemoveAll);
@@ -58,6 +60,7 @@ public class KeyBordController : MonoBehaviour
 
     public void InstWord(int id)
     {
+        enter.enabled = true;
         IsButtonLetterInteractable(true);
         if(_counter != 0)
         {
@@ -114,6 +117,8 @@ public class KeyBordController : MonoBehaviour
         ID = id;
         enter.interactable = false;
         _instWordNotInfenetly[_randomWord] = Instantiate(_letterListIfNotInfenetly[_randomWord].gameObject, transform);
+        _microphonePanel.SetActive(true);
+        _DialogPanel.SetActive(true);
         _instWordNotInfenetly[_randomWord].transform.DOScale(new Vector3(0.5f, 0.5f, 0.5f), 0.01f);
         _instWordNotInfenetly[_randomWord].transform.DOMove(new Vector3(1039, 465, 0), 0.01f);
         sp = _instWordNotInfenetly[_randomWord].GetComponent<Spriteword>();
@@ -200,6 +205,7 @@ public class KeyBordController : MonoBehaviour
     }
     void buttonDoneLetter()
     {
+        enter.enabled = false;
         StartCoroutine(closeLetter());
     }
     void Remove()
@@ -227,30 +233,41 @@ public class KeyBordController : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         numberLetter = 0;
+
     
-        
+          StartCoroutine(DestroyInstWord());
         if (sp.textTaskOneWord.text == sp.TextTask)
         {
             _battleController.TimeGo = false;
-            _battleController.CrashGem((int)_battleController.damage);
+            _battleController.CrashGem(25);
             _battleController.LerningModeId++;
             _counter = 0;
         }   
+       
         else if(sp.textTaskOneWord.text != sp.TextTask)
         {
             _battleController.TimeGo = false;
-            StartCoroutine(_battleController.Repeat());
-            _counter++;
-            //_voiceRecognision.responce.text = "Try Again";            
+            if(_battleController.infinitely)
+            {
+                
+                StartCoroutine(_battleController.Repeat());
+            }
+            else
+            {
+                
+                StartCoroutine(_battleController.ClosePanel());
+            }
+           
+                  
         }
-        StartCoroutine(DestroyInstWord());
+       
         
     }
 
 
-    private IEnumerator DestroyInstWord()
+    public IEnumerator DestroyInstWord()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.2f);
         if(_battleController.infinitely)
         {
             Destroy(instWord[_randomWord]);
@@ -311,13 +328,20 @@ public class KeyBordController : MonoBehaviour
 
         if(System.String.Compare(TaskSum, textTask, System.Globalization.CultureInfo.CurrentCulture, System.Globalization.CompareOptions.IgnoreCase | System.Globalization.CompareOptions.IgnoreSymbols) == 0)
         {
-            _battleController.CrashGem((int)_battleController.damage);
+            _battleController.CrashGem(25);
         }
         else
         {
-            _battleController.CrashGem(0);
+           StartCoroutine(_battleController.ClosePanel());
         }
-        var obj = FindObjectsOfType<ButtonFrase>();
+       StartCoroutine(DestroyFrase());
+    }
+
+
+    private IEnumerator DestroyFrase()
+    {
+        yield return new WaitForSeconds(3);
+            var obj = FindObjectsOfType<ButtonFrase>();
         foreach (ButtonFrase i in obj)
         {
             Destroy(i.gameObject);

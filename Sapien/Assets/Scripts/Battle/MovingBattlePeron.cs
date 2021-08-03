@@ -6,7 +6,7 @@ using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition;
 
     public class MovingBattlePeron : MonoBehaviour
     {
-        public Inventory inv;
+        public BattleController inv;
         private NavMeshAgent agent;
         public Transform point;
         public Animator Anim;
@@ -17,6 +17,9 @@ using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition;
         [Range(0.1f, 10)]
         public float speedBulllet;
         public Transform Vrag;
+
+        [SerializeField] private ParticleSystem _blood;
+        [SerializeField] private GiveDamageAnimation _animation;
     
         
         // Start is called before the first frame update
@@ -50,12 +53,14 @@ using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition;
                 if (Vector3.Distance(bullet.transform.position, point) < 0.01f)
                 {
                     inv.EnemyDie();
-                 
+                    _blood.Play();
+                    _animation.GiveDamage();
                     Instantiate(DestroyBullet,Vrag);
                     Destroy(bullet);
                     yield break;
                 }
                 yield return new WaitForFixedUpdate();
+                
             }
         }
         IEnumerator AgentWait()

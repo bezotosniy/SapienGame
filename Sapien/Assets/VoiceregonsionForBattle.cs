@@ -110,6 +110,7 @@ public class VoiceregonsionForBattle : MonoBehaviour
 		}
 		public IEnumerator StopRecordAuthomatic()
 		{
+			
 			while (true)
 			{
 				yield return new WaitForSeconds(1f);
@@ -275,14 +276,14 @@ public class VoiceregonsionForBattle : MonoBehaviour
 		}
 		public void SravnTask(string other)
 		{
-			
+			_battleController.TimeGo = false;
 
 
 				if ((other.Contains(Task) && _battleController.infinitely) || (other.Contains(TaskNotInfently[_battleController.RandomString]) && !_battleController.infinitely))
 				{
 					
                     StartCoroutine(_uiController.OnCorrect());
-					_battleController.CrashGem((int)_battleController.damage);
+					_battleController.CrashGem(25);
 					_battleController.LerningModeId++;
 				}
 				else
@@ -296,7 +297,7 @@ public class VoiceregonsionForBattle : MonoBehaviour
 					}
 					else
 					{
-						_battleController.LerningModeId++;
+						
 						StartCoroutine(_battleController.ClosePanel());
 					}
 					
