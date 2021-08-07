@@ -91,7 +91,6 @@ GameObject:
   - component: {fileID: 4275523118945930063}
   - component: {fileID: 7458662701126301768}
   - component: {fileID: 1619356981717404011}
-  - component: {fileID: 8682983284903653716}
   m_Layer: 5
   m_Name: OneBykvaKey
   m_TagString: Untagged
@@ -201,7 +200,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8682983284903653716}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ButtonChar, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -213,15 +212,3 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8682983284903653716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6047174409067603054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e4f0fa61545b1648b7627b2c5fc1b0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

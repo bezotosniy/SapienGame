@@ -5,18 +5,34 @@ using UnityEngine.UI;
 
 public class Spriteword : MonoBehaviour
 {
-    // Start is called before the first frame update
+
     public Sprite SpriteImage;
     public Sprite SpriteTask;
     public string TextTask; 
-    public Image BackLetter, OneTask;
+    public Image OneTask;
     public Text textTaskOneWord;
+    public string text;
+   
+
+    public Text Backtext;
+ 
+
+ 
+    
     public void GenerateTask()
     {
-        textTaskOneWord.text = "";
-        BackLetter.sprite = SpriteImage;
-        OneTask.sprite = SpriteTask;
         
+        textTaskOneWord.text = "";
+        OneTask.sprite = SpriteTask;
+        Backtext.enabled = true;
+        
+    }
+
+    public void GenerateTaskHarder()
+    {
+        textTaskOneWord.text = "";
+        OneTask.sprite = SpriteTask;
+        Backtext.enabled = false;
     }
 }
 

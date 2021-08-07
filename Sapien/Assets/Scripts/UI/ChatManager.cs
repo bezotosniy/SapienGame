@@ -8,6 +8,4 @@ public class ChatManager : MonoBehaviour
     {
         GameObject.Find("Messages").GetComponent<MessagesManager>().OnClickChatOpener(this.gameObject);
     }
-    
-    
 }
