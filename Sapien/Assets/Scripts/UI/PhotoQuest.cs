@@ -19,7 +19,7 @@ public class PhotoQuest : MonoBehaviour
         target = GameObject.Find(TargetName);
         transform = GetComponent<Transform>();
         TargetTransform = target.GetComponent<Transform>();
-        transform.position = new Vector3(TargetTransform.position.x, TargetTransform.position.y + 0.5f, TargetTransform.position.z);
+        transform.position = new Vector3(TargetTransform.position.x, TargetTransform.position.y + 0.7f, TargetTransform.position.z);
         target.AddComponent<MeshCollider>();
         /*target.AddComponent(typeof(EventTrigger));
         EventTrigger trigger = target.GetComponent<EventTrigger>();
@@ -69,10 +69,11 @@ public class PhotoQuest : MonoBehaviour
 
     public void CameraOpener()
     {
-        TargetName = "0";
         Debug.Log("CameraOpener");
         VoiceRecognition.SetActive(false);
         GameObject.Find("PhoneButton").GetComponent<PhoneManager>().OnClickCameraOpen();
+        GameObject.Find("Cursor").GetComponent<CursorFollow>().targetName = TargetName;
         Camera.main.transform.LookAt(TargetTransform);
+        TargetName = "0";
     }
 }

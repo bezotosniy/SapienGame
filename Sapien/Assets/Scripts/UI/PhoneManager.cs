@@ -343,6 +343,7 @@ public class PhoneManager : MonoBehaviour
 
     public void OnClickCameraOpen()
     {
+        Debug.Log("Camera");
         CameraPanel.SetActive(true);
         anim.Play("CameraOpen");
         GetComponent<Button>().interactable = false;
