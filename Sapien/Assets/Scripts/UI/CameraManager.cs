@@ -33,8 +33,8 @@ public class CameraManager : MonoBehaviour
 
         Vector2 input = new Vector2(Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y"));
         rotation += input * sensivity * Time.deltaTime;
-        rotation.y = Mathf.Clamp(rotation.y, -10f, 10f);
-        rotation.x = Mathf.Clamp(rotation.x, -15f, 15f);
+        rotation.y = Mathf.Clamp(rotation.y, Camera.main.transform.rotation.y - 10f, Camera.main.transform.rotation.y + 10f);
+        rotation.x = Mathf.Clamp(rotation.x, Camera.main.transform.rotation.x - 15f, Camera.main.transform.rotation.x + 15f);
         aim.localEulerAngles = new Vector3(rotation.y, rotation.x, 0);
         angle = aim.rotation;
         transform.rotation = Quaternion.Slerp(transform.rotation, angle, 0.05f);

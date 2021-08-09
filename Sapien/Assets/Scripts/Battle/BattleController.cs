@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using CartoonFX;
+//using CartoonFX;
 using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
@@ -434,7 +434,7 @@ public class BattleController : MonoBehaviour
                 break;
                 case 2:
                  OneWord.SetActive(false);
-                 keyBoard.KeyBoard(voiceRec.TaskNotInfently[RandomString]);
+                 keyBoard.KeyBoard();
                 _uiController.DoPharses();
                 _pharsePanel.SetActive(true); 
                 
@@ -635,7 +635,7 @@ public class BattleController : MonoBehaviour
      public void EnemyDie()
     {
         Instantiate(ParticleUronNumber, EnemyControll.transform.position + new Vector3(1,1,1),Quaternion.identity);
-        ParticleUronNumber.GetComponent<CFXR_ParticleText_Runtime>().text = CurrentUron.ToString();
+        //ParticleUronNumber.GetComponent<CFXR_ParticleText_Runtime>().text = CurrentUron.ToString();
         EnemyControll.hpSlider.value -= CurrentUron;
         if (EnemyControll.hpSlider.value <= 0)
         {

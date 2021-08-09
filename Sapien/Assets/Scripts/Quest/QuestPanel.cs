@@ -20,4 +20,12 @@ public class QuestPanel : MonoBehaviour
             questImage.sprite = newQuest.questGiverAvatar;
         }
     }
+
+    public void ClearPanel()
+    {
+        targetQuest = null;
+        questDescription.text = "";
+        questPrice.text = "";
+        questImage.sprite = null;
+    }
 }

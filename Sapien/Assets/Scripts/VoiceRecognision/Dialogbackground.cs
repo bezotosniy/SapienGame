@@ -20,7 +20,7 @@ public class Dialogbackground : MonoBehaviour, IPointerDownHandler
         if(_voicePlayback.IsMistake == true && _voiceRecognision.Counter != _voiceRecognision.CounterNeed)
         {
             _voicePlayback.IsMistake = false;
-            _voiceRecognision.responce.text = "Правильно!";
+            //_voiceRecognision.responce.text = "Правильно!";
 			StartCoroutine(_uiController.OnCorrect());
 			_voiceRecognision.comboCount++;
 			_voiceRecognision.SetComboAndBest();
@@ -32,7 +32,7 @@ public class Dialogbackground : MonoBehaviour, IPointerDownHandler
         else if(_voicePlayback.IsMistake == true && _voiceRecognision.Counter == _voiceRecognision.CounterNeed)
         {
             _voicePlayback.IsMistake = false;  
-            _voiceRecognision.responce.text = "Correct";
+            //_voiceRecognision.responce.text = "Correct";
             _doubleUIController.OnCorrectDouble();
             StartCoroutine(_voicePlaybackDouble.ListenInterlocutor());
 			_voiceRecognision.comboCount++;

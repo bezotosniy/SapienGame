@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using CartoonFX;
+//using CartoonFX;
 using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
@@ -272,7 +272,7 @@ public class Inventory : MonoBehaviour
             }
             else if (RandomTask[num] == 1) 
             {
-                keyBoard.KeyBoard(Task);
+                //keyBoard.KeyBoard(Task);
             }
             else
             {
@@ -314,7 +314,7 @@ public class Inventory : MonoBehaviour
     public void EnemyDie()
     {
         Instantiate(ParticleUronNumber, EnemyControll.transform.position + new Vector3(1,1,1),Quaternion.identity);
-        ParticleUronNumber.GetComponent<CFXR_ParticleText_Runtime>().text = CurrentUron.ToString();
+        //ParticleUronNumber.GetComponent<CFXR_ParticleText_Runtime>().text = CurrentUron.ToString();
         EnemyControll.hpSlider.value -= CurrentUron;
         if (EnemyControll.hpSlider.value <= 0)
         {
@@ -376,7 +376,7 @@ public class Inventory : MonoBehaviour
         if (num < RandomTask.Length)
         {
             if (RandomTask[num-1] == 0) { OneWord.SetActive(true); keyBoard.InstWord(ID); }
-            else if (RandomTask[num-1] == 1) { keyBoard.KeyBoard(Task); }
+            //else if (RandomTask[num-1] == 1) { keyBoard.KeyBoard(Task); }
             else { voiceRec.gameObject.SetActive(true); voiceRec.changeText(Task); }
           
         }

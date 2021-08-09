@@ -21,8 +21,8 @@ public class VoiceRegontion2 : MonoBehaviour
 
 	[Header("VoiceRecognision")]
 	[Space(10f)]
-	[SerializeField] private Button _startRecordButton;
-	public Text responce;
+	/*[SerializeField] private Button _startRecordButton;*/
+	//public Text responce;
 	[SerializeField] private Image _voiceLevelImage;
 	[SerializeField] private float _max; 
 	[SerializeField] private float _current;
@@ -62,11 +62,11 @@ public class VoiceRegontion2 : MonoBehaviour
 			_speechRecognition.BeginTalkigEvent += BeginTalkigEventHandler;
 			_speechRecognition.EndTalkigEvent += EndTalkigEventHandler;
 
-			_startRecordButton.onClick.AddListener(StartRecordButtonOnClickHandler);
+			/*_startRecordButton.onClick.AddListener(StartRecordButtonOnClickHandler);
 			
 
 
-			_startRecordButton.interactable = true;
+			_startRecordButton.interactable = true;*/
 			
 
 
@@ -106,14 +106,14 @@ public class VoiceRegontion2 : MonoBehaviour
 
 		public void StartRecordButtonOnClickHandler()
 		{
-			_startRecordButton.interactable = false;
+			//_startRecordButton.interactable = false;
 		
 
 			_resultText = string.Empty;
 			StartCoroutine(StopRecordAuthomatic());
 			_speechRecognition.StartRecord(false);
 			Debug.Log("Speak");
-			responce.text = "Record";
+			//responce.text = "Record";
 		
 			
 		}
@@ -121,8 +121,8 @@ public class VoiceRegontion2 : MonoBehaviour
 		public void StopRecordButtonOnClickHandler()
 		{
 			
-			_startRecordButton.interactable = true;
-			responce.text = "Stop Record";
+			/*_startRecordButton.interactable = true;*/
+			//responce.text = "Stop Record";
 			StartCoroutine(StopRecordAuthomatic());
 			_speechRecognition.StopRecord();
 
@@ -143,13 +143,13 @@ public class VoiceRegontion2 : MonoBehaviour
 					yield return new WaitForSeconds(1f);
 					if (_current < _maxCurrent)
 					{
-						responce.text = "Stop Record";
+						//responce.text = "Stop Record";
 					
 						
 						_speechRecognition.StopRecord();
 						Debug.Log("StopRecord");
 
-						_startRecordButton.interactable = true;
+						//_startRecordButton.interactable = true;
 						
 						yield break;
 					}
@@ -165,7 +165,7 @@ public class VoiceRegontion2 : MonoBehaviour
 		private void RecordFailedEventHandler()
 		{
 			
-			_startRecordButton.interactable = true;
+			//_startRecordButton.interactable = true;
 		}
 
 		private void BeginTalkigEventHandler()
@@ -213,10 +213,12 @@ public class VoiceRegontion2 : MonoBehaviour
 
 		}
 
+		public int RecognitionSuccessful = 0;
 
 		private void RecognizeSuccessEventHandler(RecognitionResponse recognitionResponse)
 		{
-
+			Debug.Log("Successful Recognition");
+			RecognitionSuccessful++;
 			InsertRecognitionResponseInfo(recognitionResponse);
 		}
 
@@ -254,7 +256,7 @@ public class VoiceRegontion2 : MonoBehaviour
 		}
 		IEnumerator Repeat()
         {
-			responce.text = "Repeat!";
+			//responce.text = "Repeat!";
 		    _uiController.RepeatUI();
 			if(MistakeCounter == 2 && _voicePlaybackDouble.IsDoublePlayingNow == false)
 			{
@@ -317,7 +319,7 @@ public class VoiceRegontion2 : MonoBehaviour
 			}
 
 			_resultText += other;
-			responce.text = "";
+			//responce.text = "";
 			SravnTask(_resultText + other);
 			//_resultText.text += other;
 		}
@@ -326,7 +328,7 @@ public class VoiceRegontion2 : MonoBehaviour
 			if(other.Contains(Task[_voicePlayback.AudioCount]))
 			{
 				comboCount++;
-				responce.text = "Correct";
+				//responce.text = "Correct";
 				SetComboAndBest();
 				_voicePlayback.AudioCount++;
 				Counter++;

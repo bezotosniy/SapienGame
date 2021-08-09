@@ -24,7 +24,7 @@ public class KeyBordController : MonoBehaviour
     public Button[] buttonLetter;
     public Button space, remove, removeAll, enter;
     public GameObject[] instWord;
-
+   
     [SerializeField] private GameObject[] _instWordNotInfenetly; 
     [SerializeField] private int _randomWord;
     [Space]
@@ -42,6 +42,12 @@ public class KeyBordController : MonoBehaviour
     public int _counter;
     [SerializeField] private  GameObject _microphonePanel;
     [SerializeField] private GameObject _DialogPanel;
+    [Header("SomeWords")]
+    [Space(20f)]
+    [SerializeField] private GameObject[] _someWordsPrefabs;
+    [SerializeField] private GameObject _someWordsParent;
+
+
     private void Start()
     {
         removeAll.onClick.AddListener(RemoveAll);
@@ -50,10 +56,14 @@ public class KeyBordController : MonoBehaviour
         EnterText.onClick.AddListener(PostTaskAnswer);
         position.gameObject.SetActive(false);
         _battleController = GetComponent<BattleController>();
+        _randomWord = Random.Range(0, _someWordsPrefabs.Length);
+        GameObject prefab;
+        prefab = Instantiate(_someWordsPrefabs[_randomWord], new Vector2(20, 80), Quaternion.identity) as GameObject;
+        prefab.transform.SetParent(_someWordsParent.transform, false);
     }
-    public void KeyBoard(string Task)
+    public void KeyBoard()
     {
-        textTask = Task;
+        
         InstFrase();
       
     }
@@ -281,29 +291,10 @@ public class KeyBordController : MonoBehaviour
   
     void InstFrase()
     {
-        //int[] rand;
-        
-        Debug.Log("One");
-        position.gameObject.SetActive(true);
-        GameObject obj;
-        keyLength = textTask.Split(' ');
-        var r = new System.Random();
-        for (int i = keyLength.Length - 1; i > 0; i--)
-        {
-            int j = r.Next(i);
-            var t = keyLength[i];
-            keyLength[i] = keyLength[j];
-            keyLength[j] = t;
-        }
-        for (int i = 0; i < keyLength.Length; i++)
-        {
-            Debug.Log(keyLength[i]);
-            Vector3 pos = new Vector3(position.position.x + i * OffsetFraseX, position.position.y, position.position.z);
-            obj = Instantiate(longFrase, pos, Quaternion.identity);
-            obj.transform.SetParent(position);
-            obj.GetComponentInChildren<Text>().text = keyLength[i];
-        }
-
+        _randomWord = Random.Range(0, _someWordsPrefabs.Length);
+        GameObject prefab;
+        prefab = Instantiate(_someWordsPrefabs[_randomWord], new Vector2(20, 80), Quaternion.identity) as GameObject;
+        prefab.transform.SetParent(_someWordsParent.transform, false);
     }
 
     void MoveObject()

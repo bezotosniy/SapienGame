@@ -8,6 +8,7 @@ public class HammerBattle : MonoBehaviour
 {
     [Header("Dialog")]
     [Space(20f)]
+    [SerializeField] private bool _isTextEnabled;
     [SerializeField] private GameObject[] _replica;
     [SerializeField] private Sprite[] _avatars;
     [SerializeField] private string[] _words;
@@ -84,6 +85,10 @@ public class HammerBattle : MonoBehaviour
 
     private void Start()
     {
+        if(_isTextEnabled)
+        {
+            
+        }
         _enemyPanel.SetActive(false);
         _hpPanel.SetActive(true);
         _done.onClick.AddListener(CheckAnswer);
@@ -449,6 +454,11 @@ public class HammerBattle : MonoBehaviour
   public void OnClick()
   {
       StartCoroutine(ClickOnEnemy(_enemy.position));
+  }
+
+  private void EnableandDisableText()
+  {
+
   }
 
 
