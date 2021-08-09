@@ -46,7 +46,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -106,6 +106,8 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips:
   - 51c3a05f5542441e1b7654d728af480e
+  - 92a5a91f78b51a34c9dc9124b201c684
+  - d3e90dde123a23642923dc82d0f09565
   importAnimation: 1
   humanDescription:
     serializedVersion: 3

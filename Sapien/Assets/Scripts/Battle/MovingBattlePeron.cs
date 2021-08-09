@@ -6,7 +6,7 @@ using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition;
 
     public class MovingBattlePeron : MonoBehaviour
     {
-        public Inventory inv;
+        public BattleController inv;
         private NavMeshAgent agent;
         public Transform point;
         public Animator Anim;
@@ -17,19 +17,22 @@ using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition;
         [Range(0.1f, 10)]
         public float speedBulllet;
         public Transform Vrag;
+
+        [SerializeField] private ParticleSystem _blood;
+        [SerializeField] private GiveDamageAnimation _animation;
     
         
         // Start is called before the first frame update
         void Start()
         {
             agent = GetComponent<NavMeshAgent>();
-            StartCoroutine(AgentWait());
+           // StartCoroutine(AgentWait());
         }
         public IEnumerator ClickOnEnemy(Vector3 enemyPoint)
         {
 
             GameObject bk = Instantiate(background, transform);
-            Anim.SetTrigger("StartFight");
+            Anim.SetBool("IsAttack", true);
 
             yield return new WaitForSeconds(1);
             GameObject bullet = Instantiate(Uron, instantiateParticle);
@@ -50,12 +53,14 @@ using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition;
                 if (Vector3.Distance(bullet.transform.position, point) < 0.01f)
                 {
                     inv.EnemyDie();
-                 
+                    _blood.Play();
+                    _animation.GiveDamage();
                     Instantiate(DestroyBullet,Vrag);
                     Destroy(bullet);
                     yield break;
                 }
                 yield return new WaitForFixedUpdate();
+                
             }
         }
         IEnumerator AgentWait()
@@ -79,7 +84,7 @@ using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition;
             if (Vector3.Distance(transform.position, point.position) < .5f)
             {
                 agent.enabled = false;
-                Anim.SetTrigger("stop");
+                Anim.SetBool("IsAttack", false);
 
                 Vector3 quat = Vector3.RotateTowards(transform.forward, new Vector3(Vrag.position.x,transform.position.y,Vrag.position.z)-transform.position,100 * Time.deltaTime, 0.0f);
                 transform.rotation = Quaternion.LookRotation(quat);

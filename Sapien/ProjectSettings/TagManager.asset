@@ -20,10 +20,10 @@ TagManager:
   - Glases
   - Head
   - Bag
-  - Start of fragment
-  - Battle
   - Story quest
+  - Battle
   - Wish mission
+  - Start of fragment
   layers:
   - Default
   - TransparentFX
@@ -35,7 +35,7 @@ TagManager:
   - 
   - PostProcessing
   - Enemy
-  - 
+  - ParticlesUI
   - 
   - 
   - 

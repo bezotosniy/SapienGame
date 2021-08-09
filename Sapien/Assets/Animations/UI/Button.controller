@@ -147,13 +147,13 @@ AnimatorStateMachine:
     m_Position: {x: 880, y: 570, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2054962701261023683}
-    m_Position: {x: 1030, y: 160, z: 0}
+    m_Position: {x: 1100, y: 150, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 177126819703542844}
-    m_Position: {x: 1100, y: 280, z: 0}
+    m_Position: {x: 1100, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8058744668280531464}
-    m_Position: {x: 1120, y: 590, z: 0}
+    m_Position: {x: 1100, y: 70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4212555510820426520}
     m_Position: {x: 1155, y: 655, z: 0}
@@ -163,6 +163,12 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 8314725454393712815}
     m_Position: {x: 1355, y: 575, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 4427975054419880604}
+    m_Position: {x: 1133.4697, y: 587.604, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -4614605496296220109}
+    m_Position: {x: 910, y: 670, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -216,6 +222,32 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 67c23881a07a4964c8b98703bbb6c19a, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &-4614605496296220109
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WordScreen0
+  m_Speed: -1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: c21478a770da52845afe51fca0525361, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -469,6 +501,32 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 195315de2302c7e4d822ef1a8ca75cf3, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &4427975054419880604
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WordScreen
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: c21478a770da52845afe51fca0525361, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
