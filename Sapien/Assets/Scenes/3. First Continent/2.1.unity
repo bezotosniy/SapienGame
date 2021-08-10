@@ -22025,6 +22025,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PhoneButton
       objectReference: {fileID: 0}
+    - target: {fileID: 6301548392364679963, guid: 00c0f9b061463da439066ff2176412b2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6440886519514166434, guid: 00c0f9b061463da439066ff2176412b2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6863581150922078037, guid: 00c0f9b061463da439066ff2176412b2, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
