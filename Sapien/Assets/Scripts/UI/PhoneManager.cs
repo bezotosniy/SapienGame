@@ -343,7 +343,6 @@ public class PhoneManager : MonoBehaviour
 
     public void OnClickCameraOpen()
     {
-        Debug.Log("Camera");
         CameraPanel.SetActive(true);
         anim.Play("CameraOpen");
         GetComponent<Button>().interactable = false;
@@ -357,19 +356,6 @@ public class PhoneManager : MonoBehaviour
         GetComponent<Button>().interactable = true;
         CameraPanel.GetComponent<CameraManager>().enabled = false;
         Camera.main.GetComponent<Transform>().localEulerAngles = new Vector3(0f, 0f, 0f);
-    }
-    public void OnPointerClickWordIcon(string tag)
-    {
-        StartCoroutine(PhoneCloser());
-        anim.Play("WordScreen");
-        GetComponent<Button>().interactable = false;
-    }
-
-    public void OnPointerClickWordIconClose(string tag)
-    {
-        anim.Play("WordScreen0");
-        Phone.SetActive(true);
-        GetComponent<Button>().interactable = true;
     }
 
     private void OnDestroy()

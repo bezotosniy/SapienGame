@@ -1,7 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e1f9686f-d36e-46ec-b25a-ee29369a93a1" name="Default Changelist" comment="" />
+    <list default="true" id="e1f9686f-d36e-46ec-b25a-ee29369a93a1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Sapien/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Sapien/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/CartoonFX/Prefabs/ParticlesExplosion1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/CartoonFX/Prefabs/ParticlesExplosion1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/CharacterAnim/MovingController.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/CharacterAnim/MovingController.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/CharacterAnim/xbotDefeat_Idle.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/CharacterAnim/xbotDefeat_Idle.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/CharacterAnim/xbotVictory_Idle.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/CharacterAnim/xbotVictory_Idle.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/Button.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/Button.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/FirstQuestComplete.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/FirstQuestComplete.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/FirstQuestComplete.anim.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/FirstQuestComplete.anim.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/FragmentCard.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/FragmentCard.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/Image.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/Image.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/Image.controller.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/Image.controller.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/NotificationShaking.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/NotificationShaking.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/QuestAppear.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/QuestAppear.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/QuestComplete.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/QuestComplete.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/QuestComplete.anim.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/QuestComplete.anim.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/QuestComplete1.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/QuestComplete1.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/QuestComplete1.anim.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/QuestComplete1.anim.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/QuestIdle 1.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/QuestIdle 1.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/QuestIdle 2.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/QuestIdle 2.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/QuestIdle.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/QuestIdle.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/QuestPanel.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/QuestPanel.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/QuestPanel1.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/QuestPanel1.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/QuestPanel2.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/QuestPanel2.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/QuestUp.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/QuestUp.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/QuestUp.anim.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/QuestUp.anim.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/Unreaded.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/Unreaded.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/Unreaded.anim.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/Unreaded.anim.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/up.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/up.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/UI/up.anim.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/UI/up.anim.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/IMAGES ARCHIVE/Fcard.jpeg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/IMAGES ARCHIVE/Fcard.jpeg.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/IMAGES ARCHIVE/Phone Assets/Circle.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/IMAGES ARCHIVE/Phone Assets/Circle.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MODELS ARCHIVE/POLYGON - Particle FX Pack/PolygonParticles/Prefabs/FX_LazerBeam_01.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MODELS ARCHIVE/POLYGON - Particle FX Pack/PolygonParticles/Prefabs/FX_LazerBeam_01.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MODELS ARCHIVE/PolygonDungeon/Materials/Dungeon_Material_01 1.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MODELS ARCHIVE/PolygonDungeon/Materials/Dungeon_Material_01 1.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MODELS ARCHIVE/PolygonSciFiCity/Prefabs/FX/FX_LightRayCube.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MODELS ARCHIVE/PolygonSciFiCity/Prefabs/FX/FX_LightRayCube.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Packages/FriendPrefab.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Packages/Phone.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Packages/Prefabs.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Packages/Scripts.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Packages/testScene.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/CardOpenParticle.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/CardOpenParticle.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/CardOpenParticle.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/CardOpenParticle.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/FX_ArtilleryStrike_01 Variant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/FX_ArtilleryStrike_01 Variant.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/FX_ArtilleryStrike_01 Variant.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/FX_ArtilleryStrike_01 Variant.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/FragmentCard.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/FragmentCard.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/FragmentCard.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/FragmentCard.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/FragmentCardTimer.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/FragmentCardTimer.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/FragmentCardTimer.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/FragmentCardTimer.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PhonePrefabs/Chat1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PhonePrefabs/Chat1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PhonePrefabs/PhoneButton.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PhonePrefabs/PhoneButton.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PhonePrefabs/PostPonedQuest.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PhonePrefabs/PostPonedQuest.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PhonePrefabs/PostPonedQuest.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PhonePrefabs/PostPonedQuest.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/DOTweenSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/DOTweenSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Fragment cards/Hello.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Fragment cards/Hello.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Fragment cards/Hello.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Fragment cards/Hello.asset.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Fragment cards/HowAreYou.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Fragment cards/HowAreYou.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Fragment cards/HowAreYou.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Fragment cards/HowAreYou.asset.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Fragment cards/NullCard.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Fragment cards/NullCard.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Fragment cards/NullCard.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Fragment cards/NullCard.asset.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/3. First Continent/4.1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/3. First Continent/4.1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CurrentFragmentCardTime.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CurrentFragmentCardTime.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FragmentCard/CardInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FragmentCard/CardInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FragmentCard/CardInfo.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FragmentCard/CardInfo.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FragmentCard/FragmentCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FragmentCard/FragmentCard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FragmentCard/FragmentCard.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FragmentCard/FragmentCard.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FragmentCard/FragmentCardPhoneCell.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FragmentCard/FragmentCardPhoneCell.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FragmentCard/FragmentCardPhoneCell.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FragmentCard/FragmentCardPhoneCell.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Friend Relations/Friend.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Friend Relations/Friend.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Friend Relations/FriendRelations.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Friend Relations/FriendRelations.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Friend Relations/FriendRelations.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Friend Relations/FriendRelations.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Navigation/NavigationManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Navigation/NavigationManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PhoneSaver/MessagesSave.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PhoneSaver/MessagesSave.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quest/FriendQuest.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quest/FriendQuest.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quest/PostPonedQuestNotification.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quest/PostPonedQuestNotification.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quest/Quest.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quest/Quest.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quest/QuestAfterStoryQuest.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quest/QuestAfterStoryQuest.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quest/QuestForGiveCard.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quest/QuestForGiveCard.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quest/QuestManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quest/QuestManager.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quest/QuestPanel.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quest/QuestPanel.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quest/StoryQuest.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quest/StoryQuest.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quest/TestQuest1.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quest/TestQuest1.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quest/TestQuest2.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quest/TestQuest2.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Timers/FragmentCardTimer.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Timers/FragmentCardTimer.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Timers/InGameTimer.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Timers/InGameTimer.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Timers/TimerUI.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Timers/TimerUI.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Timers/testscript.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Timers/testscript.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/PhoneManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/PhoneManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/StoryManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/StoryManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/ApiUpdaterCheck.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/ApiUpdaterCheck.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-AssetImportWorker0.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe1.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe1.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe2.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe2.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe3.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe3.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe4.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe4.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe5.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe5.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe6.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe6.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe7.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe7.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TimelineSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TimelineSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,19 +123,17 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@10.3.2/Editor/AssetPostProcessors/MaterialPostprocessor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/Quest.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timers/TimerUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/QuestPanel.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Downloads/Telegram Desktop/Assets/Scripts/UI/QuestPanelManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Downloads/Telegram Desktop/Assets/Scripts/UI/PhoneManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Downloads/Telegram Desktop/Assets/Scripts/UI/MessagesManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PhoneSaver/MessagesSave.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timers/TimerUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ExtensionMethods.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/QuestForGiveCard.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/TestQuest1.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/PostPonedQuestNotification.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timers/testscript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@10.3.2/Editor/AssetPostProcessors/MaterialPostprocessor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FragmentCard/FragmentCardPhoneCell.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/Quest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/TestQuest1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PhoneSaver/MessagesSave.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/PostPonedQuestNotification.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -42,9 +144,7 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Timers/InGameTimer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Timers/FragmentCardTimer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Quest/QuestTrade.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/FragmentCard/FragmentCardPhoneCell.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Quest/TestQuest1.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/StoryManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/FragmentCard/CardInfo.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Quest/PostPonedQuestNotification.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/ChatManager.cs" />
@@ -65,6 +165,12 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/QuestPanelManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Friend Relations/Friend.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Quest/FriendQuest.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ExtensionMethods.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/FragmentCard/FragmentCardPassPlace.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/FragmentCard/FragmentCardPhoneCell.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/StoryManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Navigation/NavigationManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Map/MapInPhone.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1vY3Fuz4Mdqd3J0tFshgixmPjdr" />
@@ -78,6 +184,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -131,6 +238,7 @@
       <workItem from="1627578757618" duration="770000" />
       <workItem from="1628341888951" duration="2435000" />
       <workItem from="1628413324312" duration="2050000" />
+      <workItem from="1628583127360" duration="19158000" />
     </task>
     <servers />
   </component>

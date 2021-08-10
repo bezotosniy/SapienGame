@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,8 @@ public class NavigationManager : MonoBehaviour
     public Transform target;
     public float border = 100f;
     public string targetName;
-
+    private Vector2 borderInUI;
+    private Vector3 maxScale = new Vector3(1.5f, 1.5f, 1.0f);
     private void Awake()
     {
         target = GameObject.Find(targetName).GetComponent<Transform>();
@@ -27,7 +29,7 @@ public class NavigationManager : MonoBehaviour
 
         Debug.Log(isOffScreen + " " + TargetPositionScreenPoint);
 
-        if (isOffScreen)
+        if (isOffScreen)    
         {
             Vector3 cappedTargetScreenPosition = TargetPositionScreenPoint;
             if (cappedTargetScreenPosition.x <= border)
@@ -50,42 +52,67 @@ public class NavigationManager : MonoBehaviour
                 cappedTargetScreenPosition.y = Screen.height - border;
                 Debug.Log("Top");
             }
+            
+            Vector3 direction = (target.position - camera.transform.position).normalized;
+            
+            Debug.Log((target.position - camera.transform.position).magnitude);
+            
+            
+            direction = camera.transform.InverseTransformDirection(direction);
+            direction.y = 0;
 
-            Vector3 pointerWorldPosition = camera.ScreenToWorldPoint(cappedTargetScreenPosition);
-            pointer.position = pointerWorldPosition;
-            pointer.position = cappedTargetScreenPosition;
-            pointer.localPosition = new Vector3(-pointer.localPosition.x, -pointer.localPosition.y, 0f);
+            direction /= 2;
+            
 
-        }
-        else if (!isOffScreen)
-        {
             GameObject WorldObject = target.gameObject;
 
             RectTransform UI_Element = pointer;
 
             RectTransform CanvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
 
+            Vector3 newScale = Vector3.Lerp(maxScale, Vector3.one, 
+                ((target.position - camera.transform.position).magnitude / 20.0f));
+                
+            Vector2 WorldObject_ScreenPosition = new Vector2(
+                ((direction.x * CanvasRect.sizeDelta.x)),
+                ((direction.z * CanvasRect.sizeDelta.y)));
 
+            UI_Element.anchoredPosition = WorldObject_ScreenPosition;
+            UI_Element.localScale = newScale;
+        }
+        else if (!isOffScreen)
+        {
+            GameObject WorldObject = target.gameObject;
+            //
+            RectTransform UI_Element = pointer;
+            
+            RectTransform CanvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
+            
+            
             Vector2 ViewportPosition = Camera.main.WorldToViewportPoint(WorldObject.transform.position);
             Vector2 WorldObject_ScreenPosition = new Vector2(
             ((ViewportPosition.x * CanvasRect.sizeDelta.x) - (CanvasRect.sizeDelta.x * 0.5f)),
             ((ViewportPosition.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * 0.5f)));
-
+            
+            Vector3 newScale = Vector3.Lerp(maxScale, Vector3.one, 
+                ((target.position - camera.transform.position).magnitude / 20.0f));
+            
             UI_Element.anchoredPosition = WorldObject_ScreenPosition;
+            UI_Element.localScale = newScale;
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.transform.name == targetName)
-                { print(targetName + " is clicked by mouse"); }
-                TargetChange("SM_Veh_Car_Taxi_01");
-            }
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    RaycastHit hit;
+        //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //
+        //    if (Physics.Raycast(ray, out hit))
+        //    {
+        //        if (hit.transform.name == targetName)
+        //        { print(targetName + " is clicked by mouse"); }
+        //        TargetChange(hit.transform.name);
+        //    }
+        //}
     }
 
     public void TargetChange(string name)
@@ -94,4 +121,5 @@ public class NavigationManager : MonoBehaviour
         target = GameObject.Find(name).GetComponent<Transform>();
         Debug.Log("Click");
     }
+    
 }
