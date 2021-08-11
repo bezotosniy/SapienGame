@@ -15,7 +15,7 @@ public class MapInPhone : MonoBehaviour
 
     private void Awake()
     {
-        currentLevelOfScale = 1;
+        currentLevelOfScale = 2;
         ScaleMapUp();
         ScaleMapDown();
     }

@@ -49,7 +49,7 @@ public class PhoneManager : MonoBehaviour
     public void OnButtonClickPhoneOpener()
     {
         Phone.SetActive(true);
-
+        
         
         int unread = Messages.GetComponent<MessagesManager>().GetUnreadMassages();
 
@@ -98,7 +98,7 @@ public class PhoneManager : MonoBehaviour
     public void OnPointerClickStoryIconClose(string tag)
     {
         anim.Play("StoryScreen0");
-        Phone.SetActive(true);
+        OnButtonClickPhoneOpener();
         GetComponent<Button>().interactable = true;
     }
 
@@ -112,7 +112,7 @@ public class PhoneManager : MonoBehaviour
     public void OnPointerClickCardIconClose(string tag)
     {
         anim.Play("FragmentCard0");
-        Phone.SetActive(true);
+        OnButtonClickPhoneOpener();
         GetComponent<Button>().interactable = true;
     }
 
@@ -130,6 +130,20 @@ public class PhoneManager : MonoBehaviour
         //GetComponent<QuestPanelManager>().AddQuestToActiveList("System", QuestType[CurrentQuestType]);
     }
 
+    public void OnPointerClickMapIconOpen()
+    {
+        Phone.SetActive(false);
+        anim.Play("MapOpen");
+        GetComponent<Button>().interactable = false;
+    }
+    
+    public void OnPointerClickMapIconClose()
+    {
+        anim.Play("MapClose");
+        OnButtonClickPhoneOpener();
+        GetComponent<Button>().interactable = true;
+    }
+    
     public void OnNotificationOpener()
     {
         Notification.SetActive(true);
