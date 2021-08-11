@@ -44,6 +44,7 @@ public class CursorFollow : MonoBehaviour
         GameObject.Find("PhoneButton").GetComponent<PhoneManager>().OnClickCameraClose();
         yield return new WaitForSeconds(1f);
         GameObject.Find("PhoneButton").GetComponent<PhoneManager>().OnPointerClickWordIcon("WordScreen");
+        /*GameObject.Find("Camera").SetActive(false);*/
         yield return new WaitForSeconds(0.5f);
         GameObject.Find("abc").GetComponent<PhotoQuest>().PictureOpener();
     }

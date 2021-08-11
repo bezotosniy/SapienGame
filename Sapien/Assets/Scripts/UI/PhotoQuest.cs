@@ -48,7 +48,7 @@ public class PhotoQuest : MonoBehaviour
         {
             Debug.Log("Camera");
             CameraOpener();
-            blur.SetActive(true);
+            
             VoiceRecognition.GetComponent<VoiceRegontion2>().RecognitionSuccessful = 0;
             SpellSuccessful = false;
             GetComponent<SpriteRenderer>().enabled = false;
@@ -59,6 +59,7 @@ public class PhotoQuest : MonoBehaviour
 
     public IEnumerator WordSpellingQuestOpener()
     {
+        blur.SetActive(true);
         VoiceRecognition.SetActive(true);
         VoiceRecognition.GetComponent<VoiceRegontion2>().Task[0] = "Flower";
         while (true)
