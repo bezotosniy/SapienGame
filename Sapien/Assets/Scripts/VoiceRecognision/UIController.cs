@@ -73,7 +73,7 @@ public class UIController : MonoBehaviour
 
     private void Update()
     {
-        if(_isPlaying && _battleController.infinitely)
+        if(_isPlaying/*&& _battleController.infinitely*/)
         {
             _stopButton.GetComponent<Image>().fillAmount += Time.deltaTime / _voicePlayback.AudioTask[0].clip.length;
         }

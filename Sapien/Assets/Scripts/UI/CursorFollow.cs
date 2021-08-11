@@ -23,16 +23,28 @@ public class CursorFollow : MonoBehaviour
             {
                 if (hit.transform.name == targetName)
                 {
-                    picture.SetActive(true);
-                    picture.GetComponent<RectTransform>().position = this.gameObject.GetComponent<RectTransform>().position;
-                    GameObject.Find("PhoneButton").GetComponent<Animator>().Play("Picture");
+                    hit = new RaycastHit();
+                    StartCoroutine(PictureIsTaken());
                     camera.GetComponent<CameraManager>().enabled = false;
                     this.enabled = false;
-                    Pic1.GetComponent<Image>().sprite = picture.GetComponent<Image>().sprite;
-                    GameObject.Find("abc").SetActive(false);
-                    hit = new RaycastHit();
+                    
                 }
             }
         }
+    }
+
+    public IEnumerator PictureIsTaken()
+    {
+        picture.SetActive(true);
+        GameObject.Find("PhoneButton").GetComponent<Animator>().Play("Picture");
+        Pic1.GetComponent<Image>().sprite = picture.GetComponent<Image>().sprite;
+        GameObject.Find("abc").GetComponent<PhotoQuest>().PictureSubmit();
+        yield return new WaitForSeconds(3f);
+        picture.SetActive(false);
+        GameObject.Find("PhoneButton").GetComponent<PhoneManager>().OnClickCameraClose();
+        yield return new WaitForSeconds(1f);
+        GameObject.Find("PhoneButton").GetComponent<PhoneManager>().OnPointerClickWordIcon("WordScreen");
+        yield return new WaitForSeconds(0.5f);
+        GameObject.Find("abc").GetComponent<PhotoQuest>().PictureOpener();
     }
 }

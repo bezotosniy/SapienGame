@@ -73,6 +73,7 @@ public class PhoneManager : MonoBehaviour
 
     IEnumerator PhoneCloser()
     {
+        if (Phone.activeSelf == true)
         Phone.GetComponent<Animator>().Play("PhoneClosed");
         yield return new WaitForSeconds(1f);
         Phone.SetActive(false);

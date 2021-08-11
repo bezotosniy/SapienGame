@@ -14,6 +14,16 @@ public class WordManager : MonoBehaviour
     public Sprite[] SeasonSprite;
     public GameObject[] Season;
     public int MaxSeasonAvailable;
+    public GameObject pic1;
+    public GameObject engText;
+    public GameObject rusText;
+    public GameObject close;
+
+    void Start()
+    {
+        engText.SetActive(false);
+        rusText.SetActive(false);
+    }
 
     public void OnClickSeasonOpener(int season)
     {
@@ -71,5 +81,33 @@ public class WordManager : MonoBehaviour
     {
         GameObject.Find(tag).GetComponent<Image>().sprite = SeasonSprite[0];
         GameObject.Find(tag).GetComponent<RectTransform>().localScale = new Vector3(1.1f, 1.1f, 1);
+    }
+
+    public bool PictureIsOpened = false;
+
+    public void PictureOpener(string tag)
+    {
+        if (!PictureIsOpened)
+        {
+            GetComponent<Animator>().Play(tag);
+            PictureIsOpened = true;
+            close.SetActive(true);
+        }
+        else
+        {
+            GetComponent<Animator>().Play(tag + "0");
+            PictureIsOpened = false;
+            close.SetActive(false);
+            engText.SetActive(false);
+            rusText.SetActive(false);
+        }
+    }
+
+    public void WordTriggerEnter()
+    {
+        engText.SetActive(true);
+        rusText.SetActive(true);
+        engText.GetComponent<Text>().text = "Flower";
+        rusText.GetComponent<Text>().text = "Цветок";
     }
 }

@@ -11,8 +11,10 @@ public class PhotoQuest : MonoBehaviour
     public GameObject target;
     public Transform TargetTransform;
     public GameObject VoiceRecognition;
-    public bool TargetIsPressed = false;
+    public bool SpellSuccessful = false;
     public Sprite picture;
+    public GameObject blur;
+    public GameObject WordScreen;
 
     void Start()
     {
@@ -21,12 +23,6 @@ public class PhotoQuest : MonoBehaviour
         TargetTransform = target.GetComponent<Transform>();
         transform.position = new Vector3(TargetTransform.position.x, TargetTransform.position.y + 0.7f, TargetTransform.position.z);
         target.AddComponent<MeshCollider>();
-        /*target.AddComponent(typeof(EventTrigger));
-        EventTrigger trigger = target.GetComponent<EventTrigger>();
-        EventTrigger.Entry entry = new EventTrigger.Entry();
-        entry.eventID = EventTriggerType.PointerClick;
-        entry.callback.AddListener((data) => { this.gameObject.GetComponent<PhotoQuest>().WordSpellingQuestOpener(); });
-        trigger.triggers.Add(entry);*/
     }
 
     void Update()
@@ -42,29 +38,47 @@ public class PhotoQuest : MonoBehaviour
             {
                 if (hit.transform.name == TargetName)
                 {
-                    WordSpellingQuestOpener();
+                    StartCoroutine(WordSpellingQuestOpener());
                     hit = new RaycastHit();
                 }   
             }
         }
 
-        if (TargetIsPressed)
+        if (SpellSuccessful)
         {
-            if (VoiceRecognition.GetComponent<VoiceRegontion2>().RecognitionSuccessful == 1)
-            {
-                Debug.Log("Camera");
-                CameraOpener();
-                VoiceRecognition.GetComponent<VoiceRegontion2>().RecognitionSuccessful = 0;
-                TargetIsPressed = false;
-            }
+            Debug.Log("Camera");
+            CameraOpener();
+            blur.SetActive(true);
+            VoiceRecognition.GetComponent<VoiceRegontion2>().RecognitionSuccessful = 0;
+            SpellSuccessful = false;
+            GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 
-    public void WordSpellingQuestOpener()
+    public int SpellCount = 0;
+
+    public IEnumerator WordSpellingQuestOpener()
     {
         VoiceRecognition.SetActive(true);
         VoiceRecognition.GetComponent<VoiceRegontion2>().Task[0] = "Flower";
-        TargetIsPressed = true;
+        while (true)
+        {
+            if (VoiceRecognition.GetComponent<VoiceRegontion2>().RecognitionSuccessful == 1)
+            {
+                Debug.Log("Proceeded");
+                VoiceRecognition.GetComponent<VoiceRegontion2>().RecognitionSuccessful = 0;
+                VoiceRecognition.SetActive(false);
+                SpellCount++;
+                if(SpellCount == 1)
+                {
+                    SpellSuccessful = true;
+                }
+                StartCoroutine(WordSpellingQuestOpener());
+                break;
+            }
+            else { yield return new WaitForSeconds(1f); }
+        }
+        yield return null;
     }
 
     public void CameraOpener()
@@ -75,5 +89,17 @@ public class PhotoQuest : MonoBehaviour
         GameObject.Find("Cursor").GetComponent<CursorFollow>().targetName = TargetName;
         Camera.main.transform.LookAt(TargetTransform);
         TargetName = "0";
+    }
+
+    public void PictureOpener()
+    {
+        WordScreen.GetComponent<Animator>().Play("NewPicture");
+        WordScreen.GetComponent<Transform>().Find("WordPic").GetComponent<Transform>().Find("Image").GetComponent<Transform>().Find("Pic1").gameObject.SetActive(true);
+    }
+
+    public void PictureSubmit()
+    {
+        GetComponent<AudioSource>().Play();
+        GetComponent<SpriteRenderer>().enabled = false;
     }
 }

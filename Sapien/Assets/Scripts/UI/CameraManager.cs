@@ -21,15 +21,6 @@ public class CameraManager : MonoBehaviour
 
     void Update()
     {
-        /*Vector2 input = new Vector2(Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y"));
-        rotation += input * sensivity * Time.deltaTime;
-        rotation.y = Mathf.Clamp(rotation.y, -15f, 15f);
-        rotation.x = Mathf.Clamp(rotation.x, -20f, 20f);
-        Debug.Log(rotation);
-        aim.localEulerAngles = new Vector3(rotation.y, rotation.x, 0);
-        angle = aim.rotation;
-        transform.localEulerAngles = new Vector3(rotation.y, rotation.x, 0);
-        transform.rotation = Quaternion.Slerp(transform.rotation, angle, 0.01f);*/
 
         Vector2 input = new Vector2(Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y"));
         rotation += input * sensivity * Time.deltaTime;

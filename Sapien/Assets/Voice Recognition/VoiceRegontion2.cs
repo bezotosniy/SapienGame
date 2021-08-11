@@ -213,12 +213,8 @@ public class VoiceRegontion2 : MonoBehaviour
 
 		}
 
-		public int RecognitionSuccessful = 0;
-
 		private void RecognizeSuccessEventHandler(RecognitionResponse recognitionResponse)
 		{
-			Debug.Log("Successful Recognition");
-			RecognitionSuccessful++;
 			InsertRecognitionResponseInfo(recognitionResponse);
 		}
 
@@ -323,6 +319,9 @@ public class VoiceRegontion2 : MonoBehaviour
 			SravnTask(_resultText + other);
 			//_resultText.text += other;
 		}
+
+		public int RecognitionSuccessful = 0;
+
 		public void SravnTask(string other)
 		{
 			if(other.Contains(Task[_voicePlayback.AudioCount]))
@@ -335,12 +334,16 @@ public class VoiceRegontion2 : MonoBehaviour
 				MistakeCounter = 0;
 				if(Counter == CounterNeed )
 				{
-				 StartCoroutine(_uiController.OnCorrect());
+					RecognitionSuccessful++;
+					Debug.Log(RecognitionSuccessful);
+					StartCoroutine(_uiController.OnCorrect());
 				  StartCoroutine(_voicePlaybackDouble.ListenInterlocutor());
 				}
 				else
 				{
-				   StartCoroutine(_uiController.OnCorrect());
+					RecognitionSuccessful++;
+					Debug.Log(RecognitionSuccessful);
+					StartCoroutine(_uiController.OnCorrect());
 				   StartCoroutine(_voicePlayback.InterlocutorSay());
                 }
 			}
