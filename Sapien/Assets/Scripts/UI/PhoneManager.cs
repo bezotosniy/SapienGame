@@ -22,6 +22,7 @@ public class PhoneManager : MonoBehaviour
     private bool QuestAvailable = false;
     public string[] QuestType = { "Start of fragment", "Story quest", "Battle", "Wish mission" };
     public bool SecondQuestAvailable = false;
+    public MapInPhone Map;
     
     public int ActiveQuests = 0;
     public int CurrentQuestType;
@@ -30,7 +31,7 @@ public class PhoneManager : MonoBehaviour
     public GameObject CameraPanel;
 
     [HideInInspector] public Coroutine CR_StoryQuest , CR_NotificationShaking;
-    
+
     private void Awake()
     {
         if (instance == null)
@@ -133,14 +134,14 @@ public class PhoneManager : MonoBehaviour
     public void OnPointerClickMapIconOpen()
     {
         Phone.SetActive(false);
-        anim.Play("MapOpen");
+        Map.OpenMap("Phone");
         GetComponent<Button>().interactable = false;
     }
     
     public void OnPointerClickMapIconClose()
     {
-        anim.Play("MapClose");
-        OnButtonClickPhoneOpener();
+        Map.CloseMap();
+        //OnButtonClickPhoneOpener();
         GetComponent<Button>().interactable = true;
     }
     

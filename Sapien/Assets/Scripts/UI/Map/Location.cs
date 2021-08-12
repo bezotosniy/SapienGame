@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Location : MonoBehaviour
@@ -10,15 +11,25 @@ public class Location : MonoBehaviour
     public string locationName, description;
     public Image locationImage;
     public Color highlitedColor;
-    public bool locked = false;
     public string sceneLocationName;
     
+    public bool locked = false;
+    public LocationLock _lock;
+
+    public static MapInPhone mapManager;
     [HideInInspector]
     public Vector2 position;
 
     private void Start()
     {
+        if (mapManager == null)
+            mapManager = GameObject.FindObjectOfType<MapInPhone>();
+    }
+
+    public Vector2 GetPosition()
+    {
         position = GetComponent<RectTransform>().anchoredPosition;
+        return position;
     }
 
     private Coroutine CR_Highlight;
@@ -54,5 +65,25 @@ public class Location : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         locationImage.color = targetColor;
+    }
+
+    public void GoToLocationScene()
+    {
+        StartCoroutine(ExtensionMethods.LoadSceneWithTransition(2 , sceneLocationName));
+        //if (mapManager.CanMoveBeetwenLocations() && !locked)
+        //    StartCoroutine(ExtensionMethods.LoadSceneWithTransition(2 , sceneLocationName));
+        //else
+        //{
+        //    Debug.Log($"<color=red> Can't move to location </color> {locationName}");
+        //}
+    }
+
+    public void UnlockLocation()
+    {
+        if (locked)
+        {
+            _lock.Unlock();
+            locked = false;
+        }
     }
 }

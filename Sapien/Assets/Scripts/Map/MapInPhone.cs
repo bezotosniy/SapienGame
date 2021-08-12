@@ -8,16 +8,30 @@ public class MapInPhone : MonoBehaviour
 {
     public float Increment;
     public GameObject[] levelsOfScaleIcon;
+    public PhoneManager phone;
     
     [HideInInspector] public GameObject lastClicked = null;
     [HideInInspector] public int currentLevelOfScale;
     [SerializeField] private Color highlitedColor;
 
+    private string mapOpener;
     private void Awake()
     {
         currentLevelOfScale = 2;
         ScaleMapUp();
         ScaleMapDown();
+    }
+
+    public void OpenMap(string opener)
+    {
+        mapOpener = opener;
+        phone.anim.Play("MapOpen");
+    }
+
+    public void CloseMap()
+    {
+        mapOpener = "";
+        phone.anim.Play("MapClose");
     }
 
     public void IncreaseSize(GameObject target)
@@ -80,5 +94,12 @@ public class MapInPhone : MonoBehaviour
             
             IncreaseSize(levelsOfScaleIcon[currentLevelOfScale - 1]);
         }
+    }
+
+    public bool CanMoveBeetwenLocations()
+    {
+        if (mapOpener == "Taxi")
+            return true;
+        return false;
     }
 }

@@ -32,7 +32,7 @@ public class LocationInfo : MonoBehaviour
 
     IEnumerator ShowLocation(Location loc)
     {
-        rect.anchoredPosition = loc.position;
+        rect.anchoredPosition = loc.GetPosition();
         locationName.text = loc.locationName;
         locationDescrip.text = loc.description;
         CanvasGroup group = GetComponent<CanvasGroup>();
