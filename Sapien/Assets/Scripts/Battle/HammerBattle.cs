@@ -3,44 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition;
 
 public class HammerBattle : MonoBehaviour
 {
-    [Header("Dialog")]
-    [Space(20f)]
-    [SerializeField] private bool _isTextEnabled;
-    [SerializeField] private GameObject[] _replica;
-    [SerializeField] private Sprite[] _avatars;
-    [SerializeField] private string[] _words;
-    [SerializeField] private string[] _secondDialog;
-    [SerializeField] private string[] _thirdDialog;
-    [SerializeField] private int _randomAvatar;
-
-
-    [Header("Answers")]
-    [Space(20f)]
-    [SerializeField] private AudioSource[] _answersAudio;
-    [SerializeField] private AudioSource[] _correctAnswerAudio;
-    [SerializeField] private Image[] _tick;
-    [SerializeField] private Image[] _images;
-    [SerializeField] private Image[] _playButtons;
-    [SerializeField] private Sprite[] _answersimage;
-    [SerializeField] private Sprite[] _correctImage;
-    [SerializeField] private GameObject[] _box;
-    [SerializeField] private int _correctAnswer;
-    [SerializeField] private Button _done;
-    private int _currentIndex;
-    [SerializeField] private int _randomType;
-    public string _correctTask;
-    [SerializeField] private string[] _tasks;
-    [SerializeField] private Text[] _tasksText;
+   
+    
     
 
     [Header("Battle")]
     [Space(20f)]
     [SerializeField] private Camera _camera;
     private Ray _ray;
-    private bool _isAttack;
+    public bool IsAttack;
     [SerializeField] private GameObject StartParticle; 
     [SerializeField] private GameObject _background;
     [SerializeField] private GameObject _uron; 
@@ -60,7 +35,7 @@ public class HammerBattle : MonoBehaviour
     [Header("Time")]
     [Space(20f)]
     [SerializeField] private Text _timeText;
-    private bool _IsTimeGo;
+    public bool _IsTimeGo;
 
 
     [Header("Crystall")]
@@ -72,8 +47,17 @@ public class HammerBattle : MonoBehaviour
     [SerializeField] private int _hpControl;
     [SerializeField] private GameObject _hpPanel;
     [SerializeField] private GameObject _enemyPanel;
+    [SerializeField] private SpeakWithCard _speakWithCard;
+    [SerializeField] private SpeakWithVariant _speakWithVariant; 
+    [SerializeField] private VoiceregonsionForBattle _voiceRecognision;
 
-    
+    public int[] _randomTask;
+
+    [Header("Type Pabnels")]
+    public GameObject[] _type;
+    [SerializeField] private UIAnimation _uiAnimation;
+    [SerializeField] private DoneAndMissed _doneAndMissed;
+    [SerializeField] private Animation _openPanel;
 
 
 
@@ -85,31 +69,29 @@ public class HammerBattle : MonoBehaviour
 
     private void Start()
     {
-        if(_isTextEnabled)
-        {
-            
-        }
         _enemyPanel.SetActive(false);
         _hpPanel.SetActive(true);
-        _done.onClick.AddListener(CheckAnswer);
-        _done.enabled = false;
-        _randomAvatar = Random.Range(1, _avatars.Length);
-        _hp.text = _crystallHP + "/" + _hpControl;
+        index = 0;
+        CreateRandom();
+    }
 
-        for(int i = 0; i < _images.Length; i++)
+
+    private void CreateRandom()
+    {
+        for (int i = _randomTask.Length - 1; i > 0; i--)
         {
-            _images[i].sprite = _answersimage[i];
+            var r = new System.Random();
+            int j = r.Next(i);
+            var t = _randomTask[i];
+            _randomTask[i] = _randomTask[j];
+            _randomTask[j] = t;
         }
-
-        CreateDialog(_words);
-        
-        StartCoroutine(DialogPlay());
     }
 
      void FixedUpdate()
     {
        
-        if (Input.GetButtonDown("Fire1") && _isAttack == true)
+        if (Input.GetButtonDown("Fire1") && IsAttack == true)
         {
             
                 RaycastHit hit;
@@ -128,200 +110,56 @@ public class HammerBattle : MonoBehaviour
         }
     }
 
-    public IEnumerator DialogPlay()
+    public IEnumerator ClosePanelIfMissed()
     {
-        
-        _correctAnswer = Random.Range(0,3);
-        _images[_correctAnswer].sprite = _correctImage[index];
-        _randomType = Random.Range(0,3);
-        ChoseType();
-        StartCoroutine(TimeGo());
-        yield return new WaitForSeconds(2.5f);
-        TransformReplicas(880, 0, 1);
-        yield return new WaitForSeconds(1.6f);
-        TransformReplicas(1060, 1, 1);
-        yield return new WaitForSeconds(1.6f);
-        TransformReplicas(880, 2, 1);
-        yield return new WaitForSeconds(1.6f);
-        TransformReplicas(1060, 3, 1);
-        yield return new WaitForSeconds(1.6f);
-        TransformReplicas(880, 4, 1);
-        yield return new WaitForSeconds(0.5f);
-      
-        
-      
-    }
-
-
-    public void OnClickTick(int index)
-    {
-        foreach(Image t in _tick)
-        {
-            t.enabled = false;
-        }   
-        _tick[index].enabled = true;
-        _done.enabled = true;
-        _currentIndex = index;
-    }
-
-    public void PlayAnswer(int index)
-    {
-        if(index != _correctAnswer)
-        {
-            _answersAudio[index].Play();
-        }
-        else
-        {
-            _correctAnswerAudio[index].Play();
-        }
-      
-    }
-
-    private void TransformReplicas(int position, int index, int scale)
-    {
-        _replica[index].transform.DOMoveX(position, 0.5f);
-        _replica[index].transform.DOScale(new Vector3(scale,scale,scale), 0.3f);
-    }
-
-
-    private void FirstType()
-    {
-        for(int  i = 0; i < _box.Length; i++)
-        {
-            _box[i].SetActive(true);
-            _images[i].enabled = false;
-            _playButtons[i].enabled = true;
-        }
-    }
-
-    private void SecondType()
-    {
-          for(int  i = 0; i < _box.Length; i++)
-        {
-            _box[i].SetActive(true);
-            _images[i].enabled = true;
-            _playButtons[i].enabled = true;
-        }
-    }
-
-       private void ThirdType()
-    {
-          for(int  i = 0; i < _box.Length; i++)
-        {
-            _box[i].SetActive(true);
-            _images[i].enabled = true;
-            _playButtons[i].enabled = false;
-        }
-    }
-
-
-    private void CheckAnswer()
-    {
-            if(_currentIndex == _correctAnswer)
-            {
-                
-                index++;
-                for(int i = 0; i < _images.Length; i++)
-                {
-                    _images[i].sprite = _answersimage[i];
-                }
-                for(int i = 0; i < _replica.Length; i++)
-                {
-                   if(i % 2 != 0)
-                    {
-                      TransformReplicas(875, i, 0);
-                    }
-                    else
-                    {
-                      TransformReplicas(1055, i, 0);
-                    }
-                }
-                _isAttack = true;
-                _animation.ClosePanel();
-                DeleteTick();
-                _IsTimeGo = false;
-                if(index  == 1)
-                {
-                    CreateDialog(_secondDialog);
-                }
-                else if(index == 2)
-                {
-                    CreateDialog(_thirdDialog);
-                }
-                else
-                {
-                  CloseImages(_images);
-                  CloseImages(_playButtons);
-                  for(int i = 0; i < _box.Length; i++)
-                  {
-                      _box[i].SetActive(false);
-                  }
-                }
-               
-               
-               
-                   
-                
-                
-            }
-            else
-            {
-                _IsTimeGo = false;
-                _animation.ClosePanel();
-                StartCoroutine(_battleController.WaitForOpenHammerPanel());
-                DeleteTick();
-                for(int i = 0; i < _images.Length; i++)
-                {
-                    _images[i].sprite = _answersimage[i];
-                }
-            }
-        
+        yield return new WaitForSeconds(2f);
+        _animation.ClosePanel();
+        yield return new WaitForSeconds(2);
+        _doneAndMissed.ScaleMissed(0,260);
+        _openPanel.Play();
+        StartCoroutine(StartRecord());
        
     }
 
-
-    private void CreateDialog(string[] dialog)
+    private IEnumerator StartRecord()
     {
-          for(int i = 0; i < _replica.Length; i++)
+        if(_randomTask[index] == 3 || _randomTask[index] == 4)
         {
-            _replica[i].GetComponent<Replica>().Words.text = dialog[i];
-
-            if(i % 2 != 0)
-            {
-                _replica[i].GetComponent<Replica>().Avatar.sprite = _avatars[_randomAvatar];
-            }
-            else
-            {
-                _replica[i].GetComponent<Replica>().Avatar.sprite = _avatars[_randomAvatar - 1];
-            }
+            _speakWithCard.IsSpeakWithCard = true; 
+            _speakWithVariant.IsSpeakWithVariants = true;
+        }
+        _speakWithCard.ChangeTextImage(false);
+        _speakWithVariant.ChangeTextImage(false);
+        yield return new WaitForSeconds(3f);
+        if(_speakWithCard.IsSpeakWithCard == true || _speakWithVariant.IsSpeakWithVariants == true)
+        {
+            _speakWithCard.ChangeTextImage(true);
+            _speakWithVariant.ChangeTextImage(true);
+            _voiceRecognision.StartRecordButtonOnClickHandler();
         }
     }
 
-    private void ChoseType()
+    public IEnumerator OpenType()
     {
-        if(_randomType == 0)
+        yield return new WaitForSeconds(0.5f);
+        if(index > 0)
         {
-            FirstType();
+            _type[_randomTask[index  - 1]].SetActive(false);
         }
-        else if(_randomType == 1)
-        {
-            SecondType();
-        }
-        else
-        {
-            ThirdType();
-        }
+        _type[_randomTask[index]].SetActive(true);
     }
 
+    public IEnumerator CloseType()
+    {
+        yield return new WaitForSeconds(2.5f);
+        _animation.ClosePanel();
+        yield return new WaitForSeconds(3);
+        _doneAndMissed.ScaleGood(0, 260);
+       
+    }
 
-   private void DeleteTick()
-   {
-       for(int i = 0; i < _tick.Length; i++)
-       {
-           _tick[i].enabled = false;
-       }
-   }
-
+    
+    
  IEnumerator MoveBullet(GameObject bullet, Vector3 point)
         {
             while (true)
@@ -343,7 +181,7 @@ public class HammerBattle : MonoBehaviour
                 if(_crystallHP <= 0)
                     {
                         Debug.Log("End");
-                        FinishGame();
+                      
                     }
                 else
                     {
@@ -356,6 +194,7 @@ public class HammerBattle : MonoBehaviour
         }
          public IEnumerator ClickOnEnemy(Vector3 enemyPoint)
         {
+            index++;
             _animator.SetBool("IsAttack", true);
             GameObject bk = Instantiate(_background, transform);
             
@@ -385,12 +224,9 @@ public class HammerBattle : MonoBehaviour
                 {
                     _IsTimeGo = false;
                     _animation.ClosePanel();
-                   StartCoroutine(_battleController.WaitForOpenHammerPanel());
-                   DeleteTick();
-                   for(int i = 0; i < _images.Length; i++)
-                   {
-                       _images[i].sprite = _answersimage[i];
-                   }
+                    _type[index].SetActive(false);
+                    StartCoroutine(OpenType());
+                   
                 }
                 yield break;
             }
@@ -400,68 +236,7 @@ public class HammerBattle : MonoBehaviour
 
     }
 
-     IEnumerator FinishGame()
-    {
-        _camera.GetComponent<Animator>().SetTrigger("end");
-        yield return new WaitForSeconds(7f);
-        _battleController.RESULT_TEXT.gameObject.SetActive(true);
-        _battleController.GoHome.gameObject.SetActive(true);
-        _battleController.GoHome.onClick.AddListener(_battleController.GoHomeVoid);
-       _battleController.RESULT_TEXT.text = "WIN";
-        _animator.SetTrigger("win");
-        
-    }
-       
-         
-  private void CloseImages(Image[] images)
-  
-  {
-      for(int  i = 0; i < images.Length; i++)
-      {
-          images[i].enabled = false;
-      }
-  }
-
-  public void OpenVoiceTask()
-  {
-       _correctAnswer = Random.Range(0,3);
-      for(int i = 0; i < _tasksText.Length; i++)
-      {
-          _tasksText[i].enabled = true;
-          _tasksText[i].text = _tasks[i];
-          _tasksText[_correctAnswer].text = _correctTask;
-      }
-  }
-
-
-  public void CloseVoiceTask(bool IsCorrect)
-  {
-      if(IsCorrect)
-      {
-        _isAttack = true;
-        _animation.ClosePanel();
-      }
-      else
-      {
-        _IsTimeGo = false;
-        _animation.ClosePanel();
-        StartCoroutine(_battleController.WaitForOpenHammerPanel());  
-      }
-     
-  }
-
-
-  public void OnClick()
-  {
-      StartCoroutine(ClickOnEnemy(_enemy.position));
-  }
-
-  private void EnableandDisableText()
-  {
-
-  }
-
-
+   
   
     
 }

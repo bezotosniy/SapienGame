@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ForPrefabs.unity
     guid: 9eec8bb5ff97b21469fa344722ce7ab5
+  - enabled: 1
+    path: Assets/Scenes/3. First Continent/3.1.unity
+    guid: d41481ce4e3164ad19dab34298ab77de
+  - enabled: 1
+    path: Assets/Scenes/3. First Continent/4.1.unity
+    guid: 7f82b4c81148e43738722c34e92f90bb
   m_configObjects: {}

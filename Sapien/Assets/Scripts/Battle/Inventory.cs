@@ -154,7 +154,7 @@ public class Inventory : MonoBehaviour
     {
         yield return new WaitForSeconds(17.5f);
         CanvasAnim.SetTrigger("StartFight");
-        EnemyControll.MouseBar.gameObject.SetActive(true);
+        //EnemyControll.MouseBar.gameObject.SetActive(true);
     }
     public void ClickOnGems()
     {
@@ -324,7 +324,7 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            StartCoroutine(EnemyControll.EnemyGiveUron((int)damage));
+            //StartCoroutine(EnemyControll.EnemyGiveUron((int)damage));
         }
 
     }

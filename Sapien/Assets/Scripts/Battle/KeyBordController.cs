@@ -46,6 +46,7 @@ public class KeyBordController : MonoBehaviour
     [Space(20f)]
     [SerializeField] private GameObject[] _someWordsPrefabs;
     [SerializeField] private GameObject _someWordsParent;
+    private GameObject _prefab;
 
 
     private void Start()
@@ -57,9 +58,7 @@ public class KeyBordController : MonoBehaviour
         position.gameObject.SetActive(false);
         _battleController = GetComponent<BattleController>();
         _randomWord = Random.Range(0, _someWordsPrefabs.Length);
-        GameObject prefab;
-        prefab = Instantiate(_someWordsPrefabs[_randomWord], new Vector2(20, 80), Quaternion.identity) as GameObject;
-        prefab.transform.SetParent(_someWordsParent.transform, false);
+      
     }
     public void KeyBoard()
     {
@@ -70,7 +69,7 @@ public class KeyBordController : MonoBehaviour
 
     public void InstWord(int id)
     {
-        enter.enabled = true;
+      
         IsButtonLetterInteractable(true);
         if(_counter != 0)
         {
@@ -86,10 +85,12 @@ public class KeyBordController : MonoBehaviour
         if(_battleController.LerningModeId == 2)
         {
            sp.GenerateTask();
+          
        }
         else if(_battleController.LerningModeId == 3)
         {
             sp.GenerateTaskHarder();
+            
         }
        
         textTaskChar = "";
@@ -120,6 +121,7 @@ public class KeyBordController : MonoBehaviour
     }
     public void InstWordNotInfenetly(int id)
     {
+        IsMainButtonsEnabled(true);
         IsButtonLetterInteractable(true);
        
             _randomWord = Random.Range(0, _instWordNotInfenetly.Length);
@@ -215,7 +217,7 @@ public class KeyBordController : MonoBehaviour
     }
     void buttonDoneLetter()
     {
-        enter.enabled = false;
+        IsMainButtonsEnabled(false);
         StartCoroutine(closeLetter());
     }
     void Remove()
@@ -244,14 +246,15 @@ public class KeyBordController : MonoBehaviour
         yield return new WaitForSeconds(1);
         numberLetter = 0;
 
-    
-          StartCoroutine(DestroyInstWord());
+        
+          StartCoroutine(DestroyInstWord(3));
         if (sp.textTaskOneWord.text == sp.TextTask)
         {
             _battleController.TimeGo = false;
             _battleController.CrashGem(25);
             _battleController.LerningModeId++;
             _counter = 0;
+            
         }   
        
         else if(sp.textTaskOneWord.text != sp.TextTask)
@@ -266,6 +269,7 @@ public class KeyBordController : MonoBehaviour
             {
                 
                 StartCoroutine(_battleController.ClosePanel());
+                
             }
            
                   
@@ -275,9 +279,9 @@ public class KeyBordController : MonoBehaviour
     }
 
 
-    public IEnumerator DestroyInstWord()
+    public IEnumerator DestroyInstWord(float destroyTime)
     {
-        yield return new WaitForSeconds(2.2f);
+        yield return new WaitForSeconds(destroyTime);
         if(_battleController.infinitely)
         {
             Destroy(instWord[_randomWord]);
@@ -292,10 +296,12 @@ public class KeyBordController : MonoBehaviour
     void InstFrase()
     {
         _randomWord = Random.Range(0, _someWordsPrefabs.Length);
-        GameObject prefab;
-        prefab = Instantiate(_someWordsPrefabs[_randomWord], new Vector2(20, 80), Quaternion.identity) as GameObject;
-        prefab.transform.SetParent(_someWordsParent.transform, false);
+        _prefab = Instantiate(_someWordsPrefabs[_randomWord], new Vector2(20, -180), Quaternion.identity) as GameObject;
+        _prefab.transform.SetParent(_someWordsParent.transform, false);
     }
+
+    
+
 
     void MoveObject()
     {
@@ -319,7 +325,7 @@ public class KeyBordController : MonoBehaviour
 
         if(System.String.Compare(TaskSum, textTask, System.Globalization.CultureInfo.CurrentCulture, System.Globalization.CompareOptions.IgnoreCase | System.Globalization.CompareOptions.IgnoreSymbols) == 0)
         {
-            _battleController.CrashGem(25);
+            //_battleController.CrashGem(25);
         }
         else
         {
@@ -353,10 +359,17 @@ public class KeyBordController : MonoBehaviour
     {
         for(int i = 0; i < buttonLetter.Length; i++)
         {
-            buttonLetter[i].interactable = IsInteractable;
+            buttonLetter[i].enabled = IsInteractable;
         }
     }
 
+
+    private void IsMainButtonsEnabled(bool IsEnabled)
+    {
+        enter.GetComponent<Image>().enabled = IsEnabled;
+        remove.enabled = IsEnabled;
+        removeAll.GetComponent<Image>().enabled = IsEnabled;
+    }
 
   
 }

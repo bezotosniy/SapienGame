@@ -19,6 +19,12 @@ public class SomeWords : MonoBehaviour
     [Header("Inheritance")]
     private BattleController _battleController;
     private DoneAndMissed _doneAndMissed;
+    private KeyBordController _keyBoard;
+
+    [Header("Click")]
+    [SerializeField] private Image _backgroundClick;
+    [SerializeField] private Image _mouseKey;
+    [SerializeField] private Image _chooseButton;
 
    
 
@@ -42,12 +48,16 @@ public class SomeWords : MonoBehaviour
     {
         _battleController = FindObjectOfType<BattleController>();
         _doneAndMissed = FindObjectOfType<DoneAndMissed>();
+        _keyBoard = FindObjectOfType<KeyBordController>();
+        
         _done.onClick.AddListener(OnClickDoneButton);
         CreateRandom();
         for(int i = 0; i < _variants.Length; i++)
         {
             _variants[i].GetComponent<WordsButton>().Word.text = _tasks[_randomTask[i]];
         }
+
+        StartCoroutine(ChangeScaleMouse());
     }
 
     private void CreateRandom()
@@ -68,7 +78,7 @@ public class SomeWords : MonoBehaviour
     public IEnumerator OnChooseVariant(int count)
     {
         yield return new WaitForSeconds(0.3f);
-        _variantPanel.DOScale(new Vector3(0, 0, 0), 0.6f);
+        _variantPanel.DOScale(new Vector3(0, 0, 0), 0.3f);
         ScalingVariants(0, false);
         yield return new WaitForSeconds(0.7f);
        
@@ -81,7 +91,7 @@ public class SomeWords : MonoBehaviour
             _index++;
             _questionMark.transform.position = fields[_index].position;
             _variantPanel.position = fields[_index].position - _positionOfVariant;
-            _variantPanel.DOScale(new Vector3(1, 1, 1), 0.6f);
+            _variantPanel.DOScale(new Vector3(1, 1, 1), 0.3f);
             ScalingVariants(1, true);
             _variants[count].SetActive(false);
         }
@@ -116,35 +126,60 @@ public class SomeWords : MonoBehaviour
 
     private void CheckAnswer()
     {
+        StartCoroutine(DestroyObject());
+
         if(_answerCounter == _checkerAnswerConter.Count - 1)
         {
             Debug.Log("Correct");
-            _doneAndMissed.ScaleGood(1, 460);
+            _doneAndMissed.ScaleGood(1, 290);
             StartCoroutine(_doneAndMissed.ChangeScale());
             StartCoroutine(StartCrashGem());
         }
         else
         {
             Debug.Log("Incorrect");
-            _doneAndMissed.ScaleMissed(1, 460);
+            _doneAndMissed.ScaleMissed(1, 290);
             StartCoroutine(_doneAndMissed.ChangeScaleMissed());
             StartCoroutine(StartClosePanel());
+            
         }
     }
 
     private IEnumerator StartCrashGem()
     {
-        yield return new WaitForSeconds(3);
-        _doneAndMissed.ScaleGood(0, 360);
+        
+        yield return new WaitForSeconds(2);
+        _doneAndMissed.ScaleGood(0, 250);
         _battleController.CrashGem(25);
     }
 
     private IEnumerator StartClosePanel()
     {
-        yield return new WaitForSeconds(3);
-        _doneAndMissed.ScaleMissed(0, 360);
+        
+        yield return new WaitForSeconds(2);
+        _doneAndMissed.ScaleMissed(0, 250);
         StartCoroutine(_battleController.ClosePanel());
     }
+
+    private IEnumerator ChangeScaleMouse()
+    {
+       yield return new WaitForSeconds(0.6f);
+       _backgroundClick.DOFade(1f, 0.5f);
+       _mouseKey.transform.DOScale(new Vector3(1.1f,1.1f,1.1f), 0.5f);
+       _chooseButton.transform.DOMoveY(375, 0.5f);
+       StartCoroutine(ChangeScaleMouseSecond());
+    }
+
+
+    private IEnumerator ChangeScaleMouseSecond()
+    {
+        yield return new WaitForSeconds(0.6f);
+       _backgroundClick.DOFade(0.1f, 0.5f);
+       _mouseKey.transform.DOScale(new Vector3(1f,1f,1f), 0.5f);
+       _chooseButton.transform.DOMoveY(370, 0.5f);
+       StartCoroutine(ChangeScaleMouse());
+    }
+    
 
    
 
@@ -156,15 +191,25 @@ public class SomeWords : MonoBehaviour
         {
             if(isChangePosition)
             {
-                _variants[i].transform.DOScale(new Vector3(scale, scale, scale), 0.6f);
+                _variants[i].transform.DOScale(new Vector3(scale, scale, scale), 0.3f);
                 _variants[i].transform.position += _positionOfButtons;
             }
             else
             {
-                _variants[i].transform.DOScale(new Vector3(scale, scale, scale), 0.6f);
+                _variants[i].transform.DOScale(new Vector3(scale, scale, scale), 0.3f);
             }
             
         }
     }
+
+
+    private IEnumerator DestroyObject()
+    {
+        yield return new WaitForSeconds(10);
+        Destroy(gameObject);
+    }
+
+
+    
 
 }

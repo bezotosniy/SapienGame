@@ -59,7 +59,7 @@ public class FriendRelations : MonoBehaviour
         this.gameObject.SetActive(false);
     }
     
-    private void Update()
+    private void FixedUpdate()
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if(Physics.Raycast(ray, out hit))

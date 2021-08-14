@@ -6,7 +6,7 @@ using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition;
 public class VoicePlayBack : MonoBehaviour
 {
   [Header("Inheritance")]
-  [SerializeField] private UIController _uiController;
+  [SerializeField] private UIControllerForCurScene _uiController;
   [SerializeField] private VoiceRegontion2 _voiceRegontision;
   [SerializeField] private DoubleDialogUI _doubleUiController;
   [SerializeField] private VoicePlaybleDouble _doubleVoicePlayble;

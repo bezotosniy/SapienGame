@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class ButtonChar : MonoBehaviour
+public class ButtonChar : MonoBehaviour, IPointerClickHandler
 {
     Text text;
     KeyBordController kb;
@@ -21,5 +22,17 @@ public class ButtonChar : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        gameObject.GetComponent<Image>().color = Color.green;
+        StartCoroutine(ChangeColor());
+    }
+
+    private IEnumerator ChangeColor()
+    {
+        yield return new WaitForSeconds(0.15f);
+         gameObject.GetComponent<Image>().color = Color.white;
     }
 }

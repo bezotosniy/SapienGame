@@ -12,6 +12,8 @@ public class CardInfo : ScriptableObject
     public int cardEnergy = 150;
     public string cardReview;
 
+    public string cardSeason;
+
     public int storyQuestCount;
 
     //[HideInInspector]

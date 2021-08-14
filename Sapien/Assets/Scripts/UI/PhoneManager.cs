@@ -22,6 +22,7 @@ public class PhoneManager : MonoBehaviour
     private bool QuestAvailable = false;
     public string[] QuestType = { "Start of fragment", "Story quest", "Battle", "Wish mission" };
     public bool SecondQuestAvailable = false;
+    public MapInPhone Map;
     
     public int ActiveQuests = 0;
     public int CurrentQuestType;
@@ -30,7 +31,7 @@ public class PhoneManager : MonoBehaviour
     public GameObject CameraPanel;
 
     [HideInInspector] public Coroutine CR_StoryQuest , CR_NotificationShaking;
-    
+
     private void Awake()
     {
         if (instance == null)
@@ -49,7 +50,6 @@ public class PhoneManager : MonoBehaviour
     public void OnButtonClickPhoneOpener()
     {
         Phone.SetActive(true);
-
         
         int unread = Messages.GetComponent<MessagesManager>().GetUnreadMassages();
 
@@ -98,7 +98,7 @@ public class PhoneManager : MonoBehaviour
     public void OnPointerClickStoryIconClose(string tag)
     {
         anim.Play("StoryScreen0");
-        Phone.SetActive(true);
+        OnButtonClickPhoneOpener();
         GetComponent<Button>().interactable = true;
     }
 
@@ -112,7 +112,7 @@ public class PhoneManager : MonoBehaviour
     public void OnPointerClickCardIconClose(string tag)
     {
         anim.Play("FragmentCard0");
-        Phone.SetActive(true);
+        OnButtonClickPhoneOpener();
         GetComponent<Button>().interactable = true;
     }
 
@@ -130,6 +130,20 @@ public class PhoneManager : MonoBehaviour
         //GetComponent<QuestPanelManager>().AddQuestToActiveList("System", QuestType[CurrentQuestType]);
     }
 
+    public void OnPointerClickMapIconOpen()
+    {
+        Phone.SetActive(false);
+        Map.OpenMap("Phone");
+        GetComponent<Button>().interactable = false;
+    }
+    
+    public void OnPointerClickMapIconClose()
+    {
+        Map.CloseMap();
+        //OnButtonClickPhoneOpener();
+        GetComponent<Button>().interactable = true;
+    }
+    
     public void OnNotificationOpener()
     {
         Notification.SetActive(true);
@@ -343,7 +357,6 @@ public class PhoneManager : MonoBehaviour
 
     public void OnClickCameraOpen()
     {
-        Debug.Log("Camera");
         CameraPanel.SetActive(true);
         anim.Play("CameraOpen");
         GetComponent<Button>().interactable = false;
@@ -357,19 +370,6 @@ public class PhoneManager : MonoBehaviour
         GetComponent<Button>().interactable = true;
         CameraPanel.GetComponent<CameraManager>().enabled = false;
         Camera.main.GetComponent<Transform>().localEulerAngles = new Vector3(0f, 0f, 0f);
-    }
-    public void OnPointerClickWordIcon(string tag)
-    {
-        StartCoroutine(PhoneCloser());
-        anim.Play("WordScreen");
-        GetComponent<Button>().interactable = false;
-    }
-
-    public void OnPointerClickWordIconClose(string tag)
-    {
-        anim.Play("WordScreen0");
-        Phone.SetActive(true);
-        GetComponent<Button>().interactable = true;
     }
 
     private void OnDestroy()

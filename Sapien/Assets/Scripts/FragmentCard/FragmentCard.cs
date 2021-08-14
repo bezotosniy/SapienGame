@@ -15,12 +15,13 @@ public class FragmentCard : MonoBehaviour
     
     [Header("CardUI")]
     public Image cardImageUI;
-    public Text cardTextUI;
+    public Text cardTextUI , cardPart , cardNum;
     public Image energyLine;
     public Image[] energyCells;
+    public GameObject CardFront;
     public Text backsideCard;
     public Text finishText;
-
+    
     [Header("EnergyText")] 
     public Text energyText;
     public RectTransform startPosition, finishPosition;
@@ -146,6 +147,8 @@ public class FragmentCard : MonoBehaviour
     {
         cardImageUI.sprite = cardInfo.cardSprite;
         backsideCard.text = cardInfo.cardName;
+        cardNum.text = (cardInfo.cardID + 1).ToString();
+        cardPart.text = cardInfo.cardSeason;
         GetEnergy(0);
     }
 
@@ -249,7 +252,7 @@ public class FragmentCard : MonoBehaviour
 
         currentFillAmount = fill;
     }
-    float GetEnergyNormalized()
+    public float GetEnergyNormalized()
     {
         return (float)currentEnergy / cardInfo.cardEnergy;
     }
@@ -278,17 +281,17 @@ public class FragmentCard : MonoBehaviour
     IEnumerator SmoothFlipCard(float opacity)
     {
         float duration = 1 , elapsedTime = 0;
+        CanvasGroup group = CardFront.GetComponent<CanvasGroup>();
         while (elapsedTime < duration)
         {
-            Color nextColor = cardImageUI.color;
-            nextColor.a = Mathf.Lerp(nextColor.a, opacity, Time.deltaTime * 3);
-            cardImageUI.color = nextColor;
+            float alpha = group.alpha;
+            alpha = Mathf.Lerp(alpha, opacity, Time.deltaTime * 3);
+            group.alpha = alpha;
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
-        } 
-        Color lastcolor = cardImageUI.color;
-        lastcolor.a = opacity;
-        cardImageUI.color = lastcolor;
+        }
+
+        group.alpha = opacity;
     }
 
     #endregion
@@ -387,15 +390,17 @@ public class FragmentCard : MonoBehaviour
 
     #region CardGiveOff
 
-    public void OnCardGiveOff()
+    public bool OnCardGiveOff()
     {
-        if (GetEnergyNormalized() == 1)
+        if (Mathf.Approximately(GetEnergyNormalized() , 1))
         {
             StartCoroutine(GiveOff());
+            return true;
         }
         else
         {
             GiveOffFailed();
+            return false;
         }
     }
 
@@ -414,6 +419,8 @@ public class FragmentCard : MonoBehaviour
         cardCell.OpenCardFirstly();
         
         cardInfo = null;
+        currentEnergy = 0;
+        
         DeactivateCard();
     }
     #endregion
