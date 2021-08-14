@@ -9,6 +9,7 @@ public class MapInPhone : MonoBehaviour
     public float Increment;
     public GameObject[] levelsOfScaleIcon;
     public PhoneManager phone;
+    public Text mapLabel;
     
     [HideInInspector] public GameObject lastClicked = null;
     [HideInInspector] public int currentLevelOfScale;
@@ -25,12 +26,15 @@ public class MapInPhone : MonoBehaviour
     public void OpenMap(string opener)
     {
         mapOpener = opener;
+        if (opener == "Taxi")
+            mapLabel.text = "Taxi road map";
+        else
+            mapLabel.text = "Map";
         phone.anim.Play("MapOpen");
     }
 
     public void CloseMap()
     {
-        mapOpener = "";
         phone.anim.Play("MapClose");
     }
 

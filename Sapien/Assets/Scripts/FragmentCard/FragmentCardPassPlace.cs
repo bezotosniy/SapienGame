@@ -36,9 +36,9 @@ public class FragmentCardPassPlace : MonoBehaviour
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (!GameManager.Instance.IsPhoneOpened && Physics.Raycast(ray, out hit))
         {
-            if (hit.transform.IsChildOf(this.gameObject.transform) && isClicked)
+            if ((hit.transform.IsChildOf(this.gameObject.transform) || hit.transform == this.transform) && isClicked)
             {
                 isClicked = false;
                 Debug.Log("MouseOverPowerPlace");

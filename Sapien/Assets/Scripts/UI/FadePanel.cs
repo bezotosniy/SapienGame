@@ -32,6 +32,7 @@ public class FadePanel : MonoBehaviour
         if (allSceneFade)
             progressBar = GetComponentInChildren<Slider>();
         _canvasGroup = GetComponent<CanvasGroup>();
+        ChangePanelAlpha(0.01f , 1);
         ChangePanelAlpha(2, 0);
     }
 

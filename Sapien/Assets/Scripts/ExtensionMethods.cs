@@ -62,7 +62,7 @@ public static class ExtensionMethods
                 yield return null;
             }
 
-            _videoPlayer.gameObject.SetActive(false);
+            //_videoPlayer.gameObject.SetActive(false);
         }
         //---------------------DEBUG---------------------------------------
     }

@@ -87,6 +87,7 @@ public class VoiceregonsionForBattle : MonoBehaviour
 			{
 				_voiceLevelImage.fillAmount = 0f;
 			}
+			SravnTask(_resultText);
 		}
 
 
@@ -274,7 +275,7 @@ public class VoiceregonsionForBattle : MonoBehaviour
 
 			_resultText += other;
 		
-			SravnTask(_resultText + other);
+			//SravnTask(_resultText + other);
 			//_resultText.text += other;
 		}
 		public void SravnTask(string other)

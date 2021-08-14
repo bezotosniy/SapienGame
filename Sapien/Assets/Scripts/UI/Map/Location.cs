@@ -69,13 +69,16 @@ public class Location : MonoBehaviour
 
     public void GoToLocationScene()
     {
-        StartCoroutine(ExtensionMethods.LoadSceneWithTransition(2 , sceneLocationName));
-        //if (mapManager.CanMoveBeetwenLocations() && !locked)
-        //    StartCoroutine(ExtensionMethods.LoadSceneWithTransition(2 , sceneLocationName));
-        //else
-        //{
-        //    Debug.Log($"<color=red> Can't move to location </color> {locationName}");
-        //}
+        //StartCoroutine(ExtensionMethods.LoadSceneWithTransition(2 , sceneLocationName));
+        if (mapManager.CanMoveBeetwenLocations() && !locked)
+        {
+            GameManager.Instance.StartCoroutine(ExtensionMethods.LoadSceneWithTransition(2, sceneLocationName));
+            mapManager.CloseMap();
+        }
+        else
+        {
+            Debug.Log($"<color=red> Can't move to location </color> {locationName}");
+        }
     }
 
     public void UnlockLocation()

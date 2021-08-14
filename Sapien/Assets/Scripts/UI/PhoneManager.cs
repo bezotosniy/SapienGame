@@ -51,7 +51,6 @@ public class PhoneManager : MonoBehaviour
     {
         Phone.SetActive(true);
         
-        
         int unread = Messages.GetComponent<MessagesManager>().GetUnreadMassages();
 
         if (unread > 0)
