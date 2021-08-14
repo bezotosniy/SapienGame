@@ -21,7 +21,6 @@ public class DoneAndMissed : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         _circeGood.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.4f);
-        //_good.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.4f);
         StartCoroutine(ChangeScaleCircle());
     }
     private IEnumerator ChangeScaleCircle()
@@ -29,8 +28,7 @@ public class DoneAndMissed : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         _counterAnimationGood++;
         _circeGood.transform.DOScale(new Vector3(1, 1, 1), 0.4f);
-        //_good.transform.DOScale(new Vector3(1f, 1f, 1f), 0.4f);
-        StartCoroutine(ChangeScale());
+         StartCoroutine(ChangeScale());
        
         if(_counterAnimationGood == 3)
         {
@@ -64,13 +62,15 @@ public class DoneAndMissed : MonoBehaviour
 
     public void ScaleGood(int scale, float  position)
     {
-        _good.DOScale(new Vector3(scale, scale, scale), 0.4f);
         _good.DOMoveY(position, 0.7f);
+        _good.DOScale(new Vector3(scale, scale, scale), 0.4f);
+        StartCoroutine(ChangeScale());
     }
 
     public void ScaleMissed(int scale, float position)
     {
-        _missed.DOScale(new Vector3(scale, scale, scale), 0.4f);
         _missed.DOMoveY(position, 0.7f);
+        _missed.DOScale(new Vector3(scale, scale, scale), 0.4f);
+        StartCoroutine(ChangeScaleMissed());
     }
 }

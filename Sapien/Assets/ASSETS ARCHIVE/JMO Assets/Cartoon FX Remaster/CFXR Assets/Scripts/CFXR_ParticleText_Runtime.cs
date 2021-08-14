@@ -154,6 +154,7 @@ namespace CartoonFX
 					newLetter.transform.SetParent(this.transform);
 					newLetter.transform.localPosition = Vector3.zero;
 					newLetter.transform.localRotation = Quaternion.identity;
+					
 				}
 			}
 
@@ -194,8 +195,8 @@ namespace CartoonFX
 					mainModule.startSizeZMultiplier = baseScaleZ * ratio;
 
 					particleSystem.textureSheetAnimation.SetSprite(0, sprite);
-
-					mainModule.startRotation = Mathf.Deg2Rad * rotation;
+                    mainModule.startRotation3D = true;
+					mainModule.startRotationY = Mathf.Deg2Rad * rotation;
 					mainModule.startColor = backgroundColor;
 
 					var customData = particleSystem.customData;

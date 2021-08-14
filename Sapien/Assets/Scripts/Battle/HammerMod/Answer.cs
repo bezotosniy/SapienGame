@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class Answer : MonoBehaviour
 {
-   public AudioSource[] _answersAudio;
-   public AudioSource[] _correctAnswerAudio;
-   public string[] _answers;
-   public string[] _correctAnswer;
-   public Image[] _answersImage;
-   public Image[] _correctImage;
+   public AudioSource[] AnswersAudio;
+   public AudioSource[] CorrectAnswerAudio;
+   public string[] Answers;
+   public string[] CorrectAnswer;
+   public Image[] AnswersImage;
+   public Image[] CorrectImage;
+   public Sprite[] Avatars;
 }

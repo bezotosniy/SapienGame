@@ -17,7 +17,7 @@ public class InfentlyButtonInformation : MonoBehaviour, IPointerEnterHandler, IP
 
    private void Start()
    {
-     _damage.text = "Damage: " + _battleController.damage;
+     _damage.text = "Damage: " + _battleController.CurrentUron;
      _target.text = "Target:";
      _type.text = "Type:";
    }

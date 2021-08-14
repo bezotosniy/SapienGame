@@ -8,7 +8,7 @@ public class VoicePlaybleDouble : MonoBehaviour
     [Header("Inheritance")]
     [SerializeField] private DoubleDialogUI _uiController;
     [SerializeField] private VoiceRegontion2 _voiceRecognision;
-    [SerializeField] private UIController _uiControllerFirst;
+    [SerializeField] private UIControllerForCurScene _uiControllerFirst;
     [SerializeField] private VoicePlayBack _voicePlayback;
 
     [Header("Panels")]

@@ -10,9 +10,12 @@ public class VoiceregonsionForBattle : MonoBehaviour
         public GCSpeechRecognition _speechRecognition;
 		[SerializeField] private BattleController _battleController;
 	    [SerializeField] private UIController _uiController;
-		[SerializeField] private HammerBattle _hammerController;
+		[SerializeField] private HammerBattle _hammerBattle;
 
 		[SerializeField] private UIAnimation _uiAnimmation;
+		[SerializeField] private SpeakWithCard _speakWithCard;
+		[SerializeField] private SpeakWithVariant _speakWithVariant;
+		[SerializeField] private DoneAndMissed _doneAndMissed;
 
 		
 
@@ -87,7 +90,11 @@ public class VoiceregonsionForBattle : MonoBehaviour
 			{
 				_voiceLevelImage.fillAmount = 0f;
 			}
-			SravnTask(_resultText);
+
+			/*if(_resultText != null)
+			{
+				SravnTask(_resultText);
+			}*/
 		}
 
 
@@ -275,12 +282,13 @@ public class VoiceregonsionForBattle : MonoBehaviour
 
 			_resultText += other;
 		
-			//SravnTask(_resultText + other);
+			SravnTask(_resultText + other);
 			//_resultText.text += other;
 		}
 		public void SravnTask(string other)
 		{
 			_battleController.TimeGo = false;
+			  //Debug.Log(other);
 
 
 				if ((other.Contains(Task) && _battleController.infinitely) || (other.Contains(TaskNotInfently[_battleController.RandomString]) && !_battleController.infinitely))
@@ -290,13 +298,33 @@ public class VoiceregonsionForBattle : MonoBehaviour
 					_battleController.CrashGem(25);
 					_battleController.LerningModeId++;
 				}
-				else if(_battleController.IsHammerTask && other.Contains(_hammerController._correctTask))
+				else if(_speakWithCard.IsSpeakWithCard == true &&  other.Contains(_speakWithCard.Task))
 				{
-					_hammerController.CloseVoiceTask(true);
+                    _doneAndMissed.ScaleGood(1,280);
+					StartCoroutine(_hammerBattle.CloseType());
+					_hammerBattle.IsAttack = true;
+					_hammerBattle._IsTimeGo = false;
 				}
-				else if(_battleController.IsHammerTask)
+				else if(_speakWithCard.IsSpeakWithCard == true && !other.Contains(_speakWithCard.Task))
 				{
-                    _hammerController.CloseVoiceTask(false);
+					_doneAndMissed.ScaleMissed(1, 280);
+					_hammerBattle._type[_hammerBattle.index].SetActive(false);
+                    StartCoroutine(_hammerBattle.ClosePanelIfMissed());
+					_hammerBattle._IsTimeGo = false;
+				}
+				else if(_speakWithVariant.IsSpeakWithVariants == true && other.Contains(_speakWithVariant._correctTask))
+				{ 
+					_doneAndMissed.ScaleGood(1,280);
+					StartCoroutine(_hammerBattle.CloseType());
+					_hammerBattle.IsAttack = true;
+					_hammerBattle._IsTimeGo = false;
+				}
+				else if(_speakWithVariant.IsSpeakWithVariants == true && !other.Contains(_speakWithVariant._correctTask))
+				{
+					_doneAndMissed.ScaleMissed(1,280);
+					_hammerBattle._type[_hammerBattle.index].SetActive(false);
+                    StartCoroutine(_hammerBattle.ClosePanelIfMissed());
+					_hammerBattle._IsTimeGo = false;
 				}
 				else
 				{
@@ -314,6 +342,9 @@ public class VoiceregonsionForBattle : MonoBehaviour
 					}
 					
 				} 
+			_speakWithVariant.IsSpeakWithVariants = false;
+			_speakWithCard.IsSpeakWithCard = false;
+			
 		}
 
 

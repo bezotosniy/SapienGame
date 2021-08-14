@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-//using CartoonFX;
+using CartoonFX;
 using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
@@ -12,7 +12,7 @@ public class BattleController : MonoBehaviour
    KeyBordController keyBoard;
 
     [Header("Person")]
-    public float damage;
+    //public int damage;
     public MovingBattlePeron person;
     public Animator animPerson;
     public Slider hpPersonSlider;
@@ -90,19 +90,29 @@ public class BattleController : MonoBehaviour
      [SerializeField] private int _random;
      [SerializeField] private EnemyController _enemyContoller;
     
-     [SerializeField] private int _minDamage;
-     [SerializeField] private int _maxDamage;
      [SerializeField] private GameObject _diamond;
      [SerializeField] private GameObject[] _enemies;
      [SerializeField] private GameObject _hammerPanel;
      [SerializeField] private HammerBattle _hammerBattle;
      public bool IsHammerTask;
+     [SerializeField] private EnemiesController _enemiesController;
+     [SerializeField] private Animation _openPanelHammerMod;
      
+     [SerializeField] private int _damage;
+    [SerializeField] private int _minDamage;
+    [SerializeField] private int _maxDamage;
+    [SerializeField] private Transform _player;
+    [SerializeField] private Slider[] _enemyHP;
+    [SerializeField] private Canvas[] _enemyCanvas;
+    [SerializeField] private EnemyController[] _enemyController;  
+    public int _countAttack;  
+    [SerializeField] private GameObject _someWordsPanel;
+    [SerializeField] private bool _isHammerMod;
+
 
 
     private void Start()
     {
-        
        
        if(!infinitely)
        {
@@ -154,12 +164,13 @@ public class BattleController : MonoBehaviour
             
         }*/
     }
-    void FixedUpdate()
+    
+     /*void FixedUpdate()
     {
        
-        if (Input.GetButtonDown("Fire1") && _enemyContoller.IsAttack == true)
+        if (Input.GetButtonDown("Fire1") && IsAttack == true)
         {
-            if (Cam != null)
+            if (Cam!= null)
             {
                 RaycastHit hit;
                 var mousePos = Input.mousePosition;
@@ -169,7 +180,7 @@ public class BattleController : MonoBehaviour
                 {
                     if (hit.collider.tag == "Enemy")
                     {   
-                        StartCoroutine(person.ClickOnEnemy(hit.collider.gameObject.transform.position));
+                        StartCoroutine(ClickOnEnemy(hit.collider.gameObject.transform.position));
                         damage = Random.Range(_minDamage, _maxDamage);
                         bombSlider.value = 0;
                         Bomb.interactable = false;
@@ -179,7 +190,7 @@ public class BattleController : MonoBehaviour
             }
             else { Debug.Log("No camera"); }
         }
-    }
+    }*/
     /*private void InitialiseFrase()
     {
         PlayerPrefs.SetString("phrase" + 0, "Hello");
@@ -199,31 +210,43 @@ public class BattleController : MonoBehaviour
     }*/
       private IEnumerator StartFight()
     {
-        yield return new WaitForSeconds(41f);
+        yield return new WaitForSeconds(13f);
        StartFightPanel();
     }
 
 
       public void StartFightPanel()
       {
+          CurrentUron = 0;
+          _someWordsPanel.SetActive(false);
+          _enemiesController.ChangeStatus();
+          _countAttack = 0;
           _hammerButton.transform.DOMoveY(80, 0.5f);
           
            if(infinitely)
         {
-            _infentlyInstrument.transform.DOMoveY(80, 0.5f);
+            _infentlyInstrument.transform.DOScale(new Vector3(0.56f, 0.56f, 0.56f), 0.5f);
         }
         else
         {
-            _firstButtonImage.enabled = true;
+            _firstButtonImage.GetComponent<Image>().enabled = true;
             //_secondButton.transform.DOMoveY(80, 0.5f);
-            _secondButton.transform.DOMoveY(80, 0.5f);
+            _secondButton.transform.DOScale(new Vector3(0.56f, 0.56f, 0.56f), 0.5f);
+            _secondButton.GetComponent<Image>().enabled  = true;
+        }
+
+        if(IsHammerTask)
+        {
+            _hammerBattle.transform.DOScale(new Vector3(0.56f, 0.56f, 0.56f), 0.5f);
         }
         
-        EnemyControll.MouseBar.gameObject.SetActive(true);
+        //EnemyControll.MouseBar.gameObject.SetActive(true);
       }
 
       public void ClickOnGems()
     {
+        indexGem = 0;
+        LerningModeId = 0;
         if (indexGem == 0)
         {
             for(int i = 0; i < gem.Length - 1; i++)
@@ -236,23 +259,25 @@ public class BattleController : MonoBehaviour
             StartCoroutine(WaitToStart());
         }
         _infentlyInstrument.interactable = false;
+        _secondButton.interactable = false;
     }
 
      public IEnumerator WaitToStart()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(2.5f);
         StartCoroutine(WaitForChangeScale());
         if(infinitely)
         {
-            _infentlyInstrument.transform.DOMoveY(-70,0.5f);
-            _infentlyInstrument.GetComponent<Image>().enabled = false;
+            _infentlyInstrument.transform.DOScale(new Vector3(0,0,0), 0.5f);
+          
+            //_infentlyInstrument.GetComponent<Image>().enabled = false;
         }
         else
         {
             
-            _secondButton.transform.DOMoveY(-70,0.5f);
+            _secondButton.transform.DOScale(new Vector3(0, 0, 0), 0.5f);
             _firstButton.GetComponent<Image>().enabled = false;
-            _secondButton.GetComponent<Image>().enabled = false;
+            //_secondButton.GetComponent<Image>().enabled = false;
         }
        
         
@@ -275,7 +300,7 @@ public class BattleController : MonoBehaviour
             }
             
             RandomString = Random.Range(0,_voiceRecognision.TaskNotInfently.Length);
-            _taskText.text = voiceRec.TaskNotInfently[RandomString];
+            _taskText.text = voiceRec.Task;
             voiceRec.gameObject.SetActive(true);
             yield return new WaitForSeconds(1);
             _mainMusik.Stop();
@@ -499,7 +524,7 @@ public class BattleController : MonoBehaviour
         _uiController._microphonePanel.SetActive(false);
         StartCoroutine(WaitForChange());
         if(LerningModeId == 1)
-        keyBoard.DestroyInstWord();
+        StartCoroutine(keyBoard.DestroyInstWord(3f));
     }
 
     private IEnumerator WaitForChange(){
@@ -563,7 +588,7 @@ public class BattleController : MonoBehaviour
 
     public IEnumerator Time()
     {
-        //int allTime = 45;
+        
         switch(LerningModeId)
         {
             case 0:
@@ -594,20 +619,24 @@ public class BattleController : MonoBehaviour
                 {
                     if(infinitely)
                     {
+                        yield return new WaitForSeconds(2);
                         StartCoroutine(Repeat());
                         if(LerningModeId == 2)
                         {
-                            keyBoard.DestroyInstWord();
+                            StartCoroutine(keyBoard.DestroyInstWord(2.2f));
                         }
                     }
                     else
                     {
+                        yield return new WaitForSeconds(2);
                         StartCoroutine(ClosePanel());
                         TimeGo = false;
-                        if(LerningModeId == 1)
+                        if(LerningModeId == 2)
                         {
-                            keyBoard.DestroyInstWord();
+                            StartCoroutine(keyBoard.DestroyInstWord(2.2f));
                         }
+                       
+                        
                     }
                     
                     
@@ -634,44 +663,215 @@ public class BattleController : MonoBehaviour
 
      public void EnemyDie()
     {
-        Instantiate(ParticleUronNumber, EnemyControll.transform.position + new Vector3(1,1,1),Quaternion.identity);
-        //ParticleUronNumber.GetComponent<CFXR_ParticleText_Runtime>().text = CurrentUron.ToString();
-        EnemyControll.hpSlider.value -= CurrentUron;
-        if (EnemyControll.hpSlider.value <= 0)
+        
+        
+       
+        _enemiesController.LastHited.hpSlider.value -= CurrentUron;
+      
+        if(_enemyController.Length == 1)
         {
-            EnemyControll.hpSlider.value = 0;
-            EnemyControll.EnemyAnim.SetTrigger("die");
-            StartCoroutine(FinishGame()); 
+            OneEnemy();
+        }
+        else if(_enemyController.Length == 2)
+        {
+            TwoEnemy();
+        }
+        else if(_enemyController.Length == 3)
+        {
+            ThreeEnemy();
         }
         else
         {
-            EnemyControll.MouseBar.sprite = EnemyControll.attack;
-            StartCoroutine(EnemyControll.EnemyGiveUron((int)damage));
+            Debug.Log("Error");
         }
+            
+            
+            
+        
+       
 
     }
+
+    private void OneEnemy()
+    {
+       if(_enemyController[0].hpSlider.value >= 0)
+                {
+                    _damage = Random.Range(_minDamage, _maxDamage);
+                    StartCoroutine(_enemiesController.EnemyGiveUron(_damage));
+                }
+               else
+                {
+                    if(_enemiesController._enemies[_enemiesController.RandomEnemy].GetComponent<EnemyController>().hpSlider.value <= 0)
+                    {
+                        _enemyController[_enemiesController.RandomEnemy].EnemyAnim.SetTrigger("die");
+                        StartFightPanel();
+                    }
+                    _enemyController[0].EnemyAnim.SetTrigger("die");
+                    StartCoroutine(FinishGame()); 
+                    _enemyCanvas[0].enabled = false;
+                    _enemiesController.RemoveEnemy(0);
+                }
+    }
+
+
+    private void TwoEnemy()
+    {
+        if(_enemyController[0].hpSlider.value >= 0 || _enemyController[1].hpSlider.value >= 0)
+        {
+            _damage = Random.Range(_minDamage, _maxDamage);
+             StartCoroutine(_enemiesController.EnemyGiveUron(_damage));
+                    
+        }
+        else if(_enemyController[0].hpSlider.value <= 0)
+        {
+            _enemyController[0].EnemyAnim.SetTrigger("die");
+            StartCoroutine(FinishGame()); 
+            _enemyCanvas[0].enabled = false;
+            _enemiesController.RemoveEnemy(0);
+            if(_enemiesController._enemies[_enemiesController.RandomEnemy].GetComponent<EnemyController>().hpSlider.value <= 0)
+            {
+                _enemyController[_enemiesController.RandomEnemy].EnemyAnim.SetTrigger("die");
+                StartFightPanel();
+            }
+                   
+        }
+        else if(_enemyController[1].hpSlider.value <= 0)
+        {
+            _enemyController[1].EnemyAnim.SetTrigger("die");
+            StartCoroutine(FinishGame()); 
+            _enemyCanvas[1].enabled = false;
+            _enemiesController.RemoveEnemy(1);
+            if(_enemiesController._enemies[_enemiesController.RandomEnemy].GetComponent<EnemyController>().hpSlider.value <= 0)
+            {
+                _enemyController[_enemiesController.RandomEnemy].EnemyAnim.SetTrigger("die");
+                StartFightPanel();
+            }
+        }
+        
+    }
+
+    private void ThreeEnemy()
+    {
+     
+      
+           
+
+        if(_enemyController[0].hpSlider.value <= 0)
+        {
+            //_enemyController[0].EnemyAnim.SetTrigger("die");
+            StartCoroutine(FinishGame()); 
+            _enemyCanvas[0].enabled = false;
+            _enemiesController.RemoveEnemy(0);
+            /*if(_enemiesController._enemies[_enemiesController.RandomEnemy].GetComponent<EnemyController>().hpSlider.value <= 0)
+            {
+                _enemyController[_enemiesController.RandomEnemy].EnemyAnim.SetTrigger("die");
+                
+            }*/
+            StartFightPanel();
+                   
+        }
+        else if(_enemyController[1].hpSlider.value <= 0 && _enemyController.Length == 1)
+        {
+            //_enemyController[1].EnemyAnim.SetTrigger("die");
+            StartCoroutine(FinishGame()); 
+            _enemyCanvas[1].enabled = false;
+            _enemiesController.RemoveEnemy(1);
+            /*if(_enemiesController._enemies[_enemiesController.RandomEnemy].GetComponent<EnemyController>().hpSlider.value <= 0)
+            {
+                _enemyController[_enemiesController.RandomEnemy].EnemyAnim.SetTrigger("die");
+                
+            }*/
+            StartFightPanel();
+        }
+        else if(_enemyController[2].hpSlider.value <= 0 && _enemyController.Length == 2)
+        {
+            //_enemyController[2].EnemyAnim.SetTrigger("die");
+            StartCoroutine(FinishGame()); 
+            _enemyCanvas[2].enabled = false;
+            _enemiesController.RemoveEnemy(2);
+           /* if(_enemiesController._enemies[_enemiesController.RandomEnemy - 1 ].GetComponent<EnemyController>().hpSlider.value <= 0)
+            {
+                _enemyController[_enemiesController.RandomEnemy - 1].EnemyAnim.SetTrigger("die");
+               
+            }*/
+            StartFightPanel();
+        }
+        else if(_enemiesController._enemies[_enemiesController.RandomEnemy].GetComponent<EnemyController>().hpSlider.value <= 0)
+        {
+            //_enemyController[_enemiesController.RandomEnemy].EnemyAnim.SetTrigger("die");
+            StartFightPanel();
+        }
+        else
+        {
+             _damage = Random.Range(_minDamage, _maxDamage);
+            StartCoroutine(_enemiesController.EnemyGiveUron(_damage));
+        }
+      
+        
+    }
+
+
+    
 
      IEnumerator FinishGame()
     {
-        Cam.GetComponent<Animator>().SetTrigger("end");
-        yield return new WaitForSeconds(7f);
-        RESULT_TEXT.gameObject.SetActive(true);
-        GoHome.gameObject.SetActive(true);
-        GoHome.onClick.AddListener(GoHomeVoid);
+         for(int i = 0; i < gem.Length; i++)
+       {
+           gem[i].SetActive(false);
+       }
+        
+       
+      
         _firstButton.GetComponent<Image>().enabled = true;
         _firstButton.transform.DOMoveY(-70,0.5f);
 
+      
         if (HP_Person <= 0)
         {
+            Cam.GetComponent<Animator>().SetTrigger("end");
+             animPerson.SetTrigger("Lose");
+             _player.DOMoveY(3.594f, 0.4f);
+            for(int i = 0; i < gem.Length; i++)
+            {
+                gem[i].SetActive(false);
+            }
+            yield return new WaitForSeconds(4);
+            GoHome.gameObject.SetActive(true);
+            GoHome.onClick.AddListener(GoHomeVoid);
+            RESULT_TEXT.gameObject.SetActive(true);
+           
             RESULT_TEXT.text = "LOSE";
-            animPerson.SetTrigger("lose");
+           
+            
         }
-        else if (EnemyControll.hpSlider.value <= 0)
+         else if(_enemyHP[0].value <= 0 && _enemyHP[1].value <= 0 && _enemyHP[2].value <= 0)
         {
+            animPerson.SetTrigger("Win");
+            Cam.GetComponent<Animator>().SetTrigger("end");
+           for(int i = 0; i < gem.Length; i++)
+            {
+                gem[i].SetActive(false);
+            }
+            yield return new WaitForSeconds(4);
+            GoHome.gameObject.SetActive(true);
+            GoHome.onClick.AddListener(GoHomeVoid);
+            RESULT_TEXT.gameObject.SetActive(true);
             RESULT_TEXT.text = "WIN";
-            animPerson.SetTrigger("win");
+           for(int i = 0; i < _enemyHP.Length; i++)
+           {
+               if(_enemyHP[i].value <= 0)
+               {
+                   _enemyCanvas[i].enabled = false;
+               }
+           }
+            
+
         }
+       
+       
     }
+
+    
 
     public void GoHomeVoid()
     {
@@ -700,6 +900,7 @@ public class BattleController : MonoBehaviour
    private void OnHammerButtonCLick()
    {
        IsHammerTask = true;
+       _hammerBattle.transform.DOScale(new Vector3(0f, 0f, 0f), 0.5f);
        for(int i = 0; i < gem.Length; i++)
        {
            gem[i].SetActive(false);
@@ -716,23 +917,15 @@ public class BattleController : MonoBehaviour
 
     public IEnumerator WaitForOpenHammerPanel(){
         yield return new WaitForSeconds(3);
-        if(_hammerBattle.index <= 2)
+        if(_hammerBattle.index <= _hammerBattle._randomTask.Length)
         {
             _uiController._microphonePanel.SetActive(false);
             _uiController._dialogPanel.SetActive(false);
             _hammerPanel.SetActive(true);
-            _animation.OpenPanel();
-            //_hammerButton.transform.DOMoveY(-70, 0.5f);
-            //_secondButton.transform.DOMoveY(-70, 0.5f);
-            StartCoroutine(_hammerBattle.DialogPlay());
-        }
-        else
-        {
-            _animation.OpenPanel();
-            _uiController._dialogPanel.SetActive(true);
-            _uiController._microphonePanel.SetActive(true);
-            _hammerBattle.OpenVoiceTask();
-            voiceRec.StartRecordButtonOnClickHandler();
+            _openPanelHammerMod.Play();
+            _hammerButton.transform.DOMoveY(-70, 0.5f);
+            _secondButton.transform.DOMoveY(-70, 0.5f);
+            StartCoroutine(_hammerBattle.OpenType());
         }
         
         

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.AI;
 using DG.Tweening;
 public class EnemyController : MonoBehaviour
 {
@@ -12,8 +13,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private BattleController inv;
     public Animator EnemyAnim;
     public Transform PointShoot;
-    public Sprite attack, sleep;
-    public Image MouseBar;
     Vector3 StartPosEnemy;
     [Range(0.001f, 1)]
     public float speedMouse;
@@ -21,12 +20,15 @@ public class EnemyController : MonoBehaviour
      public bool IsAttack;
 
      [SerializeField] private ParticleSystem _blood;
-    
-    void Start()
+     [SerializeField] private Camera _camera;
+       private Ray RayMouse;
+    [SerializeField] private MovingBattlePeron _movingPerson;
+    [SerializeField] private EnemiesController _enemiesController;
+    public Text _damageText;
+    public bool IsDied;
+    public Canvas _canvas;
+     void Start()
     {
-       
-        MouseBar.sprite = sleep; //change agressive
-        MouseBar.gameObject.SetActive(false);
         
         StartPosEnemy = transform.position;
         hpSlider.maxValue = HPbat;
@@ -44,61 +46,20 @@ public class EnemyController : MonoBehaviour
         HPbat = (int)hpSlider.value;
         enemyText.text = hpSlider.value.ToString() + "/" + hpSlider.maxValue.ToString();
 
-    }
-    public IEnumerator EnemyGiveUron(int damage)
-    {   if (MouseBar.sprite == attack)
+        if(HPbat <= 0)
         {
-            yield return new WaitForSeconds(2f);
-            EnemyAnim.SetBool("Go", true);
-            while (true)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, PointShoot.position, speedMouse);
-                Vector3 quat = Vector3.RotateTowards(transform.forward, PointShoot.position - transform.position, 20 * Time.deltaTime, 0.0f);
-                transform.rotation = Quaternion.LookRotation(quat);
-                yield return new WaitForFixedUpdate();
-                if (Vector3.Distance(transform.position, PointShoot.position) < 0.01f)
-                {
-                    _blood.Play();
-                    EnemyAnim.SetBool("Go", false);
-                    EnemyAnim.SetTrigger("Attack");
-                    inv.HP_Person_Controller(damage);
-                    inv.animPerson.SetTrigger("takeDamage");
-                    StartCoroutine(BackEnemyToStartPos());
-                    yield break;
-                }
-            }
+            IsDied = true;
+            EnemyAnim.SetTrigger("die");
+            _canvas.enabled = false;
         }
-    }
-    IEnumerator BackEnemyToStartPos()
-    {
-        yield return new WaitForSeconds(2f);
-        EnemyAnim.SetBool("Go", true);
-        while (true)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, StartPosEnemy, speedMouse);
-            Vector3 quat = Vector3.RotateTowards(transform.forward, StartPosEnemy - transform.position, 10 * Time.deltaTime, 0.0f);
-            transform.rotation = Quaternion.LookRotation(quat);
-            yield return new WaitForFixedUpdate();
 
-            if (Vector3.Distance(transform.position, StartPosEnemy) < 0.1f)
-            {
-                EnemyAnim.SetBool("Go", false);
-                transform.rotation = Quaternion.LookRotation(PointShoot.position - transform.position);
-               inv.ClickOnGem.interactable = true;
-               MouseBar.sprite = sleep;
-               
-
-            }
-            if(inv.HP_Person > 0)
-            {
-               inv.LerningModeId = 0;
-               inv.indexGem = 0;
-               inv.StartFightPanel();
-               
-            }
-        }
     }
+
+  
+    
+
+      
+
 
    
 }
-

@@ -1492,6 +1492,8 @@ GameObject:
   - component: {fileID: 1223534481665031621}
   - component: {fileID: 1223534481665031743}
   - component: {fileID: 1223534481665031737}
+  - component: {fileID: 3227170103660355204}
+  - component: {fileID: 5629322086218327037}
   m_Layer: 5
   m_Name: VoiceBattle
   m_TagString: Untagged
@@ -1575,6 +1577,57 @@ MonoBehaviour:
   _microphonePanel: {fileID: 1223534480924146673}
   _scrollbar: {fileID: 0}
   index: 0
+--- !u!114 &3227170103660355204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223534481665031622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43f7a03906ea9b042ac5ae6f935e448e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiController: {fileID: 1223534481665031737}
+  _voiceRegontision: {fileID: 0}
+  _battleController: {fileID: 0}
+  AudioTask:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  AudioInterlocutor:
+  - {fileID: 0}
+  AudioCount: 0
+--- !u!114 &5629322086218327037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223534481665031622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1006a757b988b4d48a29e7e4e8c7fa61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speechRecognition: {fileID: 0}
+  _battleController: {fileID: 0}
+  _uiController: {fileID: 1223534481665031737}
+  _hammerController: {fileID: 0}
+  _uiAnimmation: {fileID: 0}
+  Task: Hello
+  TaskNotInfently:
+  - Hello
+  - Hello there
+  - How are you?
+  - I am fine.
+  - I am okey.
+  _voiceLevelImage: {fileID: 1223534480684555448}
+  max: 0.2
+  current: 0
 --- !u!1 &1223534481930255381
 GameObject:
   m_ObjectHideFlags: 0
