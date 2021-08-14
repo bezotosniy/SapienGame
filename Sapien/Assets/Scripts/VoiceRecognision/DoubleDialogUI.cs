@@ -34,7 +34,7 @@ public class DoubleDialogUI : MonoBehaviour
 
     [Header("Inheritance")]
     [Space(10f)]
-    [SerializeField] private UIController _uiContoroller;
+    [SerializeField] private UIControllerForCurScene _uiContoroller;
     [SerializeField] private VoicePlaybleDouble _voicePlayback;
 
     [SerializeField] private VoiceRegontion2 _voiceRecognision;

@@ -24,6 +24,7 @@ TagManager:
   - Battle
   - Wish mission
   - Start of fragment
+  - TransitionPanel
   layers:
   - Default
   - TransparentFX

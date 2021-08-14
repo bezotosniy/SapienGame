@@ -19,12 +19,46 @@ public class StoryManager : MonoBehaviour
     public Text textWithSlider, reviewText;
     public Image cardImage;
     public Slider sliderTime, sliderQuality, sliderMoney;
-    
+
+    private void OnEnable()
+    {
+        FragmentCardPhoneCell.onLastCellLoaded += updateSeasons;
+    }
+
+    private void updateSeasons()
+    {
+        SeasonNumber = 0;
+        
+        do
+        {
+            SeasonNumber++;
+        } while (SeasonNumber <= MaxSeasonAvailable && FragmentCardPhoneCell.GetCardCellByID((20 * SeasonNumber)- 1)!= null &&
+                 !FragmentCardPhoneCell.GetCardCellByID((20 * SeasonNumber)- 1).locked);
+        
+        if (FragmentCardPhoneCell.GetCardCellByID((20 * SeasonNumber)- 1) == null || FragmentCardPhoneCell.GetCardCellByID((20 * SeasonNumber)- 1).locked)
+        {
+            for (int i = SeasonNumber + 1; i <= MaxSeasonAvailable; ++i)
+            {
+                Season[i-1].GetComponentInChildren<Text>().color = Color.gray;
+                Season[i-1].GetComponent<Image>().raycastTarget = false;
+            }
+
+            for (int i = 1; i < SeasonNumber + 1; ++i)
+            {
+                Season[i-1].GetComponentInChildren<Text>().color = Color.black;
+                Season[i-1].GetComponent<Image>().raycastTarget = true;
+            }
+        }
+        //Debug.Log(SeasonNumber);
+        OnClickSeasonOpener(SeasonNumber);
+        FragmentCardPhoneCell.onLastCellLoaded -= updateSeasons;
+    }
+
     public void OnClickSeasonOpener(int season)
     {
         if (season <= MaxSeasonAvailable)
         {
-            SeasonPanel.SetActive(true);
+            //SeasonPanel.SetActive(true);
             if (SeasonNumber != null && SeasonNumber != 0)
             {
                 OnPointerExitSeason("Season" + SeasonNumber);
@@ -49,7 +83,7 @@ public class StoryManager : MonoBehaviour
         {
             if ((int)System.Char.GetNumericValue(tag[6]) <= MaxSeasonAvailable)
             {
-                GameObject.Find(tag).GetComponent<RectTransform>().localScale = new Vector3(Increment, Increment, 1f);
+                Season[Int32.Parse(tag[6].ToString()) - 1].GetComponent<RectTransform>().localScale = new Vector3(Increment, Increment, 1f);
             }
         }
         else if (tag.Contains("Day"))
@@ -60,7 +94,18 @@ public class StoryManager : MonoBehaviour
 
     public void OnPointerEnterDecrease(string tag)
     {
-        if (("Season" + SeasonNumber) != tag)
+        if (tag == "Season" + SeasonNumber)
+        {
+            
+        }
+        else if (tag.Contains("Season"))
+        {
+            if ((int)System.Char.GetNumericValue(tag[6]) <= MaxSeasonAvailable)
+            {
+                Season[Int32.Parse(tag[6].ToString()) - 1].GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1f);
+            }
+        }
+        else if (("Season" + SeasonNumber) != tag)
         {
             GameObject.Find(tag).GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
         }

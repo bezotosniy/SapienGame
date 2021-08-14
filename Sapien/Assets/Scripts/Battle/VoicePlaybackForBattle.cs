@@ -32,7 +32,7 @@ public class VoicePlaybackForBattle : MonoBehaviour
        
        if(_battleController.infinitely)
        {
-       AudioTask[_battleController.RandomString].Play();
+           AudioTask[_battleController.RandomString].Play();
        }
        else
        {
