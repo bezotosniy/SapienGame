@@ -4036,7 +4036,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &507770915
 Transform:
   m_ObjectHideFlags: 0
@@ -11483,7 +11483,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: GiveCard
+  m_Text: On
 --- !u!222 &1401993443
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11714,17 +11714,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2487454629369995850, guid: e4f431210429f3946a5f2f01bc1f5165, type: 3}
   m_PrefabInstance: {fileID: 11255102}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1421571125 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2487454629369995849, guid: e4f431210429f3946a5f2f01bc1f5165, type: 3}
-  m_PrefabInstance: {fileID: 11255102}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cabe1f255b7984149a60095fd924bc7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1428247809
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11911,7 +11900,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Energy
+  m_Text: Off
 --- !u!222 &1455035794
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12270,6 +12259,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4826401387028506, guid: 68c5f8e43c078eb438ca0fc2a376d9f8, type: 3}
   m_PrefabInstance: {fileID: 736693912}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1559514996 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2848151391100639921, guid: ebb16eb828e59de40bc0f5b1e5258a44, type: 3}
+  m_PrefabInstance: {fileID: 1112280472}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1559514997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559514996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 637e56f4bc47c1247830c2f1b49648a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WizardModeMat: {fileID: 2100000, guid: 8e5dbf04f52a8ad4a99fb9a9ce931e92, type: 2}
+  targetStrength: 5
+  defaultStrength: 80
 --- !u!1001 &1575881155
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13379,6 +13388,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _phoneManager: {fileID: 0}
+  WizardModeProfile: {fileID: 11400000, guid: 95fad6371ddc47a4bbef967e6429af82, type: 2}
+  WizardModeRendererIndex: 1
+  defaultProfile: {fileID: 11400000, guid: 3e24324e222ef2146a62bfc3f6a79475, type: 2}
 --- !u!4 &1768128218
 Transform:
   m_ObjectHideFlags: 0
@@ -15433,7 +15445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1993018355
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15498,10 +15510,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1421571125}
-        m_TargetAssemblyTypeName: FragmentCard, Assembly-CSharp
-        m_MethodName: GetEnergy
-        m_Mode: 3
+      - m_Target: {fileID: 1768128217}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: EnableWizardMode
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -15971,7 +15983,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1823
+    m_Bits: 1887
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -16018,7 +16030,7 @@ MonoBehaviour:
   m_Cameras:
   - {fileID: 507770918}
   - {fileID: 2011686641}
-  m_RendererIndex: -1
+  m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -16064,7 +16076,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: dfc34346992f82e4caee543b6677c241, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 3e24324e222ef2146a62bfc3f6a79475, type: 2}
 --- !u!4 &2037604125 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4314044849630250, guid: 438a38d2a91e6614a8192a9004a52c5b, type: 3}
@@ -16461,7 +16473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2111083974
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16526,13 +16538,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1421571125}
-        m_TargetAssemblyTypeName: FragmentCard, Assembly-CSharp
-        m_MethodName: TakeFragmentCard
-        m_Mode: 2
+      - m_Target: {fileID: 1768128217}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: DisableWizardMode
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: b1580a632d14f804bb83e2bbfb3f9b57, type: 2}
-          m_ObjectArgumentAssemblyTypeName: CardInfo, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
