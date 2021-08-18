@@ -41,10 +41,6 @@ public class FriendQuest : Quest
     {
         TryOpen(FragmentCard.instance.cardInfo);
     }
-    public override void Activate()
-    {
-        base.Activate();
-    }
 
     public override void QuestComplete()
     {

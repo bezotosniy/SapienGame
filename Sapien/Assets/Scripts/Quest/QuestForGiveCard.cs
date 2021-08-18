@@ -10,6 +10,7 @@ public class QuestForGiveCard : Quest
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+        type = QuestType.QuestForGiveCard;
     }
 
     public void TakeCard(CardInfo card_)
@@ -30,6 +31,11 @@ public class QuestForGiveCard : Quest
             Debug.Log($"Quest for give card <b>{card.cardName}</b> <color=green>activated</color>");
             activated = true;
         }
+    }
+
+    public override Location GetCurrentQuestLocation()
+    {
+        return GameObject.Find("School").GetComponent<Location>(); 
     }
 
     public override void QuestComplete()

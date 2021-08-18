@@ -17,7 +17,7 @@ public class QuestPanelManager : MonoBehaviour
 
     public bool[] isHidden = new bool[3];
     public bool QuestAdded = false;
-
+    
     private PhoneManager phoneManager;
 
     private void Start()
@@ -29,9 +29,7 @@ public class QuestPanelManager : MonoBehaviour
     {
 //        Debug.Log(name + " " + tag);
         Quest quest = QuestManager.instance.GetQuestByName(name);
-        bool startOfFragment = (QuestManager.instance.GetQuestForGiveCardByName(name) != null)
-            , StoryQuest = (QuestManager.instance.GetStoryQuestByName(name) != null)
-            , AfterStory = (QuestManager.instance.GetQuestAfterStoryQuestByName(name) != null);
+        QuestType type = quest.type;
         Debug.Log($"<color=red>Last active quest panel is {LastActiveQuest}</color>");
         if (quest.availible && !QuestManager.instance.IsQuestCompleted(quest))
         {
@@ -42,14 +40,14 @@ public class QuestPanelManager : MonoBehaviour
                 //QuestPrice[LastActiveQuest].GetComponent<Text>().text = Random.Range(100, 1000).ToString();
                 //QuestDescription[LastActiveQuest].GetComponent<Text>().text = quest.questDescription;
 
-                if (startOfFragment)
+                if (type == QuestType.QuestForGiveCard)
                 {
                     quest?.Activate();
                     ClosePanelAfterQuestComplete(quest);
                     //QuestManager.instance.GetQuestForGiveCardByName(name).OnQuestComplete += 
                     //    () => GameObject.Find("Messages").GetComponent<MessagesManager>().DeleteQuest(name, tag);
                 }
-                else if (StoryQuest)
+                else if (type == QuestType.StoryQuest)
                 {
                     if (quest != null)
                     {

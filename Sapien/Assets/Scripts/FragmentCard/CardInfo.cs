@@ -16,6 +16,7 @@ public class CardInfo : ScriptableObject
 
     public int storyQuestCount;
 
+    [HideInInspector]public bool passed = false;
     //[HideInInspector]
     public float quality, money, time;
 }

@@ -15,6 +15,7 @@ public class StoryQuest : Quest
             if (card == questFromCard)
                 Destroy(this);
         };
+        type = QuestType.StoryQuest;
     }
     public override void OpenQuest()
     {
@@ -22,21 +23,26 @@ public class StoryQuest : Quest
         Debug.Log($"Story quest <b>{questName}</b> <color=blue>Availible</color>");
     }
 
-    public override void Activate()
+    public override bool Activate()
     {
         if (availible)
         {
             activated = true;
             Debug.Log($"Story quest <b>{questName}</b> <color=green>Activated</color>");
-
+            return true;
             //QuestManager.instance.OnStoryComplete += destroyer;
         }
         else
         {
             Debug.Log($"Story quest <b>{questName}</b> <color=red>don't availible , complete all quests</color>");
+            return false;
         }
     }
-    
+
+    public override Location GetCurrentQuestLocation()
+    {
+        return GameObject.Find("MarketPlace").GetComponent<Location>();
+    }
 
     private void OnDestroy()
     {

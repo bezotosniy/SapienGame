@@ -69,7 +69,7 @@ public class NavigationManager : MonoBehaviour
             direction = project;
             direction /= 2;
             
-            Debug.Log(direction);
+            //Debug.Log(direction);
 
             GameObject WorldObject = target.gameObject;
 
@@ -136,7 +136,7 @@ public class NavigationManager : MonoBehaviour
     {
         Vector3 direction = (target.position - camera.transform.position).normalized;
         Vector3 project = Vector3.ProjectOnPlane(direction, camera.transform.forward).normalized;
-        Debug.Log(project);
+        //Debug.Log(project);
         Gizmos.DrawRay(camera.transform.position , project);
         Gizmos.color = Color.blue;
         Gizmos.DrawRay(camera.transform.position , direction * 100);

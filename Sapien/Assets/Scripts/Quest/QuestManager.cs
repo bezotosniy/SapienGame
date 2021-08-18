@@ -12,17 +12,17 @@ public enum StoryQuestStage
 public class QuestManager : MonoBehaviour
 {
     public static QuestManager instance;
-    public CardInfo card;
+    [HideInInspector]public CardInfo card;
 
-    public List<StoryQuest> storyQuestList;
-    public List<QuestForGiveCard> questForGiveCardList;
-    public List<QuestAfterStoryQuest> questAfterStoryQuestList;
-    public List<FriendQuest> friendQuestsList;
-    
+    [HideInInspector]public List<StoryQuest> storyQuestList;
+    [HideInInspector]public List<QuestForGiveCard> questForGiveCardList;
+    [HideInInspector]public List<QuestAfterStoryQuest> questAfterStoryQuestList;
+    [HideInInspector]public List<FriendQuest> friendQuestsList;
+
     public Dictionary<string, bool> completedQuest = new Dictionary<string, bool>();
     public Dictionary<string, bool> deletedQuest = new Dictionary<string, bool>();
 
-    public StoryQuestStage storyQuestStage = StoryQuestStage.DontStarted;
+    [HideInInspector]public StoryQuestStage storyQuestStage = StoryQuestStage.DontStarted;
     
     public event Action<CardInfo> OnStoryStarted;
     public event Action<CardInfo> OnStoryComplete;
@@ -83,16 +83,18 @@ public class QuestManager : MonoBehaviour
 
     public StoryQuest GetCurrentStoryQuest()
     {
-        if (storyQuestStage == StoryQuestStage.Started)
+        if (storyQuestStage == StoryQuestStage.Started && currentActiveStoryQuest < storyQuestList.Count)
             return storyQuestList[currentActiveStoryQuest];
         return null;
     }
 
     public IEnumerator StartNewStoryQuest()
     {
-        OnStoryStarted?.Invoke(card);
+        yield return new WaitWhile(() => card == null);
         currentActiveStoryQuest = 0;
         storyQuestList.Sort((x,y) => x.questOrder.CompareTo(y.questOrder));
+        if (storyQuestList.Count >= 1 && storyQuestList[0].questOrder == 1)
+            OnStoryStarted?.Invoke(card);   
         while (currentActiveStoryQuest < storyQuestList.Count && storyQuestCompleted < card.storyQuestCount)
         {
             int i = currentActiveStoryQuest;
@@ -139,22 +141,26 @@ public class QuestManager : MonoBehaviour
     
     public void LoadAllStoryQuestOnScene(Scene scene , LoadSceneMode mode)
     {
-        storyQuestList = new List<StoryQuest>();
-        StoryQuest[] questListLoc = FindObjectsOfType<StoryQuest>(true);
-        foreach (StoryQuest quest in questListLoc)
+        if (card != null)
         {
-            if (quest.questFromCard.cardID == card.cardID && !completedQuest.ContainsKey(quest.questName) && !deletedQuest.ContainsKey(quest.questName))
+            storyQuestList = new List<StoryQuest>();
+            StoryQuest[] questListLoc = FindObjectsOfType<StoryQuest>(true);
+            foreach (StoryQuest quest in questListLoc)
             {
-                storyQuestList.Add(quest);
+                if (quest.questFromCard.cardID == card.cardID && !completedQuest.ContainsKey(quest.questName) &&
+                    !deletedQuest.ContainsKey(quest.questName))
+                {
+                    storyQuestList.Add(quest);
+                }
             }
-        }
-        
-        Debug.Log($"<size=14>Found  <b><color=blue>{storyQuestList.Count}</color></b> story quests</size>");
-        
-        if (questLogic != null)
-            StopCoroutine(questLogic);
 
-        questLogic = StartCoroutine(StartNewStoryQuest());
+            Debug.Log($"<size=14>Found  <b><color=blue>{storyQuestList.Count}</color></b> story quests</size>");
+
+            if (questLogic != null)
+                StopCoroutine(questLogic);
+
+            questLogic = StartCoroutine(StartNewStoryQuest());
+        }
     }
 
     public void LoadAllQuestsAfterStoryQuest(Scene scene , LoadSceneMode mode)

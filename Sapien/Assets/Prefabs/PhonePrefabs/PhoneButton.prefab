@@ -2470,7 +2470,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -15.1633, y: 6.6774}
+  m_AnchoredPosition: {x: -15.1633, y: 6.6773987}
   m_SizeDelta: {x: 201.9878, y: 178.4044}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3856949358816719592
@@ -3874,8 +3874,9 @@ MonoBehaviour:
   locationImage: {fileID: 728780755011805342}
   highlitedColor: {r: 0.5754717, g: 0.1753398, b: 0.046146322, a: 0.8862745}
   sceneLocationName: 
-  locked: 0
-  _lock: {fileID: 0}
+  cardToUnlock: {fileID: 0}
+  locked: 1
+  _lock: {fileID: 1821490923}
   position: {x: 0, y: 0}
 --- !u!1 &1235613573240301123
 GameObject:
@@ -4838,8 +4839,9 @@ MonoBehaviour:
   locationImage: {fileID: 6174189831550609914}
   highlitedColor: {r: 0.09803922, g: 0.77254903, b: 0.42352942, a: 0.72156864}
   sceneLocationName: 4.1
-  locked: 0
-  _lock: {fileID: 0}
+  cardToUnlock: {fileID: 0}
+  locked: 1
+  _lock: {fileID: 962736418}
   position: {x: 0, y: 0}
 --- !u!1 &1504711474289237218
 GameObject:
@@ -5778,7 +5780,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -141.99992, y: -36.5}
+  m_AnchoredPosition: {x: -141.99994, y: -36.5}
   m_SizeDelta: {x: 72, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &576333274273050473
@@ -6459,6 +6461,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6257639364926775233}
+  - component: {fileID: 812277219}
   m_Layer: 5
   m_Name: Lock(ScienceSchool)
   m_TagString: Untagged
@@ -6487,6 +6490,48 @@ RectTransform:
   m_AnchoredPosition: {x: 401.9, y: -6.9928}
   m_SizeDelta: {x: 189.3065, y: 116.11}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &812277219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826460864937938342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6333f0a1c225c4194272d9f63e7446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockers:
+  - {fileID: 6248820403042154893}
+  - {fileID: 4197430128343631211}
+  speedByTimeCoef:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  particles: {fileID: 0}
+  particleScale: 0
+  locationTransform: {fileID: 0}
 --- !u!1 &1870397413449542890
 GameObject:
   m_ObjectHideFlags: 0
@@ -9372,7 +9417,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.1326, y: 10.9688}
+  m_AnchoredPosition: {x: 0.1326, y: 10.968796}
   m_SizeDelta: {x: 184.2933, y: 106.5258}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6918354900436133911
@@ -9951,6 +9996,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1332811794419707949}
+  - component: {fileID: 1821490923}
   m_Layer: 5
   m_Name: Lock(DarkLab)
   m_TagString: Untagged
@@ -9981,6 +10027,50 @@ RectTransform:
   m_AnchoredPosition: {x: -414.37, y: -248.4086}
   m_SizeDelta: {x: 258.04, y: 179.4972}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1821490923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3438803659840849148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6333f0a1c225c4194272d9f63e7446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockers:
+  - {fileID: 1671267165460844288}
+  - {fileID: 263147557656218266}
+  - {fileID: 8917503972235411848}
+  - {fileID: 3842417462305455103}
+  speedByTimeCoef:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  particles: {fileID: 0}
+  particleScale: 0
+  locationTransform: {fileID: 0}
 --- !u!1 &3440282854480854824
 GameObject:
   m_ObjectHideFlags: 0
@@ -9990,6 +10080,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7322323660247963424}
+  - component: {fileID: 962736418}
   m_Layer: 5
   m_Name: Lock(Violet)
   m_TagString: Untagged
@@ -10018,6 +10109,48 @@ RectTransform:
   m_AnchoredPosition: {x: 232.54, y: -147.88}
   m_SizeDelta: {x: 189.3065, y: 116.11}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &962736418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3440282854480854824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6333f0a1c225c4194272d9f63e7446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockers:
+  - {fileID: 3897192153716988258}
+  - {fileID: 5761439724081617831}
+  speedByTimeCoef:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  particles: {fileID: 0}
+  particleScale: 0
+  locationTransform: {fileID: 0}
 --- !u!1 &3444403769816475481
 GameObject:
   m_ObjectHideFlags: 0
@@ -10233,6 +10366,7 @@ MonoBehaviour:
   locationImage: {fileID: 886253810760433932}
   highlitedColor: {r: 0.09803922, g: 0.77254903, b: 0.42352942, a: 0.72156864}
   sceneLocationName: 3.1
+  cardToUnlock: {fileID: 0}
   locked: 0
   _lock: {fileID: 0}
   position: {x: 0, y: 0}
@@ -11533,6 +11667,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3220916858109274161}
+  - component: {fileID: 1164014280}
   m_Layer: 5
   m_Name: Lock(Appartaments)
   m_TagString: Untagged
@@ -11562,6 +11697,49 @@ RectTransform:
   m_AnchoredPosition: {x: -31, y: 179.64}
   m_SizeDelta: {x: 189.3065, y: 116.11}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1164014280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3800698789548501167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6333f0a1c225c4194272d9f63e7446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockers:
+  - {fileID: 2665572394142543201}
+  - {fileID: 1844588373204532867}
+  - {fileID: 397839241458666080}
+  speedByTimeCoef:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  particles: {fileID: 0}
+  particleScale: 0
+  locationTransform: {fileID: 0}
 --- !u!1 &3817873157114126036
 GameObject:
   m_ObjectHideFlags: 0
@@ -11817,6 +11995,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 417734481510512117}
+  - component: {fileID: 2062339348}
   m_Layer: 5
   m_Name: Lock(GreenForest)
   m_TagString: Untagged
@@ -11846,6 +12025,49 @@ RectTransform:
   m_AnchoredPosition: {x: -319, y: -137.79}
   m_SizeDelta: {x: 189.3065, y: 116.11}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2062339348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3881605187589896171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6333f0a1c225c4194272d9f63e7446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockers:
+  - {fileID: 5257798184283943939}
+  - {fileID: 6092762277649204916}
+  - {fileID: 4563847767565865572}
+  speedByTimeCoef:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  particles: {fileID: 0}
+  particleScale: 0
+  locationTransform: {fileID: 0}
 --- !u!1 &3913671021604096034
 GameObject:
   m_ObjectHideFlags: 0
@@ -12012,8 +12234,9 @@ MonoBehaviour:
   locationImage: {fileID: 4427614926509658915}
   highlitedColor: {r: 0.09803922, g: 0.77254903, b: 0.42352942, a: 0.72156864}
   sceneLocationName: 
-  locked: 0
-  _lock: {fileID: 0}
+  cardToUnlock: {fileID: 0}
+  locked: 1
+  _lock: {fileID: 194910854}
   position: {x: 0, y: 0}
 --- !u!1 &3979867033287827786
 GameObject:
@@ -12291,7 +12514,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -9.385, y: -24.5156}
+  m_AnchoredPosition: {x: -9.385, y: -24.515602}
   m_SizeDelta: {x: 157.1418, y: 127.6745}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3025583083111684699
@@ -12865,7 +13088,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -54.3025, y: -18.9373}
+  m_AnchoredPosition: {x: -54.302505, y: -18.937302}
   m_SizeDelta: {x: 222.4068, y: 184.6134}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &69615495107532980
@@ -15575,7 +15798,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -36.34134, y: 8.3612}
+  m_AnchoredPosition: {x: -36.34134, y: 8.361198}
   m_SizeDelta: {x: 177.6222, y: 166.143}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5770458314576292321
@@ -16829,7 +17052,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 23.598}
+  m_AnchoredPosition: {x: 0, y: 23.597992}
   m_SizeDelta: {x: 0.0001, y: 47.196}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5168628750772700135
@@ -17204,6 +17427,7 @@ MonoBehaviour:
   locationImage: {fileID: 3971747224139755263}
   highlitedColor: {r: 0.09803922, g: 0.77254903, b: 0.42352942, a: 0.72156864}
   sceneLocationName: 
+  cardToUnlock: {fileID: 0}
   locked: 0
   _lock: {fileID: 0}
   position: {x: 0, y: 0}
@@ -19055,8 +19279,9 @@ MonoBehaviour:
   locationImage: {fileID: 4428087246945579401}
   highlitedColor: {r: 0.09803922, g: 0.77254903, b: 0.42352942, a: 0.72156864}
   sceneLocationName: 
-  locked: 0
-  _lock: {fileID: 0}
+  cardToUnlock: {fileID: 0}
+  locked: 1
+  _lock: {fileID: 1164014280}
   position: {x: 0, y: 0}
 --- !u!1 &6673961930326852711
 GameObject:
@@ -19425,6 +19650,7 @@ RectTransform:
   m_Children:
   - {fileID: 9174484908989692105}
   - {fileID: 8876327730899398918}
+  - {fileID: 8177198086683823283}
   m_Father: {fileID: 5189556323197286650}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20991,8 +21217,9 @@ MonoBehaviour:
   locationImage: {fileID: 8271437893854105331}
   highlitedColor: {r: 0.09803922, g: 0.77254903, b: 0.42352942, a: 0.72156864}
   sceneLocationName: 
-  locked: 0
-  _lock: {fileID: 0}
+  cardToUnlock: {fileID: 0}
+  locked: 1
+  _lock: {fileID: 2062339348}
   position: {x: 0, y: 0}
 --- !u!1 &7409537249846139248
 GameObject:
@@ -21753,6 +21980,59 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &7744145493545986451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8177198086683823283}
+  - component: {fileID: 5680274132850156912}
+  m_Layer: 5
+  m_Name: Icons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8177198086683823283
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7744145493545986451}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1250841483240587627}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5680274132850156912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7744145493545986451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5eb8b18c946d67488cd622e8382cab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iconPrefab: {fileID: 4197432242633427942, guid: e38933a283aa4184d963e9860ea7cf08, type: 3}
+  _questPanelManager: {fileID: 2748603470832553530}
+  iconSprites:
+  - {fileID: 21300000, guid: 63c04f82114630f4db72e20bebd2c368, type: 3}
+  - {fileID: 21300000, guid: 9405593794303594fade6da93e099d70, type: 3}
 --- !u!1 &7754395069785836084
 GameObject:
   m_ObjectHideFlags: 0
@@ -23169,7 +23449,7 @@ GameObject:
   - component: {fileID: 8179814542496666870}
   - component: {fileID: 935573215992824371}
   m_Layer: 5
-  m_Name: Schhol
+  m_Name: School
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23250,6 +23530,7 @@ MonoBehaviour:
   locationImage: {fileID: 8179814542496666870}
   highlitedColor: {r: 0.09803922, g: 0.77254903, b: 0.42352942, a: 0.72156864}
   sceneLocationName: 
+  cardToUnlock: {fileID: 0}
   locked: 0
   _lock: {fileID: 0}
   position: {x: 0, y: 0}
@@ -24519,8 +24800,9 @@ MonoBehaviour:
   locationImage: {fileID: 1168336889771064701}
   highlitedColor: {r: 0.09803922, g: 0.77254903, b: 0.42352942, a: 0.72156864}
   sceneLocationName: 
-  locked: 0
-  _lock: {fileID: 0}
+  cardToUnlock: {fileID: 0}
+  locked: 1
+  _lock: {fileID: 812277219}
   position: {x: 0, y: 0}
 --- !u!1 &8864551394896542086
 GameObject:
@@ -24790,6 +25072,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2149797830849337641}
+  - component: {fileID: 194910854}
   m_Layer: 5
   m_Name: Lock(LuckyField)
   m_TagString: Untagged
@@ -24819,6 +25102,49 @@ RectTransform:
   m_AnchoredPosition: {x: -190.7, y: 63.528}
   m_SizeDelta: {x: 189.3065, y: 116.11}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &194910854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8880921479747945455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6333f0a1c225c4194272d9f63e7446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockers:
+  - {fileID: 6857513538724775151}
+  - {fileID: 7674867086896491336}
+  - {fileID: 501221173736260267}
+  speedByTimeCoef:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  particles: {fileID: 0}
+  particleScale: 0
+  locationTransform: {fileID: 0}
 --- !u!1 &8892677236870620992
 GameObject:
   m_ObjectHideFlags: 0

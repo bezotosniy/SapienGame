@@ -12,11 +12,13 @@ public class Location : MonoBehaviour
     public Image locationImage;
     public Color highlitedColor;
     public string sceneLocationName;
-    
+
+    public CardInfo cardToUnlock;
     public bool locked = false;
     public LocationLock _lock;
 
     public static MapInPhone mapManager;
+    
     [HideInInspector]
     public Vector2 position;
 
@@ -24,8 +26,18 @@ public class Location : MonoBehaviour
     {
         if (mapManager == null)
             mapManager = GameObject.FindObjectOfType<MapInPhone>();
+        if (_lock != null)
+           _lock.locationTransform = this.GetComponent<RectTransform>();
+        FragmentCard.instance.onFragmentCardComplete += TryUnlock;
+        TryUnlock(FragmentCard.instance.cardInfo);
     }
 
+    private void TryUnlock(CardInfo card)
+    {
+        if (cardToUnlock != null && card != null && card.cardID == cardToUnlock.cardID)
+            UnlockLocation();
+    }
+    
     public Vector2 GetPosition()
     {
         position = GetComponent<RectTransform>().anchoredPosition;
@@ -88,5 +100,10 @@ public class Location : MonoBehaviour
             _lock.Unlock();
             locked = false;
         }
+    }
+
+    private void OnDestroy()
+    {
+        FragmentCard.instance.onFragmentCardComplete -= TryUnlock;
     }
 }

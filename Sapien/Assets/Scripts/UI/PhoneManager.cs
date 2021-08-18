@@ -285,7 +285,7 @@ public class PhoneManager : MonoBehaviour
     public void StartStoryQuestChain()
     {
         if (CR_StoryQuest == null)
-            StartCoroutine(StoryQuestActivate());
+            CR_StoryQuest = StartCoroutine(StoryQuestActivate());
     }
     
     IEnumerator StoryQuestActivate()
@@ -300,10 +300,13 @@ public class PhoneManager : MonoBehaviour
 
             quest.OnQuestComplete += () =>
             {
-                quest = QuestManager.instance.GetCurrentStoryQuest();
-                Debug.Log(quest.questName);
+                if (quest.questOrder < QuestManager.instance.card.storyQuestCount)
+                {
+                    quest = QuestManager.instance.GetCurrentStoryQuest();
+                    Debug.Log(quest.questName);
+                    StartCoroutine(WaitAndAddToActiveList(quest));
+                }
                 canNewIteration = true;
-                StartCoroutine(WaitAndAddToActiveList(quest));
             };
             
             yield return new WaitUntil(() => canNewIteration);

@@ -327,6 +327,7 @@ public class FragmentCard : MonoBehaviour
     public void OnCardComplete()
     {
         Debug.Log(cardInfo.cardName + " Card Complete");
+        cardInfo.passed = true;
         onFragmentCardComplete?.Invoke(cardInfo);
         StartCoroutine(ShowCells(false));
     }

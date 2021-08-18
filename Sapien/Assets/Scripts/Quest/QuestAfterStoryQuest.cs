@@ -7,20 +7,10 @@ using UnityEngine;
 public class QuestAfterStoryQuest : Quest
 {
     [HideInInspector] public List<CardInfo> ignoreCards;
-    public KeyCode key;
     private void Start()
     {
         QuestManager.instance.OnStoryComplete += TryOpen;
         TryOpen(QuestManager.instance.card);
-    }
-
-    private void Update()
-    {
-        if (activated)
-        {
-            if (Input.GetKeyDown(key))
-                QuestComplete();
-        }
     }
 
     public override void OpenQuest()
@@ -72,5 +62,10 @@ public class QuestAfterStoryQuest : Quest
     public void AddCardToIgnoreList(CardInfo card)
     {
         ignoreCards.Add(card);
+    }
+    
+    public override Location GetCurrentQuestLocation()
+    {
+        return GameObject.Find("Museum").GetComponent<Location>();
     }
 }
