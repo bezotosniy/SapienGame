@@ -104,11 +104,11 @@ public class MovingPercon : MonoBehaviour
                 second = true;
                 VarMoving = true; agent.enabled = false;
             }
-            if (agent.speed > 0)
+            if (Vector3.Equals(agent.velocity , Vector3.zero))
             {
                 Anim.SetBool("Moving", true);
             }
-            if (Vector3.Distance( transform.position, point) <.1f)
+            if (Vector3.Distance( transform.position, point) <.3f)
             {
                 agent.enabled = false;
 

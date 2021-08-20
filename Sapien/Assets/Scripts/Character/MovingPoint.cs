@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public class MovingPoint : MonoBehaviour
 {
@@ -35,19 +36,10 @@ public class MovingPoint : MonoBehaviour
 
                 if (Physics.Raycast(RayMouse.origin, RayMouse.direction, out hit, 40))
                 {
-                    if (hit.collider.tag == "Ground"&&!ButtonTrigger)
+                    if (hit.collider.tag == "Ground"&&!ButtonTrigger && !GameManager.Instance.IsPhoneOpened && !EventSystem.current.IsPointerOverGameObject())
                     {
-                        
-                        Instance = Instantiate(Prefab);
-                        Instance.transform.position = hit.point + hit.normal * 0.01f;
-                        second = true;
-                        MP.second = false;
-                        go = Instance.transform.position;
-                        agent.enabled = true;
-                        agent.SetDestination(go);
-                       
-                        Destroy(Instance, 1.5f);
-
+                        Vector3 position = hit.point + hit.normal * 0.01f;
+                        GoTo(position);
                     }
                 }
             }
@@ -56,5 +48,17 @@ public class MovingPoint : MonoBehaviour
                 Debug.Log("No camera");
             }
         }
+    }
+
+    public void GoTo(Vector3 position)
+    {
+        Instance = Instantiate(Prefab);
+        Instance.transform.position = position;
+        second = true;
+        MP.second = false;
+        go = Instance.transform.position;
+        agent.enabled = true;
+        agent.SetDestination(go);
+        Destroy(Instance, 1.5f);
     }
 }

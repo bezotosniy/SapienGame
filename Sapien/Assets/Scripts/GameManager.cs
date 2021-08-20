@@ -1,16 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     [HideInInspector]public PhoneManager _phoneManager;
+    [FormerlySerializedAs("Place phone childs , that won't block raycasts")]public string[] phonePartsForAllowRaycast;
     public VolumeProfile WizardModeProfile;
     public int WizardModeRendererIndex = 1;
     private int lastRendererIndex = 0;
@@ -27,12 +31,15 @@ public class GameManager : MonoBehaviour
         get
         {
             int cnt = 0;
-            foreach(Transform child in _phoneManager.transform){
-                if(child.gameObject.activeSelf)
-                    cnt++;
+            foreach(Transform child in _phoneManager.transform)
+            {
+                if (child.gameObject.activeSelf && !phonePartsForAllowRaycast.Contains(child.name))
+                {
+                    Debug.Log(child.name);
+                    return true;
+                }
             }
-
-            return cnt > 1;
+            return false;
         }
     }
 

@@ -3,49 +3,24 @@
   <component name="ChangeListManager">
     <list default="true" id="e1f9686f-d36e-46ec-b25a-ee29369a93a1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Sapien/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Sapien/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PhonePrefabs/PhoneButton.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PhonePrefabs/PhoneButton.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/CharacterAnim/MovingController.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/CharacterAnim/MovingController.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CameraBlends/Main Camera Blends.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CameraBlends/Main Camera Blends.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CameraBlends/SceneCameraController.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CameraBlends/SceneCameraController.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/3. First Continent/4.1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/3. First Continent/4.1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/3. First Continent/4.1/NavMesh.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/3. First Continent/4.1/NavMesh.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/MovingPercon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/MovingPercon.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/MovingPoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/MovingPoint.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/CurrentFragmentCardTime.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CurrentFragmentCardTime.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FragmentCard/CardInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FragmentCard/CardInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FragmentCard/FragmentCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FragmentCard/FragmentCard.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Navigation/NavigationManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Navigation/NavigationManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quest/FriendQuest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quest/FriendQuest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quest/Quest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quest/Quest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quest/QuestAfterStoryQuest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quest/QuestAfterStoryQuest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quest/QuestForGiveCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quest/QuestForGiveCard.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quest/QuestManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quest/QuestManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quest/StoryQuest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quest/StoryQuest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quest/TestQuest2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quest/TestQuest2.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Map/Location.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Map/Location.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Map/LocationLock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Map/LocationLock.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/PhoneManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/PhoneManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/QuestPanelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/QuestPanelManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quest/DigQuest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quest/DigQuest.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/ApiUpdaterCheck.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/ApiUpdaterCheck.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker1-prev.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-AssetImportWorker0.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe1.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe10.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe11.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe12.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe13.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe14.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe15.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe16.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe17.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe18.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe19.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe1.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe1.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe2.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe3.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe4.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe5.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe6.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe7.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe8.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe9.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +39,14 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/DirtPile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/DigQuest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/FadePanel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Map/Location.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@10.3.2/Runtime/UniversalAdditionalCameraData.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/FragmentCard/FragmentCardPhoneCell.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Map/LocationLock.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/QuestPanel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@10.3.2/Editor/AssetPostProcessors/MaterialPostprocessor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Map/Icon.cs" root0="FORCE_HIGHLIGHTING" />
@@ -73,25 +56,18 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Map/Icons.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/PostPonedQuestNotification.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/TestQuest1.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/DigQuest.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/GraphitiQuest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/42A5878C-E129-4030-83AC-CCF18E43363F/cf/30aa48c7/Object.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/FadePanel.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Map/Location.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.3.2/Editor/Volume/VolumeComponentListEditor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@10.3.2/Runtime/UniversalAdditionalCameraData.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/FragmentCard/FragmentCardPhoneCell.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6AF207EC-D210-4462-8913-F7CC589986AE/89/26b6a268/Input.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Map/IconIdle.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timers/TimerUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timers/testscript.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Map/LocationLock.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/QuickOutline/Scripts/QuickOutline.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ExtensionMethods.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@10.3.2/Editor/AssetPostProcessors/MaterialPostprocessor.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/FragmentCard/EnergyBar.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/FragmentCard/InGameTimer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Timers/testscript.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Timers/InGameTimer.cs" />
@@ -114,7 +90,6 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/FadePanel.cs" />
       <option value="$PROJECT_DIR$/Assets/QuickOutline/Scripts/Outline.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ExtensionMethods.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Map/Taxi.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SoundTest.cs" />
@@ -134,11 +109,16 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/Map/Location.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/Map/IconIdle.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/QuestPanelManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Quest/Quest.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Quest/FriendQuest.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Quest/StoryQuest.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/Map/Icons.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Character/MovingPercon.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Character/MovingPoint.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Quest/Quest.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Quest/GraphitiQuest.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Quest/DigQuest.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Quest/DirtPile.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1vY3Fuz4Mdqd3J0tFshgixmPjdr" />
@@ -219,6 +199,10 @@
       <workItem from="1629196215375" duration="8671000" />
       <workItem from="1629211798495" duration="6436000" />
       <workItem from="1629270036541" duration="4391000" />
+      <workItem from="1629306516548" duration="595000" />
+      <workItem from="1629358272718" duration="6439000" />
+      <workItem from="1629391541188" duration="623000" />
+      <workItem from="1629445080019" duration="5015000" />
     </task>
     <servers />
   </component>
