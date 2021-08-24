@@ -10,6 +10,7 @@ public class SpeakWithCardAnimation : MonoBehaviour
     [SerializeField] private Transform[] _dialogsItem;
    [SerializeField] private Transform _questionMark;
    [SerializeField] private AudioSource[] _audio;
+    [SerializeField] private Sound _questionMarkSound;
 
      [Header("Dialog")]
    [SerializeField] private string[] _replicasText;
@@ -68,11 +69,13 @@ public class SpeakWithCardAnimation : MonoBehaviour
        yield return new WaitForSeconds(0.4f);
        _repeatPanel.SetActive(true);
        StartCoroutine(QuestionMark());
+       _questionMarkSound.PlaySound();
     }
 
     private IEnumerator QuestionMark()
     {
         yield return new WaitForSeconds(0.4f);
+        
         _questionMark.DORotate(new Vector3(0, 0, 45), 0.3f);
         StartCoroutine(QuestionMarkSecond());
     }

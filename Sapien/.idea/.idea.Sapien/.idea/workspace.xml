@@ -3,24 +3,189 @@
   <component name="ChangeListManager">
     <list default="true" id="e1f9686f-d36e-46ec-b25a-ee29369a93a1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Sapien/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Sapien/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Documentation.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Documentation.pdf.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/GCSR_DoCommandsExample.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/GCSR_DoCommandsExample/GCSR_DoCommandsExample.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/GCSR_DoCommandsExample/GCSR_DoCommandsExample.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/GCSR_DoCommandsExample/GCSR_DoCommandsExample.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/GCSR_DoCommandsExample/GCSR_DoCommandsExample.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/GCSR_DoCommandsExample/GCSR_DoCommandsExampleSettings.lighting" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/GCSR_DoCommandsExample/GCSR_DoCommandsExampleSettings.lighting.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/GCSR_Example_1.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/GCSR_Example_1/GCSR_Example.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/GCSR_Example_1/GCSR_Example.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/GCSR_Example_1/GCSR_Example.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/GCSR_Example_1/GCSR_Example.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/GCSR_Example_1/GCSR_ExampleSettings.lighting" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/GCSR_Example_1/GCSR_ExampleSettings.lighting.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/MyTest2.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/MyTest2/GCSR_ExampleSettings.lighting" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/MyTest2/GCSR_ExampleSettings.lighting.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/MyTest2/MyTestRec.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/MyTest2/MyTestRec.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/MyTest2/TestRec.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/MyTest2/TestRec.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/MyTest3.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/MyTest3/GCSR_ExampleSettings.lighting" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/MyTest3/GCSR_ExampleSettings.lighting.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/MyTest3/TestRec3.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/GCSR_Examples/MyTest3/TestRec3.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Prefabs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Prefabs/GCSpeechRecognition.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Prefabs/GCSpeechRecognition.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/README.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Resources.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Resources/GCSpeechRecognitonConfig.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Resources/GCSpeechRecognitonConfig.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Converters.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Converters/AudioConvert.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Converters/AudioConvert.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Converters/Converters.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Converters/Converters/AudioClip2ByteConverter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Converters/Converters/AudioClip2ByteConverter.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Converters/Converters/AudioClip2PCMConverter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Converters/Converters/AudioClip2PCMConverter.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Converters/Converters/AudioClipRaw2ByteConverter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Converters/Converters/AudioClipRaw2ByteConverter.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Converters/Converters/AudioClipRaw2PCMConverter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Converters/Converters/AudioClipRaw2PCMConverter.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Interfaces.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Interfaces/IMediaManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Interfaces/IMediaManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Interfaces/ISpeechRecognitionManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Interfaces/ISpeechRecognitionManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Interfaces/IVoiceDetectionManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Interfaces/IVoiceDetectionManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Managers.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Managers/MediaManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Managers/MediaManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Managers/SpeechRecognitionManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Managers/SpeechRecognitionManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Managers/VoiceDetectionManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Managers/VoiceDetectionManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Model.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Model/Model.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Model/Model.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Settings.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Settings/Config.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Settings/Config.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Settings/Constants.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Settings/Constants.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Settings/Enumerators.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Settings/Enumerators.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Utilites.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Utilites/AudioTools.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/Core/Utilites/AudioTools.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/GCSpeechRecognition.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/GCSpeechRecognition/Scripts/GCSpeechRecognition.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/LICENSE_INFO.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/LICENSE_INFO.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/3rdParty.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/3rdParty/JsonDotNet.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/3rdParty/JsonDotNet/Newtonsoft.Json.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/3rdParty/JsonDotNet/Newtonsoft.Json.dll.mdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/3rdParty/JsonDotNet/Newtonsoft.Json.dll.mdb.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/3rdParty/JsonDotNet/Newtonsoft.Json.dll.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/3rdParty/JsonDotNet/license.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/3rdParty/JsonDotNet/license.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/3rdParty/JsonDotNet/link.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/3rdParty/JsonDotNet/link.xml.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Content.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Content/2x2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Content/2x2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Content/FG_logo_transparent.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Content/FG_logo_transparent.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Content/PLBardamu-Lite.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Content/PLBardamu-Lite.ttf.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Content/tile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Content/tile.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Core.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Core/IService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Core/IService.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Core/ServiceLocator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Core/ServiceLocator.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Networking.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Networking/NetworkConstants.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Networking/NetworkConstants.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Networking/NetworkEnumerators.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Networking/NetworkEnumerators.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Networking/NetworkRequest.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Networking/NetworkRequest.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Networking/NetworkResponse.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Networking/NetworkResponse.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Networking/Networking.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Networking/Networking.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Tools.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Tools/CustomMicrophone.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ASSETS ARCHIVE/FrostweepGames/_Generic/Tools/CustomMicrophone.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/CharacterAnim/Battle/Camera/Main Camera (1).controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/CharacterAnim/Battle/Camera/Main Camera (1).controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Animations/CharacterAnim/MovingController.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/CharacterAnim/MovingController.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/CharacterAnim/xbotVictory_Idle.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/CharacterAnim/xbotVictory_Idle.fbx.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/CameraBlends/Main Camera Blends.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CameraBlends/Main Camera Blends.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/CameraBlends/SceneCameraController.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CameraBlends/SceneCameraController.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CutSceneBattle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CutSceneBattle.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MODELS ARCHIVE/POLYGON - Particle FX Pack/PolygonParticles/Materials/PolygonParticles_Material_01_A.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MODELS ARCHIVE/POLYGON - Particle FX Pack/PolygonParticles/Materials/PolygonParticles_Material_01_A.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MODELS ARCHIVE/POLYGON - Particle FX Pack/PolygonParticles/Prefabs/FX_Pickup_Boost_01.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MODELS ARCHIVE/POLYGON - Particle FX Pack/PolygonParticles/Prefabs/FX_Pickup_Boost_01.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/NotEpicCutSceneBattle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/NotEpicCutSceneBattle.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/MenuBattle/SomeWords/Frase 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/MenuBattle/SomeWords/Frase 1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/MenuBattle/SomeWords/Frase.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/MenuBattle/SomeWords/Frase.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/2.Battle/Battle 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/2.Battle/Battle 1.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/3. First Continent/4.1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/3. First Continent/4.1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/3. First Continent/4.1/NavMesh.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/3. First Continent/4.1/NavMesh.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/BattleController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/DoneAndMissed.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/DoneAndMissed.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/EnemiesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/EnemiesController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/EnemyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/EnemyController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/HammerBattle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/HammerBattle.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/HammerMod/AudioAndImage/AudioAndImage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/HammerMod/AudioAndImage/AudioAndImage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/HammerMod/AudioAndImage/AudioAndImageAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/HammerMod/AudioAndImage/AudioAndImageAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/HammerMod/OnlyAudio/OnlyAudio.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/HammerMod/OnlyAudio/OnlyAudio.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/HammerMod/OnlyAudio/OnlyAudioAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/HammerMod/OnlyAudio/OnlyAudioAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/HammerMod/SpeakWithVariant/SpeakWithVariant.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/HammerMod/SpeakWithVariant/SpeakWithVariant.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/HammerMod/SpeakWithVariant/SpeakithVariantAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/HammerMod/SpeakWithVariant/SpeakithVariantAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/HammerMod/SpeakwithCard/SpeakWithCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/HammerMod/SpeakwithCard/SpeakWithCard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/HammerMod/SpeakwithCard/SpeakWithCardAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/HammerMod/SpeakwithCard/SpeakWithCardAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/HammerMod/onlyImages/OnlyImagesAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/HammerMod/onlyImages/OnlyImagesAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/Inventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/Inventory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/KeyBordController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/KeyBordController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/MovingBattlePeron.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/MovingBattlePeron.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/SomeWords/SomeWords.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/SomeWords/SomeWords.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/VoicePlayback.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/VoicePlayback.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/VoicePlaybackForBattle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/VoicePlaybackForBattle.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Battle/VoiceRecognision.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Battle/VoiceRecognision.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/MovingPercon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/MovingPercon.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character/MovingPoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character/MovingPoint.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/CurrentFragmentCardTime.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CurrentFragmentCardTime.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FirstContinent/1.1/VoicePlayble.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FirstContinent/1.1/VoicePlayble.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FragmentCard/FragmentCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FragmentCard/FragmentCard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Navigation/NavigationManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Navigation/NavigationManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quest/DigQuest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quest/DigQuest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Quest/DirtPile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Quest/DirtPile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VoiceRecognision/Dialogbackground.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VoiceRecognision/Dialogbackground.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VoiceRecognision/DoubleDialogUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VoiceRecognision/DoubleDialogUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VoiceRecognision/DoubleMistakeDialog.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VoiceRecognision/DoubleMistakeDialog.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VoiceRecognision/MyTestRec3.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VoiceRecognision/MyTestRec3.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VoiceRecognision/UIController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VoiceRecognision/UIController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VoiceRecognision/VoicePlayBack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VoiceRecognision/VoicePlayBack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VoiceRecognision/VoicePlaybleDouble.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VoiceRecognision/VoicePlaybleDouble.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/WizardModeURPAsset_Renderer.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/WizardModeURPAsset_Renderer.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Voice Recognition/UIControllerForCurScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Voice Recognition/UIControllerForCurScene.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Voice Recognition/VoiceRegontion2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Voice Recognition/VoiceRegontion2.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VoiceregonsionForBattle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VoiceregonsionForBattle.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/ApiUpdaterCheck.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/ApiUpdaterCheck.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0-prev.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe1.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe1.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe2.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe3.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe4.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe5.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe6.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/AssetImportWorker0.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-AssetImportWorker0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-AssetImportWorker0.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,38 +204,41 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/DirtPile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Questions/TranslationTaskUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/DigQuest.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/FadePanel.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Map/Location.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@10.3.2/Editor/AssetPostProcessors/MaterialPostprocessor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://D:/Sapien/Sapien/Assets/Scripts/Character/MovingPoint.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://D:/Sapien/Sapien/Assets/Scripts/Character/MovingPercon.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Map/Icon.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/QuestPanel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://D:/Sapien/Sapien/Assets/Scripts/GameManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Map/LocationLock.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@10.3.2/Runtime/UniversalAdditionalCameraData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FragmentCard/FragmentCardPhoneCell.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Map/LocationLock.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/QuestPanel.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@10.3.2/Editor/AssetPostProcessors/MaterialPostprocessor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Map/Icon.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/Quest.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PhoneSaver/MessagesSave.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/QuestForGiveCard.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Map/Icons.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/PostPonedQuestNotification.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/TestQuest1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://D:/Sapien/Sapien/Assets/Scripts/WizardModePlayer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/FadePanel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7D971898-EA0F-4307-A8ED-DF491EA76525/77/fa0a6624/CharacterController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/GraphitiQuest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/DirtPile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/QuestForGiveCard.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ExtensionMethods.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/Quest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/QuickOutline/Scripts/QuickOutline.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PhoneSaver/MessagesSave.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/42A5878C-E129-4030-83AC-CCF18E43363F/cf/30aa48c7/Object.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.3.2/Editor/Volume/VolumeComponentListEditor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6AF207EC-D210-4462-8913-F7CC589986AE/89/26b6a268/Input.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Map/IconIdle.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timers/TimerUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@10.3.2/Editor/Volume/VolumeComponentListEditor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Map/Location.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Map/Icons.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Timers/testscript.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/QuickOutline/Scripts/QuickOutline.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ExtensionMethods.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6AF207EC-D210-4462-8913-F7CC589986AE/89/26b6a268/Input.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Quest/TestQuest1.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/FragmentCard/InGameTimer.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Timers/testscript.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Timers/InGameTimer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Timers/FragmentCardTimer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Quest/QuestTrade.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Quest/PostPonedQuestNotification.cs" />
@@ -94,10 +262,7 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SoundTest.cs" />
       <option value="$PROJECT_DIR$/Assets/VoiceregonsionForBattle.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/WizardModePlayer.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Navigation/NavigationManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/FragmentCard/CardInfo.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/FragmentCard/FragmentCard.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/Map/LocationLock.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/Map/Icon.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Quest/QuestForGiveCard.cs" />
@@ -112,13 +277,19 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Quest/FriendQuest.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Quest/StoryQuest.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/Map/Icons.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Character/MovingPercon.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Character/MovingPoint.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Quest/Quest.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Quest/GraphitiQuest.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Quest/DigQuest.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/WizardModePlayer.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Character/MovingPercon.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Questions/TranslateQuestion.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Questions/TranslateQuestions.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Character/MovingPoint.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Navigation/NavigationManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/FragmentCard/FragmentCard.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Quest/DirtPile.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Quest/DigQuest.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Questions/TranslationTaskUI.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1vY3Fuz4Mdqd3J0tFshgixmPjdr" />
@@ -202,7 +373,13 @@
       <workItem from="1629306516548" duration="595000" />
       <workItem from="1629358272718" duration="6439000" />
       <workItem from="1629391541188" duration="623000" />
-      <workItem from="1629445080019" duration="5015000" />
+      <workItem from="1629445080019" duration="5311000" />
+      <workItem from="1629455932021" duration="2534000" />
+      <workItem from="1629461985530" duration="2841000" />
+      <workItem from="1629650264840" duration="4585000" />
+      <workItem from="1629706137970" duration="8244000" />
+      <workItem from="1629789136905" duration="4996000" />
+      <workItem from="1629813509737" duration="2853000" />
     </task>
     <servers />
   </component>

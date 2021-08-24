@@ -38,35 +38,35 @@ public class MovingPercon : MonoBehaviour
      
         ch = GetComponent<CharacterController>();
     }
-    void Enum()
+
+    void GetMoveDirection()
     {
-        switch (camera.transform.eulerAngles.y){ 
-            case 0:
-                moveVector.x = Input.GetAxis("Horizontal");
-                moveVector.z = Input.GetAxis("Vertical");
-                break;
-            case 90:
-                moveVector.z = -Input.GetAxis("Horizontal");
-                moveVector.x = Input.GetAxis("Vertical");
-                break;
-            case 180:
-                moveVector.x = -Input.GetAxis("Horizontal");
-                moveVector.z = -Input.GetAxis("Vertical");
-                break;
-            case 270:
-                moveVector.z = Input.GetAxis("Horizontal");
-                moveVector.x = -Input.GetAxis("Vertical");
-                break;} }
+        moveVector.x = Input.GetAxis("Horizontal");
+        moveVector.y = GravityMode;
+        moveVector.z = Input.GetAxis("Vertical");
+
+        moveVector = Quaternion.Euler(0, camera.transform.rotation.eulerAngles.y, 0) * moveVector;
+    }
+    
     void Moving()
     {
         if (VarMoving)
         {
             moveVector = Vector3.zero;
-            if (jumpClosed) Enum();
+            if (jumpClosed) 
+                GetMoveDirection();
+                
+            Debug.Log($"<color=yellow>{moveVector}</color>" );
 
             if (moveVector.x != 0 || moveVector.z != 0) {
                 Anim.SetBool("Moving", true); 
                 MovingBool = true; 
+                
+                //Rotate to move direction
+                RotateToDirection(transform , transform.position + moveVector);
+                //Quaternion targetRotation = Quaternion.LookRotation(new Vector3(moveVector.x , 0 , moveVector.z));
+                //targetRotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5);
+                //transform.rotation = targetRotation;
             } 
             else {
                 Anim.SetBool("Moving", false); 
@@ -75,24 +75,30 @@ public class MovingPercon : MonoBehaviour
 
             if (Vector3.Angle(Vector3.forward, moveVector) > 1f || Vector3.Angle(Vector3.forward, moveVector) == 0)
             {
-                Vector3 direct = Vector3.RotateTowards(transform.forward, moveVector, speedRot, 0.0f);
-                transform.rotation = Quaternion.LookRotation(direct);
+                //Vector3 direct = Vector3.RotateTowards(transform.forward, moveVector, speedRot, 0.0f);
+                //transform.rotation = Quaternion.LookRotation(direct);
+                
             }
-            moveVector.y = GravityMode;
-            ch.Move(moveVector * Time.deltaTime * speed);
+            ch.Move(Time.deltaTime * speed * moveVector);
         }
     }
- 
+
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        
         Moving();
         GamingGravity();
-       
-        
     }
+    
 
+    void RotateToDirection(Transform source, Vector3 point)
+    {
+        Vector3 direction = point - source.position;
+        direction.y = 0;
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        targetRotation = Quaternion.Slerp(source.rotation, targetRotation, Time.deltaTime * 5);
+        source.rotation = targetRotation;
+    }
    
     public void SecondMoving(bool go,Vector3 point, NavMeshAgent agent)
     {
@@ -104,14 +110,18 @@ public class MovingPercon : MonoBehaviour
                 second = true;
                 VarMoving = true; agent.enabled = false;
             }
-            if (Vector3.Equals(agent.velocity , Vector3.zero))
+            if (!Vector3.Equals(agent.velocity , Vector3.zero))
             {
                 Anim.SetBool("Moving", true);
+                MovingBool = true; 
+                agent.updateRotation = false;
+                RotateToDirection(agent.transform , point);
+
             }
             if (Vector3.Distance( transform.position, point) <.3f)
             {
                 agent.enabled = false;
-
+                MovingBool = false; 
                 VarMoving = true;
                 second = true;
                 Anim.SetBool("Moving", false);
@@ -141,15 +151,21 @@ public class MovingPercon : MonoBehaviour
     
 
 
-        if (Input.GetKey(KeyCode.Space) && isGrounded&&jumpClosed)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && jumpClosed)
         {
 
             if (MovingBool)
             {
                 GravityMode = jumpForce;
                 Anim.SetTrigger("Jump");
+                Debug.Log("JUMP in RUN");
             }
-            else { Anim.SetTrigger("JumpInPlace"); jumpClosed = false; StartCoroutine(JumpInPlace()); }
+            else
+            {
+                Anim.SetTrigger("JumpInPlace"); 
+                jumpClosed = false; 
+                StartCoroutine(JumpInPlace());
+            }
         }
     }
 

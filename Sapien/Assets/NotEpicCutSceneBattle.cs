@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class NotEpicCutSceneBattle : MonoBehaviour
 {
+     [Header("Sounds")]
+   [SerializeField] private Sound[] _sounds;
     [SerializeField] private Transform _playerController;
    [SerializeField] private GameObject _player;
    [SerializeField] private Animator _animator;
@@ -46,16 +48,24 @@ public class NotEpicCutSceneBattle : MonoBehaviour
       _portal.Play();
       yield return new WaitForSeconds(0.4f);
       Instantiate(_lightning, _player.transform.position, Quaternion.identity);
+      _sounds[0].PlaySound();
+      _sounds[1].PlaySound();
       yield return new WaitForSeconds(0.2f);
+      _sounds[2].PlaySound();
       _player.SetActive(true);
       _agent.SetDestination(_point.position);
       yield return new WaitForSeconds(2.3f);
-      _Islooking = false;
+     _Islooking = false;
       _player.transform.LookAt(_enemy);
       _animator.SetTrigger("FinalMagic");
+     yield return new WaitForSeconds(0.5f);
+     _sounds[2].StopSound();
       yield return new WaitForSeconds(1.3f);
+      _sounds[3].PlaySound();
       _finalMagic.Play();
-      yield return new WaitForSeconds(5f);
+      yield return new WaitForSeconds(4f);
+      _sounds[4].PlaySound();
+      yield return new WaitForSeconds(1f);
       _animator.SetTrigger("Stay");
       yield return new WaitForSeconds(3);
       _music.Stop();

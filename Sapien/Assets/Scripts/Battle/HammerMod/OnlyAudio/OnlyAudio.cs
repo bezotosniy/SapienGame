@@ -132,7 +132,7 @@ public class OnlyAudio : MonoBehaviour
    public IEnumerator PlayAnswersVariant()
    {
      
-        
+        yield return new WaitForSeconds(1);
        if(_audioVariantCount  < _fill.Length)
        {
             _isVariantPlay[_audioVariantCount] = true;

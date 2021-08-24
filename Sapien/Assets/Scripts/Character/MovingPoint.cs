@@ -15,6 +15,7 @@ public class MovingPoint : MonoBehaviour
     Vector3 go;
     bool second;
     bool ButtonTrigger;
+    Vector3 lastDestination;
     void Start()
     {
         agent.enabled = false;
@@ -36,8 +37,10 @@ public class MovingPoint : MonoBehaviour
 
                 if (Physics.Raycast(RayMouse.origin, RayMouse.direction, out hit, 40))
                 {
-                    if (hit.collider.tag == "Ground"&&!ButtonTrigger && !GameManager.Instance.IsPhoneOpened && !EventSystem.current.IsPointerOverGameObject())
+                    //Debug.Log($"{hit.transform.gameObject}  {GameManager.Instance.IsPhoneOpened}  {!EventSystem.current.IsPointerOverGameObject()} {EventSystem.current.currentSelectedGameObject}");
+                    if (hit.collider.tag == "Ground" && !GameManager.Instance.IsPhoneOpened && !EventSystem.current.IsPointerOverGameObject())
                     {
+                        
                         Vector3 position = hit.point + hit.normal * 0.01f;
                         GoTo(position);
                     }
@@ -48,6 +51,9 @@ public class MovingPoint : MonoBehaviour
                 Debug.Log("No camera");
             }
         }
+        
+        
+        
     }
 
     public void GoTo(Vector3 position)
@@ -59,6 +65,7 @@ public class MovingPoint : MonoBehaviour
         go = Instance.transform.position;
         agent.enabled = true;
         agent.SetDestination(go);
+        lastDestination = go;
         Destroy(Instance, 1.5f);
     }
 }

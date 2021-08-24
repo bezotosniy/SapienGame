@@ -9,6 +9,7 @@ public class SpeakithVariantAnimation : MonoBehaviour
    [SerializeField] private Transform[] _dialogsItem;
    [SerializeField] private Transform _questionMark;
    [SerializeField] private AudioSource[] _audio;
+    [SerializeField] private Sound _questionMarkSound;
 
      [Header("Dialog")]
    [SerializeField] private string[] _replicasText;
@@ -67,6 +68,7 @@ public class SpeakithVariantAnimation : MonoBehaviour
        yield return new WaitForSeconds(0.4f);
        _repeatPanel.SetActive(true);
        StartCoroutine(QuestionMark());
+       _questionMarkSound.PlaySound();
     }
 
     private IEnumerator QuestionMark()

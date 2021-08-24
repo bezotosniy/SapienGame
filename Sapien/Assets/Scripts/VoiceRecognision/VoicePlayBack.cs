@@ -32,7 +32,6 @@ public class VoicePlayBack : MonoBehaviour
     {
         _voiceRegontision.StopRecordButtonOnClickHandler();
        _uiController.OnPlayVoice();
-       _voiceRegontision.StopRecord();
        if(_doubleVoicePlayble.isSure == true)
        {
            _doubleUiController._sorryAudio.Play();
@@ -47,7 +46,7 @@ public class VoicePlayBack : MonoBehaviour
     
      public IEnumerator InterlocutorSay()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
         AudioInterlocutor[AudioCount].Play();
         _uiController.InterLocutorSaid();
         StartCoroutine(OnClickButton());

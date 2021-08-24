@@ -28,6 +28,7 @@ public class VoicePlaybleDouble : MonoBehaviour
     [Header("Other")]
     [Space(10F)]
     public int index;
+    [SerializeField] private GameObject _fragmentCardPanel;
 
    
    
@@ -87,10 +88,12 @@ public class VoicePlaybleDouble : MonoBehaviour
    
     public IEnumerator ListenInterlocutor()
    {
-       yield return new WaitForSeconds(2);
+       yield return new WaitForSeconds(1.5f);
        OnListenInterlocutor();
        _dialogPanel.SetActive(false);
 	   _microphonePanel.SetActive(false);
+       _fragmentCardPanel.SetActive(false);
        _uiController.SetColorOfItem(Color.white);
+       
    }
 }

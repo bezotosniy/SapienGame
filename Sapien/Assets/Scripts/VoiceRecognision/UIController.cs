@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using DG.Tweening;
-using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition;
+using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.Examples;
 
 public class UIController : MonoBehaviour
 {
@@ -60,7 +60,6 @@ public class UIController : MonoBehaviour
 
 
     [Header("Other UI")]
-    //[SerializeField] private GameObject _repeatPanel;
     public GameObject _dialogPanel;
     public GameObject _microphonePanel;
     [SerializeField] private GameObject _scrollbar;

@@ -38,6 +38,14 @@ public class EnemyController : MonoBehaviour
     }
 
 
+    public void OnBombClick()
+    {
+      hpSlider.value = 0;
+      HPbat = 0;
+      enemyText.text = hpSlider.value.ToString() + "/" + hpSlider.maxValue.ToString();                      
+    }
+
+
 
   
     // Update is called once per frame

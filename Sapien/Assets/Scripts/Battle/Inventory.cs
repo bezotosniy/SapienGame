@@ -9,7 +9,7 @@ using DG.Tweening;
 
 public class Inventory : MonoBehaviour
 {
-    KeyBordController keyBoard;
+   /* KeyBordController keyBoard;
 
     [Header("Person")]
     public float damage;
@@ -182,7 +182,7 @@ public class Inventory : MonoBehaviour
                 gem[indexGem].transform.localScale = new Vector3(q, q, q);
                 yield return new WaitForFixedUpdate();
             }*/
-            gem[indexGem].transform.DOScale(new Vector3(1.7f, 1.7f, 1.7f), 0.5f);
+           /* gem[indexGem].transform.DOScale(new Vector3(1.7f, 1.7f, 1.7f), 0.5f);
             yield return new WaitForSeconds(1);
             _isPlayMusik = false;
             CanvasAnim.SetTrigger("NewTask");
@@ -444,6 +444,6 @@ public class Inventory : MonoBehaviour
         {
             yield return null;
         }
-    }
+    }*/
 }
 

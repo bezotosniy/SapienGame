@@ -64,6 +64,7 @@ public class UIControllerForCurScene : MonoBehaviour
     [SerializeField] private GameObject _repeatPanel;
     [SerializeField] private GameObject _dialogPanel;
     public GameObject _microphonePanel;
+    [SerializeField] private GameObject _fragmentCardPanel;
 
 
     [Header("Courutine")]
@@ -83,6 +84,7 @@ public class UIControllerForCurScene : MonoBehaviour
     {
        _microphonePanel.SetActive(false);
        _dialogPanel.SetActive(false);
+       _fragmentCardPanel.SetActive(false);
        _mainText.sprite = _textOnWait.sprite;
        _background.sprite = _backgroundOnWait.sprite;
        _imageofMicrophone.enabled = true;
@@ -171,7 +173,7 @@ public class UIControllerForCurScene : MonoBehaviour
     
     public void IncorrectUI()
     {
-        _voiceRecognision.StopRecordButtonOnClickHandler();
+        //_voiceRecognision.StopRecordButtonOnClickHandler();
         _mainText.sprite = _textOnTap.sprite;
         _background.sprite = _backgroundOnSpeak.sprite;
         _imageOfmouse.enabled = true;

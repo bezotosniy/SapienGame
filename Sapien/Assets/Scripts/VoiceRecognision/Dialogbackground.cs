@@ -9,13 +9,13 @@ public class Dialogbackground : MonoBehaviour, IPointerDownHandler
    [Header("Inheritance")]
    [SerializeField] private VoicePlayBack _voicePlayback;
    [SerializeField] private VoiceRegontion2 _voiceRecognision;
-   [SerializeField] private UIController _uiController;
+   [SerializeField] private UIControllerForCurScene _uiController;
    [SerializeField] private VoicePlaybleDouble _voicePlaybackDouble;
    [SerializeField] private DoubleDialogUI _doubleUIController;
  
     public void OnPointerDown(PointerEventData eventData)
     {
-        _voiceRecognision.StopRecordButtonOnClickHandler();
+        
         _voiceRecognision.Counter++;
         if(_voicePlayback.IsMistake == true && _voiceRecognision.Counter != _voiceRecognision.CounterNeed)
         {
@@ -29,7 +29,7 @@ public class Dialogbackground : MonoBehaviour, IPointerDownHandler
             _voiceRecognision.MistakeCounter = 0;
             
         }
-        else if(_voicePlayback.IsMistake == true && _voiceRecognision.Counter == _voiceRecognision.CounterNeed)
+        else if(_voicePlayback.IsMistake == true && _voiceRecognision.Counter == _voiceRecognision.CounterNeed && _voicePlaybackDouble.IsDoublePlayingNow)
         {
             _voicePlayback.IsMistake = false;  
             
@@ -40,5 +40,6 @@ public class Dialogbackground : MonoBehaviour, IPointerDownHandler
             _voiceRecognision.MistakeCounter = 0;
             
         }
+       
     }
 }

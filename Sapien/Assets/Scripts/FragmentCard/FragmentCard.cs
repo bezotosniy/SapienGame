@@ -34,9 +34,9 @@ public class FragmentCard : MonoBehaviour
     
     [Header("Dependencies")] 
     public PhoneManager phoneManager;
-    
-    public Image placeInPhone;
 
+    public GameObject energyParticle; 
+    
     [HideInInspector]public int currentEnergy = 0;
 
     private bool lastCoroutineIsEnded = true; 
@@ -167,8 +167,20 @@ public class FragmentCard : MonoBehaviour
                 currentEnergy += energy;
             }
             
+            if (energy > 0)
+                SpawnEnergyParticle();
+            
             UpdateCardUI();
         }
+    }
+
+    void SpawnEnergyParticle()
+    {
+        float offset = 2.5f, duration = 10;
+        GameObject player = GameObject.Find("Player");
+        GameObject fx = Instantiate(energyParticle, player.transform);
+        fx.transform.position += Vector3.up * offset;
+        Destroy(fx , duration);
     }
 
     void UpdateCardUI()

@@ -20,6 +20,8 @@ public class SomeWords : MonoBehaviour
     private BattleController _battleController;
     private DoneAndMissed _doneAndMissed;
     private KeyBordController _keyBoard;
+    private EnemiesController _enemiesController;
+    private UIAnimation _uiAnimation;
 
     [Header("Click")]
     [SerializeField] private Image _backgroundClick;
@@ -41,7 +43,10 @@ public class SomeWords : MonoBehaviour
     [SerializeField] private GameObject[] _variants;
     [SerializeField] private string[] _tasks;
     [SerializeField] private int[] _randomTask;
-    [SerializeField] private Button _done;
+    public Button _done;
+
+    [Header("Sounds")]
+    [SerializeField] private Sound _doneSound;
 
 
     private void Start()
@@ -49,6 +54,8 @@ public class SomeWords : MonoBehaviour
         _battleController = FindObjectOfType<BattleController>();
         _doneAndMissed = FindObjectOfType<DoneAndMissed>();
         _keyBoard = FindObjectOfType<KeyBordController>();
+        _enemiesController = FindObjectOfType<EnemiesController>();
+        _uiAnimation = FindObjectOfType<UIAnimation>();
         
         _done.onClick.AddListener(OnClickDoneButton);
         CreateRandom();
@@ -127,37 +134,59 @@ public class SomeWords : MonoBehaviour
     private void CheckAnswer()
     {
         StartCoroutine(DestroyObject());
-
-        if(_answerCounter == _checkerAnswerConter.Count - 1)
+        if(_battleController.IsBombTask)
         {
-            Debug.Log("Correct");
-            _doneAndMissed.ScaleGood(1, 290);
-            StartCoroutine(_doneAndMissed.ChangeScale());
-            StartCoroutine(StartCrashGem());
+            if(_answerCounter == _checkerAnswerConter.Count - 1)
+            {
+               Debug.Log("Correct");
+               _doneAndMissed.ScaleGood(1, 290);
+               _uiAnimation.ClosePanel();
+               _enemiesController.CanAttack = true;
+            }
+           else
+            {
+               Debug.Log("Incorrect");
+               _doneAndMissed.ScaleMissed(1, 290);
+               _uiAnimation.ClosePanel();
+               _battleController.StartFightPanel();
+            }
+           
+          
         }
         else
         {
-            Debug.Log("Incorrect");
-            _doneAndMissed.ScaleMissed(1, 290);
-            StartCoroutine(_doneAndMissed.ChangeScaleMissed());
-            StartCoroutine(StartClosePanel());
-            
+           if(_answerCounter == _checkerAnswerConter.Count - 1)
+            {
+               Debug.Log("Correct");
+               _doneAndMissed.ScaleGood(1, 290);
+               StartCoroutine(_doneAndMissed.ChangeScale());
+               StartCoroutine(StartCrashGem());
+               _enemiesController.CanAttack = true;
+            }
+           else
+            {
+               Debug.Log("Incorrect");
+               _doneAndMissed.ScaleMissed(1, 290);
+               StartCoroutine(_doneAndMissed.ChangeScaleMissed());
+               StartCoroutine(StartClosePanel());
+            }
         }
+        
     }
 
     private IEnumerator StartCrashGem()
     {
         
         yield return new WaitForSeconds(2);
-        _doneAndMissed.ScaleGood(0, 250);
-        _battleController.CrashGem(25);
+        //_doneAndMissed.ScaleGood(0, 250);
+        _battleController.CrashGem(_battleController._damagePerAnswer);
     }
 
     private IEnumerator StartClosePanel()
     {
         
         yield return new WaitForSeconds(2);
-        _doneAndMissed.ScaleMissed(0, 250);
+        //_doneAndMissed.ScaleMissed(0, 250);
         StartCoroutine(_battleController.ClosePanel());
     }
 
@@ -208,6 +237,13 @@ public class SomeWords : MonoBehaviour
         yield return new WaitForSeconds(10);
         Destroy(gameObject);
     }
+
+
+    public void OnCLickDoneSound()
+    {
+        _doneSound.PlaySound();
+    }
+
 
 
     

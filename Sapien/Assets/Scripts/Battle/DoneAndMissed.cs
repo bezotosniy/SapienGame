@@ -16,6 +16,10 @@ public class DoneAndMissed : MonoBehaviour
     [SerializeField] private Transform _missed;
     [SerializeField] private Image _cross;
 
+    [Header("Sounds")]
+    [SerializeField] private Sound _correct;
+    [SerializeField] private Sound _incorrect;
+
 
     public IEnumerator ChangeScale()
     {
@@ -65,6 +69,11 @@ public class DoneAndMissed : MonoBehaviour
         _good.DOMoveY(position, 0.7f);
         _good.DOScale(new Vector3(scale, scale, scale), 0.4f);
         StartCoroutine(ChangeScale());
+        if(scale == 1)
+        {
+            _correct.PlaySound();
+        }
+        
     }
 
     public void ScaleMissed(int scale, float position)
@@ -72,5 +81,10 @@ public class DoneAndMissed : MonoBehaviour
         _missed.DOMoveY(position, 0.7f);
         _missed.DOScale(new Vector3(scale, scale, scale), 0.4f);
         StartCoroutine(ChangeScaleMissed());
+        if(scale == 1)
+        {
+            _incorrect.PlaySound();
+        }
+        
     }
 }

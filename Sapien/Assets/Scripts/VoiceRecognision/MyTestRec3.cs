@@ -7,7 +7,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.Examples
 {
 	public class MyTestRec3 : MonoBehaviour
 	{
-		private GCSpeechRecognition _speechRecognition;
+		/*private GCSpeechRecognition _speechRecognition;
 
 		private Button _startRecordButton,
 					   _stopRecordButton;
@@ -370,6 +370,6 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.Examples
 			}
 
 			_resultText.text += other;
-		}
+		}*/
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition;
+using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.Examples;
 
 public class SpeakWithCard : MonoBehaviour
 {
@@ -52,7 +52,7 @@ public class SpeakWithCard : MonoBehaviour
     {
         if(isSpeak)
         {
-            _voiceregonsion.StartRecordButtonOnClickHandler();
+             _voiceregonsion.StartRecordButtonOnClickHandler();
             _textImage.sprite = _speak;
             _background.sprite = _speakbackground;
             IsSpeakWithCard = true;

@@ -80,7 +80,7 @@ public class VoicePlayback : MonoBehaviour
     private IEnumerator StartVoicerecognition()
     {
         yield return new WaitForSeconds(1);
-        voiceRecognision.StartRecordButtonOnClickHandler();
+        //voiceRecognision.StartRecordButtonOnClickHandler();
     }
 
 

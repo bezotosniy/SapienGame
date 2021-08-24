@@ -13,9 +13,17 @@ public class Sound
     public AudioMixerGroup group;
     public AudioClip clip;
     public bool loop = false , mode3d = false , playOnAwake = true;
+    [HideInInspector]
+    public GameObject Source;
     public void PlaySound()
     {
         AudioManager.Instance.PlaySound(this);
+    }
+
+    public void StopSound()
+    {
+        
+        Source?.GetComponent<AudioSource>().Stop();
     }
 
     public void FillAudioSourceParams(ref AudioSource src)
@@ -91,7 +99,9 @@ public class AudioManager : MonoBehaviour
     public void PlaySound(Sound sound)
     {
         GameObject srcObj = new GameObject();
+        sound.Source = srcObj;
         StartCoroutine(PlayAndDeleteSound(srcObj, sound));
+
     }
 
     IEnumerator PlayAndDeleteSound(GameObject soundSource , Sound sound)

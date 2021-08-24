@@ -6,6 +6,8 @@ using DG.Tweening;
 
 public class CutSceneBattle : MonoBehaviour
 {
+   [Header("Sounds")]
+   [SerializeField] private Sound[] _sounds;
    [SerializeField] private Transform _playerController;
    [SerializeField] private Transform _player;
    [SerializeField] private Animator _animator;

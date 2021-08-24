@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition;
+using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.Examples;
 
 public class SpeakWithVariant : MonoBehaviour
 {

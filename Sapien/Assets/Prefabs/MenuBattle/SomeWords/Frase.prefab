@@ -576,7 +576,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.02, y: -156}
+  m_AnchoredPosition: {x: -18, y: -156}
   m_SizeDelta: {x: 239.375, y: 69.181}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &428362343583447862
@@ -660,7 +660,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 428362343583447863}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 428362344539854560}
+        m_TargetAssemblyTypeName: SomeWords, Assembly-CSharp
+        m_MethodName: OnCLickDoneSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &428362343784984057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,6 +1034,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 391188539120352237}
+        m_TargetAssemblyTypeName: ButtonAudioController, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &428362344066351444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1274,6 +1298,7 @@ GameObject:
   - component: {fileID: 428362344539854561}
   - component: {fileID: 428362344539854562}
   - component: {fileID: 428362344539854560}
+  - component: {fileID: 391188539120352237}
   m_Layer: 5
   m_Name: Frase
   m_TagString: Untagged
@@ -1391,6 +1416,38 @@ MonoBehaviour:
   - you
   _randomTask: 000000000100000002000000
   _done: {fileID: 428362343583447856}
+  _doneSound:
+    name: Done Sound
+    volume: 1
+    pitch: 1
+    group: {fileID: -5989345832241728715, guid: d638011ecd3f06a4da5b18ce3e1f12d1, type: 2}
+    clip: {fileID: 8300000, guid: 485b9bc3151d2bb4896b98c67cab41e1, type: 3}
+    loop: 0
+    mode3d: 0
+    playOnAwake: 1
+    Source: {fileID: 0}
+--- !u!114 &391188539120352237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428362344539854588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7fa8fce6708c244ca96d55f6d76a284, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sounds:
+  - name: On Click Button
+    volume: 1
+    pitch: 0.8
+    group: {fileID: -5989345832241728715, guid: d638011ecd3f06a4da5b18ce3e1f12d1, type: 2}
+    clip: {fileID: 8300000, guid: a05ea077d0870334dbb17586df0d47d5, type: 3}
+    loop: 0
+    mode3d: 0
+    playOnAwake: 0
+    Source: {fileID: 0}
 --- !u!1 &428362344542624644
 GameObject:
   m_ObjectHideFlags: 0
@@ -1983,6 +2040,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 391188539120352237}
+        m_TargetAssemblyTypeName: ButtonAudioController, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7620454578652567196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2428,6 +2497,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 391188539120352237}
+        m_TargetAssemblyTypeName: ButtonAudioController, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

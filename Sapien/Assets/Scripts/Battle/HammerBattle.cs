@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition;
+using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.Examples;
 
 public class HammerBattle : MonoBehaviour
 {
@@ -30,6 +30,7 @@ public class HammerBattle : MonoBehaviour
     [SerializeField] private BattleController _battleController;
     [SerializeField] private UIAnimation _animation;
     [SerializeField] private MovingBattlePeron _person;
+    [SerializeField] private AnimationBattleUI _animationStats;
     
 
     [Header("Time")]
@@ -43,7 +44,7 @@ public class HammerBattle : MonoBehaviour
     [SerializeField] private int _damage;
     [SerializeField] private int _crystallHP;
     [SerializeField] private Text _hp;
-    [SerializeField] private Image _slider;
+    [SerializeField] private Slider _slider;
     [SerializeField] private int _hpControl;
     [SerializeField] private GameObject _hpPanel;
     [SerializeField] private GameObject _enemyPanel;
@@ -58,6 +59,15 @@ public class HammerBattle : MonoBehaviour
     [SerializeField] private UIAnimation _uiAnimation;
     [SerializeField] private DoneAndMissed _doneAndMissed;
     [SerializeField] private Animation _openPanel;
+    public Sound[] _sounds;
+    [SerializeField] private Sound _whenBulletMoveSound;
+    [SerializeField] private Sound  _damageEnemy;
+    [SerializeField] private Sound  _explotionBullet;
+
+    [Header("Finish Game")]
+    [SerializeField] private Animator _cameraAnimator;
+    [SerializeField] private Transform _player;
+ 
 
 
 
@@ -69,10 +79,12 @@ public class HammerBattle : MonoBehaviour
 
     private void Start()
     {
+        _hp.text = _crystallHP + "/" + _hpControl;
         _enemyPanel.SetActive(false);
         _hpPanel.SetActive(true);
         index = 0;
         CreateRandom();
+        _animationStats.OpenHammerModStats();
     }
 
 
@@ -113,10 +125,12 @@ public class HammerBattle : MonoBehaviour
     public IEnumerator ClosePanelIfMissed()
     {
         yield return new WaitForSeconds(2f);
+        _sounds[0].PlaySound();
         _animation.ClosePanel();
         yield return new WaitForSeconds(2);
         _doneAndMissed.ScaleMissed(0,260);
         _openPanel.Play();
+        _sounds[1].PlaySound();
         StartCoroutine(StartRecord());
        
     }
@@ -152,6 +166,7 @@ public class HammerBattle : MonoBehaviour
     public IEnumerator CloseType()
     {
         yield return new WaitForSeconds(2.5f);
+        _sounds[0].PlaySound();
         _animation.ClosePanel();
         yield return new WaitForSeconds(3);
         _doneAndMissed.ScaleGood(0, 260);
@@ -162,6 +177,8 @@ public class HammerBattle : MonoBehaviour
     
  IEnumerator MoveBullet(GameObject bullet, Vector3 point)
         {
+            _battleController.BombDamageForhammerMod();
+            _whenBulletMoveSound.PlaySound();
             while (true)
             {
             Vector3 quat = Vector3.RotateTowards( bullet.transform.forward, point - bullet.transform.position, 120 *Time.deltaTime,0.0f);
@@ -169,25 +186,28 @@ public class HammerBattle : MonoBehaviour
                 bullet.transform.position = Vector3.MoveTowards(bullet.transform.position, point,4.74f * Time.deltaTime);
                 if (Vector3.Distance(bullet.transform.position, point) < 0.01f)
                 {
+                    _damageEnemy.PlaySound();
+                    _explotionBullet.PlaySound();
                     _crystallHP -= _damage;
                     _hp.text = _crystallHP + "/" + _hpControl;
-                    _slider.fillAmount -= (1 / _hpControl) * _damage;
+                    _slider.value -= _damage;
                     Instantiate(_destroyBullet,_enemy);
                     Destroy(bullet);
-                    yield break;
-                    
-                    
-                }
-                if(_crystallHP <= 0)
+                    if(_crystallHP <= 0)
                     {
-                        Debug.Log("End");
+                        StartCoroutine(FinishGame());
                       
                     }
-                else
+                    else
                     {
                         StartCoroutine(_battleController.WaitForOpenHammerPanel());
                         
                     }
+                    yield break;
+                    
+                    
+                }
+                
                 yield return new WaitForFixedUpdate();
                 
             }
@@ -195,17 +215,16 @@ public class HammerBattle : MonoBehaviour
          public IEnumerator ClickOnEnemy(Vector3 enemyPoint)
         {
             index++;
-            _animator.SetBool("IsAttack", true);
             GameObject bk = Instantiate(_background, transform);
             
-
+            
             yield return new WaitForSeconds(1.5f);
+            _animator.SetTrigger("IsAttack");
             GameObject bullet = Instantiate(_uron, _instantiateParticle);
          
 
             StartCoroutine(MoveBullet(bullet, enemyPoint));
             yield return new WaitForSeconds(2);
-            _animator.SetBool("IsAttack", false);
             Destroy(bk);
         }
   
@@ -223,6 +242,7 @@ public class HammerBattle : MonoBehaviour
                 if (allTime < 0)
                 {
                     _IsTimeGo = false;
+                    _sounds[0].PlaySound();
                     _animation.ClosePanel();
                     _type[index].SetActive(false);
                     StartCoroutine(OpenType());
@@ -235,6 +255,32 @@ public class HammerBattle : MonoBehaviour
         
 
     }
+
+
+
+    private IEnumerator FinishGame()
+    {
+       
+            Debug.Log("Win");
+            _animator.SetTrigger("Win");
+            _cameraAnimator.SetTrigger("end");
+            _battleController._sounds[8].PlaySound();
+            yield return new WaitForSeconds(4);
+            _battleController.GoHome.gameObject.SetActive(true);
+            _battleController.GoHome.onClick.AddListener(_battleController.GoHomeVoid);
+            _battleController.RESULT_TEXT.gameObject.SetActive(true);
+            _battleController._sounds[9].PlaySound();
+            _battleController.RESULT_TEXT.text = "WIN";
+        
+        
+    }
+  
+
+
+
+
+
+   
 
    
   

@@ -23,7 +23,7 @@ public class DoubleMistakeDialog : MonoBehaviour, IPointerDownHandler
 		   _doubleUIController._doublePanel.SetActive(false);
 		   _voicePlaybackDouble.isSure = true;
 		   _voiceRecognision.comboCount = 0;
-		   _voiceRecognision.SetComboAndBest();
+		   //_voiceRecognision.SetComboAndBest();
 		   _voiceRecognision.MistakeCounter = 0;
            _voicePlayback.IsMistake = false;
         }

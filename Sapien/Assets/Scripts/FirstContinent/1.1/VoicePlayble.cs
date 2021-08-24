@@ -130,7 +130,7 @@ public class VoicePlayble : MonoBehaviour, IPointerDownHandler
         IsRecording = true;
         SetPlayButton();
         SetSpeakBackground();
-       _voiceRecognision.StartRecordButtonOnClickHandler();
+       //_voiceRecognision.StartRecordButtonOnClickHandler();
         
     }
 

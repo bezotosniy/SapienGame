@@ -24,6 +24,11 @@ using DG.Tweening;
         [SerializeField] private GiveDamageAnimation _animation;
         [SerializeField] private EnemiesController _enemiesController;
         [SerializeField] private GameObject _enemyDamageParticle;
+        [SerializeField] private BattleController _battleController;
+        [SerializeField] private Sound _damageEnemy;
+        [SerializeField] private Sound _explotionBullet;
+        [SerializeField] private Sound _whenBulletMoveSound;
+        [SerializeField] private GameObject _bomb;
        
                
     
@@ -32,32 +37,37 @@ using DG.Tweening;
         void Start()
         {
             agent = GetComponent<NavMeshAgent>();
+           
         }
         public IEnumerator ClickOnEnemy(Vector3 enemyPoint)
         {
-
+            _enemiesController.CanAttack = false;
             GameObject bk = Instantiate(background, transform);
-            Anim.SetBool("IsAttack", true);
+            Anim.SetTrigger("IsAttack");
 
             yield return new WaitForSeconds(1);
             GameObject bullet = Instantiate(Uron, instantiateParticle);
-         
-
             StartCoroutine(MoveBullet(bullet, enemyPoint));
+            transform.rotation.SetLookRotation(bullet.transform.position);
+            
             yield return new WaitForSeconds(2);
             Destroy(bk);
-            Anim.SetBool("IsAttack", false);
+            
         }
 
         IEnumerator MoveBullet(GameObject bullet, Vector3 point)
         {
+            _whenBulletMoveSound.PlaySound();
             while (true)
             {
-            Vector3 quat = Vector3.RotateTowards( bullet.transform.forward, point - bullet.transform.position, 120 *Time.deltaTime,0.0f);
-            bullet.transform.rotation = Quaternion.LookRotation(quat);
+                Vector3 quat = Vector3.RotateTowards( bullet.transform.forward, point - bullet.transform.position, 120 *Time.deltaTime,0.0f);
+                bullet.transform.rotation = Quaternion.LookRotation(quat);
                 bullet.transform.position = Vector3.MoveTowards(bullet.transform.position, point,speedBulllet * Time.deltaTime);
                 if (Vector3.Distance(bullet.transform.position, point) < 0.01f)
                 {
+                    
+                    Debug.Log("I am here");
+                    _damageEnemy.PlaySound();
                     Vector3 StartPosition = bullet.transform.position + new Vector3(0,1,0);
                     float StartRotation = Quaternion.LookRotation(transform.position - (bullet.transform.position + new Vector3(0,1,0))).eulerAngles.y;
                     GameObject particle = Instantiate(_enemyDamageParticle, StartPosition, Quaternion.identity) as GameObject;
@@ -66,31 +76,39 @@ using DG.Tweening;
                     particle.GetComponent<CFXR_ParticleText_Runtime>().rotation = StartRotation;
                     particle.GetComponent<CFXR_ParticleText_Runtime>().text = inv.CurrentUron.ToString();
                     particle.GetComponent<CFXR_ParticleText_Runtime>().GenerateText(inv.CurrentUron.ToString());
-                    inv.EnemyDie();
-                    Instantiate(DestroyBullet,new Vector3(point.x, point.y, point.z), Quaternion.identity);
+                    if(_battleController.IsBomb)
+                    {
+                        for(int i = 0; i < _enemiesController._enemies.Count; i++)
+                        {
+                            Vrag[i].GetComponent<EnemyController>().OnBombClick();
+                            _battleController.IsBomb = false;
+                            
+                        }
+                        StartCoroutine(_battleController.FinishGame());
+                         GameObject ParticleBomb = Instantiate(_bomb, transform.position + new Vector3(1,0,3), Quaternion.identity);
+                    }
+                    else
+                    {
+                        if(!_battleController.infinitely)
+                        {
+                            inv.EnemyDie();
+                        }
+                        else
+                        {
+                            StartCoroutine(_battleController.FinishGame());
+                        }
+                    }
+                    
+                   Instantiate(DestroyBullet,new Vector3(point.x, point.y, point.z), Quaternion.identity);
                     Destroy(bullet);
+                    _explotionBullet.PlaySound();
                     yield break;
                 }
                 yield return new WaitForFixedUpdate();
                 
             }
         }
-        /*IEnumerator AgentWait()
-        {
-            yield return new WaitForSeconds(2);
-            agent.SetDestination(point.position);
-            StartCoroutine(ParticleShag(particleShag));
-        }
-        IEnumerator ParticleShag(GameObject particle)
-        {
-            while (agent.enabled)
-            {
-                Instantiate(particle, agent.gameObject.transform);
-                yield return new WaitForSeconds(Random.Range(1, 2));
-            }
-        }*/
-
-        // Update is called once per frame
+        
         void Update()
         {
             if (Vector3.Distance(transform.position, point.position) < .5f)

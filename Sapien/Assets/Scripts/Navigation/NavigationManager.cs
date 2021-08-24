@@ -14,6 +14,8 @@ public class NavigationManager : MonoBehaviour
     private RectTransform pointer;
     public Transform target;
     public float border = 100f;
+
+    public float offsetY = 10;
     //public string targetName;
     private Vector2 borderInUI;
     private Vector3 maxScale = new Vector3(1.5f, 1.5f, 1.0f);
@@ -67,8 +69,14 @@ public class NavigationManager : MonoBehaviour
             //direction = camera.transform.TransformVector(direction);
             //direction.y = 0;
             direction = project;
-            direction /= 2;
             
+            Vector3 offset = Vector3.zero;
+            offset.x = Mathf.Lerp(border, -border, direction.x);
+            offset.y = Mathf.Lerp(border, -border, direction.y);
+            
+            direction /= 2;
+
+            //direction.y += offsetY;
             //Debug.Log(direction);
 
             GameObject WorldObject = target.gameObject;
@@ -84,8 +92,8 @@ public class NavigationManager : MonoBehaviour
             //    direction.y = -0.5f;
             //float secondDim = Mathf.Clamp(direction.z + direction.y , -0.5f , 0.5f);
             Vector2 WorldObject_ScreenPosition = new Vector2(
-                ((direction.x * CanvasRect.sizeDelta.x)),
-                ((direction.y * CanvasRect.sizeDelta.y)));
+                ((direction.x * CanvasRect.sizeDelta.x) + offset.x),
+                ((direction.y * CanvasRect.sizeDelta.y)) + offset.y);
             
             UI_Element.anchoredPosition = WorldObject_ScreenPosition;
             UI_Element.localScale = newScale;

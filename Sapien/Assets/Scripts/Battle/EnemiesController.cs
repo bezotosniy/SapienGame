@@ -27,6 +27,11 @@ public class EnemiesController : MonoBehaviour
      [SerializeField] private Camera _camera;
      public EnemyController LastHited;
      private int _count;
+     [SerializeField] private Sound _flyingEnemySound;
+     [SerializeField] private Sound _characterTakeDamageSound;
+     [SerializeField] private Sound _whenEnemyAttackSound;
+     private bool _isClicked = false;
+     public bool CanAttack = false;
     
 
     private void Start()
@@ -44,7 +49,7 @@ public class EnemiesController : MonoBehaviour
     {
        if(_enemies.Count > 0)
        {
-            RandomEnemy = Random.Range(0, _enemies.Count);
+           RandomEnemy =  Random.Range(0, _enemies.Count);
             for(int i = 0; i < _enemiesStatus.Count; i++)
             {
                _enemiesStatus[i].sprite = _sleep;
@@ -57,7 +62,7 @@ public class EnemiesController : MonoBehaviour
      void FixedUpdate()
     {
        
-        if (Input.GetButtonDown("Fire1"))
+        if (_isClicked && CanAttack)
         {
             if (_camera!= null)
             {
@@ -71,18 +76,24 @@ public class EnemiesController : MonoBehaviour
                     {   
                         EnemyController Local = hit.transform.gameObject.GetComponent<EnemyController>();
                         
-                            LastHited = Local;
-                            StartCoroutine(_person.ClickOnEnemy(hit.transform.position));
-                            inv.bombSlider.value = 0;
-                            inv.Bomb.interactable = false;
-                    
-                       
-                        
-                        
+                        LastHited = Local;
+                        StartCoroutine(_person.ClickOnEnemy(hit.transform.position));
                     }
+
                 }
+                _isClicked = false;
             }
             else { Debug.Log("No camera"); }
+        }
+        _isClicked = false;
+    }
+
+
+    private void Update()
+    {
+        if(Input.GetButtonDown("Fire1"))
+        {
+            _isClicked = true;
         }
     }
    
@@ -96,23 +107,29 @@ public class EnemiesController : MonoBehaviour
         {
             yield return new WaitForSeconds(2f);
             EnemyAnim[RandomEnemy].SetBool("Go", true);
+            _flyingEnemySound.PlaySound();
+            Debug.Log("AnimGoPlay");
             while (true)
             {
                 _enemies[RandomEnemy].transform.position = Vector3.MoveTowards( _enemies[RandomEnemy].transform.position, PointShoot.position, speedMouse);
                 Vector3 quat = Vector3.RotateTowards( _enemies[RandomEnemy].transform.forward, PointShoot.position -  _enemies[RandomEnemy].transform.position, 20 * Time.deltaTime, 0.0f);
-                 _enemies[RandomEnemy].transform.rotation = Quaternion.LookRotation(quat);
+                _enemies[RandomEnemy].transform.rotation = Quaternion.LookRotation(quat);
                 yield return new WaitForFixedUpdate();
-                if (Vector3.Distance( _enemies[RandomEnemy].transform.position, PointShoot.position) < 0.01f)
+                Debug.Log( $"{_enemies[RandomEnemy].transform.position} to {PointShoot.position} with speed {speedMouse} and with name {_enemies[RandomEnemy].name}");
+                if (Vector3.Distance( _enemies[RandomEnemy].transform.position, PointShoot.position) < 0.07f)
                 {
-                   
+                   Debug.Log("Attack");
                     EnemyAnim[RandomEnemy].SetBool("Go", false);
                     EnemyAnim[RandomEnemy].SetTrigger("Attack");
+                    _whenEnemyAttackSound.PlaySound();
                     inv.HP_Person_Controller(damage);
-                    inv.animPerson.SetTrigger("takeDamage");
+                    inv.animPerson.SetTrigger("IsTakeDamage");
+                    _characterTakeDamageSound.PlaySound();
                     StartCoroutine(BackEnemyToStartPos());
                     yield break;
                 }
             }
+
         }
         else
         {
@@ -128,6 +145,7 @@ public class EnemiesController : MonoBehaviour
         EnemyAnim[RandomEnemy].SetBool("Go", true);
         while (true)
         {
+          
             _enemies[RandomEnemy].transform.position = Vector3.MoveTowards( _enemies[RandomEnemy].transform.position, StartPosEnemy[RandomEnemy], speedMouse);
             Vector3 quat = Vector3.RotateTowards( _enemies[RandomEnemy].transform.forward, StartPosEnemy[RandomEnemy] -  _enemies[RandomEnemy].transform.position, 10 * Time.deltaTime, 0.0f);
             _enemies[RandomEnemy].transform.rotation = Quaternion.LookRotation(quat);
@@ -138,16 +156,12 @@ public class EnemiesController : MonoBehaviour
                 EnemyAnim[RandomEnemy].SetBool("Go", false);
                 _enemies[RandomEnemy].transform.rotation = Quaternion.LookRotation(PointShoot.position -  _enemies[RandomEnemy].transform.position);
                inv.ClickOnGem.interactable = true;
-               if(_count < 1)
-            {
                 if(inv.HP_Person > 0)
                {
-                  
-                  _count++;
                   inv.StartFightPanel();
                }
-            }
-             
+              
+             yield break;
             }
             
           

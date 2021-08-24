@@ -9,6 +9,7 @@ public class AudioAndImageAnimation : MonoBehaviour
    [SerializeField] private Transform[] _dialogsItem;
    [SerializeField] private Transform _questionMark;
    [SerializeField] private AudioSource[] _audio;
+   [SerializeField] private Sound _questionMarkSound;
 
      [Header("Dialog")]
    [SerializeField] private string[] _replicasText;
@@ -27,12 +28,14 @@ public class AudioAndImageAnimation : MonoBehaviour
    [Space(20f)]
    [SerializeField] private Answer _answers;
    [SerializeField] private AudioAndImage _audioAndImage;
+  
    
    private void Start()
    {
-      StartCoroutine(OpenDialog());
+      
       _randomAvatar = Random.Range(1, _answers.Avatars.Length);
       CreateDialog(_replicasText);
+      StartCoroutine(OpenDialog());
 
      
    }
@@ -40,10 +43,10 @@ public class AudioAndImageAnimation : MonoBehaviour
 
    private IEnumerator OpenDialog()
    {
+      
        for(int i = 0; i < _dialogsItem.Length; i++)
        {
             yield return new WaitForSeconds(1);
-           
            _dialogsItem[i].DOScale(new Vector3(1,1,1), 0.4f);
            if(i % 2 == 0)
            {
@@ -65,8 +68,11 @@ public class AudioAndImageAnimation : MonoBehaviour
                 }
            }
        }
-       yield return new WaitForSeconds(1f);
+       Debug.Log("Dialog done");
+       yield return new WaitForSeconds(0.4f);
+       Debug.Log("Repeat Paenl is Active");
        _repeatPanel.SetActive(true);
+       _questionMarkSound.PlaySound();
        StartCoroutine(QuestionMark());
        StartCoroutine(_audioAndImage.PlayAnswersVariant());
     }

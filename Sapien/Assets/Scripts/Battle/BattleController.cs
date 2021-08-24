@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using CartoonFX;
-using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition;
+using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.Examples;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 public class BattleController : MonoBehaviour
 {
    KeyBordController keyBoard;
+
+   [Header("Sounds")]
+   public Sound[] _sounds;
 
     [Header("Person")]
     //public int damage;
@@ -48,7 +51,7 @@ public class BattleController : MonoBehaviour
     public int[] RandomTask;
     [SerializeField] private AudioSource _dictorAudio;
     public AudioSource[] _dictorNotInfentlySaid;
-    [Space]
+    [Space(10f)]
     private Camera Cam;
     private Ray RayMouse;
     [Space]
@@ -64,6 +67,10 @@ public class BattleController : MonoBehaviour
     [Header("Survive Modes")]
     public bool infinitely;
     public int LerningModeId;
+
+    [Header("Bomb")]
+    [SerializeField] private Image[] _fills;
+    public int _damagePerAnswer;
 
     [SerializeField] private GameObject _bombUI;
     [SerializeField] private Button _infentlyInstrument;
@@ -104,29 +111,44 @@ public class BattleController : MonoBehaviour
     [SerializeField] private Transform _player;
     [SerializeField] private Slider[] _enemyHP;
     [SerializeField] private Canvas[] _enemyCanvas;
-    [SerializeField] private EnemyController[] _enemyController;  
+    [SerializeField] private List<EnemyController> _enemyController = new List<EnemyController>();  
     public int _countAttack;  
     [SerializeField] private GameObject _someWordsPanel;
     [SerializeField] private bool _isHammerMod;
+    [SerializeField] private DoneAndMissed _doneAndMissed;
+    [SerializeField] private int _damageBomb;
+    [SerializeField] private AnimationBattleUI _animationStats;
+    [SerializeField] private SavingBomb _saving;
+    public bool IsBomb;
+    private bool _doneSomeWordsButtonEnabled;
+    public bool IsBombTask = false; 
 
 
 
     private void Start()
     {
+        for(int i = 0; i < _fills.Length; i++)
+        {
+            if(_saving._saving.IsBombsFillOpened[i])
+            {
+                _fills[i].enabled = true;
+            }
+        }
        
        if(!infinitely)
        {
             CreateRandom();
             gem[3].SetActive(false);
        }
+            
+       
         InfentlyMode();
         _mainMusik.Play();
        
         _infentlyInstrument.onClick.AddListener(ClickOnGems);
-        _firstButton.onClick.AddListener(bomb);
         _secondButton.onClick.AddListener(ClickOnGems);
         _hammerButton.onClick.AddListener(OnHammerButtonCLick);
-        bombSlider.value = 0;
+        Bomb.onClick.AddListener(OnClickBombButton);
         Bomb.interactable = false;
         Start_hp_Person = HP_Person;
         HP_Person_Controller(0);
@@ -137,8 +159,22 @@ public class BattleController : MonoBehaviour
        // CanvasAnim = GetComponent<Animator>();
         StartCoroutine(StartFight());
         _firstButtonImage = _firstButton.GetComponent<Image>();
+
+        if(_isHammerMod)
+        {
+            for(int  i = 0; i < _enemies.Length; i++)
+            {
+                _enemies[i].SetActive(false);
+            }
+
+        }
         
     
+    }
+
+    private void Awake()
+    {
+        _saving.Load();
     }
 
      private void CreateRandom()
@@ -210,41 +246,58 @@ public class BattleController : MonoBehaviour
     }*/
       private IEnumerator StartFight()
     {
+        Debug.Log("StartFight");
         yield return new WaitForSeconds(13f);
        StartFightPanel();
+       yield return new WaitForSeconds(1.25f);
+       if(!infinitely && !_isHammerMod)
+       {
+            _animationStats.OpenStatsUI();
+       }
+       else if(_isHammerMod)
+       {
+            _hammerButton.transform.DOScale(new Vector3(0.56f, 0.56f, 0.56f), 0.5f);
+            _infentlyInstrument.GetComponent<Image>().enabled = false;
+            _secondButton.GetComponent<Image>().enabled = false;
+       }
+       else if(infinitely)
+       {
+           _animationStats.OpenInfenetlyModStats();
+       }
+       
     }
-
 
       public void StartFightPanel()
       {
+         
+          Debug.Log("Yes");
+          
           CurrentUron = 0;
           _someWordsPanel.SetActive(false);
           _enemiesController.ChangeStatus();
           _countAttack = 0;
-          _hammerButton.transform.DOMoveY(80, 0.5f);
-          
-           if(infinitely)
+
+
+        if(IsHammerTask)
+        {
+            _infentlyInstrument.transform.DOScale(new Vector3(0,0,0), 0.01f);
+             _secondButton.transform.DOScale(new Vector3(0, 0, 0), 0.01f);
+        }
+        if(infinitely)
         {
             _infentlyInstrument.transform.DOScale(new Vector3(0.56f, 0.56f, 0.56f), 0.5f);
         }
         else
         {
             _firstButtonImage.GetComponent<Image>().enabled = true;
-            //_secondButton.transform.DOMoveY(80, 0.5f);
             _secondButton.transform.DOScale(new Vector3(0.56f, 0.56f, 0.56f), 0.5f);
             _secondButton.GetComponent<Image>().enabled  = true;
         }
-
-        if(IsHammerTask)
-        {
-            _hammerBattle.transform.DOScale(new Vector3(0.56f, 0.56f, 0.56f), 0.5f);
-        }
-        
-        //EnemyControll.MouseBar.gameObject.SetActive(true);
       }
 
       public void ClickOnGems()
     {
+       
         indexGem = 0;
         LerningModeId = 0;
         if (indexGem == 0)
@@ -255,6 +308,7 @@ public class BattleController : MonoBehaviour
                    gem[i].SetActive(true);
                    gem[i].transform.DOScale(new Vector3(1,1,1), 0.5f);
                }
+            _sounds[1].PlaySound();
             gems.SetTrigger("Pick");
             StartCoroutine(WaitToStart());
         }
@@ -269,15 +323,12 @@ public class BattleController : MonoBehaviour
         if(infinitely)
         {
             _infentlyInstrument.transform.DOScale(new Vector3(0,0,0), 0.5f);
-          
-            //_infentlyInstrument.GetComponent<Image>().enabled = false;
         }
         else
         {
             
             _secondButton.transform.DOScale(new Vector3(0, 0, 0), 0.5f);
             _firstButton.GetComponent<Image>().enabled = false;
-            //_secondButton.GetComponent<Image>().enabled = false;
         }
        
         
@@ -285,28 +336,31 @@ public class BattleController : MonoBehaviour
 
      private IEnumerator WaitForChangeScale()
     {
-        
-        Debug.Log("Scale");
+        yield return new WaitForSeconds(1.5f);
+       
        if(infinitely)
        {
           if (indexGem <= 3)
         {
+             Debug.Log("Scale");
+            _sounds[2].PlaySound();
             float i = gem[indexGem].transform.localScale.x;
             for (float q = i; q < i * 2; q += .1f)
             {
-                 yield return new WaitForFixedUpdate();
+                yield return new WaitForFixedUpdate();
                 gem[indexGem].transform.localScale = new Vector3(q, q, q);
                
             }
             
             RandomString = Random.Range(0,_voiceRecognision.TaskNotInfently.Length);
             _taskText.text = voiceRec.Task;
-            voiceRec.gameObject.SetActive(true);
-            yield return new WaitForSeconds(1);
+            
+            yield return new WaitForSeconds(2);
             _mainMusik.Stop();
            _animation.OpenPanel();
             TimeGo = true;
             Debug.Log("NewTask");
+            _sounds[0].PlaySound();
             StartCoroutine(InstantTaskLearning());
         }
        }
@@ -314,6 +368,8 @@ public class BattleController : MonoBehaviour
        {
            if (indexGem <= 2)
         {
+            Debug.Log("Scale");
+            _sounds[2].PlaySound();
             float i = gem[indexGem].transform.localScale.x;
             for (float q = i; q < i * 2; q += .1f)
             {
@@ -324,25 +380,19 @@ public class BattleController : MonoBehaviour
             RandomString = Random.Range(0,_voiceRecognision.TaskNotInfently.Length);
             _taskText.text = voiceRec.TaskNotInfently[RandomString];
             voiceRec.gameObject.SetActive(true);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
             _mainMusik.Stop();
             _animation.OpenPanel();
             TimeGo = true;
             Debug.Log("NewTask");
+            _sounds[0].PlaySound();
             StartCoroutine(InstantTaskNotInfently());
-                /*if(indexGem == 2)
-                {
-                    _enemyContoller.IsAttack = true;
-                    for(int a = 0; i < gem.Length; i++)
-                    {
-                        gem[a].SetActive(false);
-                    }
-                }*/
             
         }
         else 
         {
             _enemyContoller.IsAttack = true;
+            BombDamagePlus(_damageBomb);
         }
          
     }
@@ -462,7 +512,8 @@ public class BattleController : MonoBehaviour
                  keyBoard.KeyBoard();
                 _uiController.DoPharses();
                 _pharsePanel.SetActive(true); 
-                
+              
+           
                 break;
             }
         }
@@ -476,8 +527,10 @@ public class BattleController : MonoBehaviour
     public IEnumerator Repeat()
     {
         
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.5f);
+        _sounds[4].PlaySound();
         _animation.ClosePanel();
+        _doneAndMissed.ScaleMissed(0, 250);
         yield return new WaitForSeconds(2f);
         _animation.OpenPanel();
         StartCoroutine(Time());
@@ -519,16 +572,19 @@ public class BattleController : MonoBehaviour
        LerningModeId++;
        
         yield return new WaitForSeconds(2);
+        _sounds[4].PlaySound();
        _animation.ClosePanel();
         _uiController._dialogPanel.SetActive(false);
         _uiController._microphonePanel.SetActive(false);
         StartCoroutine(WaitForChange());
-        if(LerningModeId == 1)
-        StartCoroutine(keyBoard.DestroyInstWord(3f));
+        
+        _doneAndMissed.ScaleMissed(0, 250);
+        
     }
 
     private IEnumerator WaitForChange(){
         yield return new WaitForSeconds(3);
+        _sounds[5].PlaySound();
         gem[indexGem - 1].transform.DOScale(new Vector3(1,1,1), 0.5f);
         gem[indexGem - 1].GetComponent<MeshRenderer>().material.DOColor(Color.black, 0.7f);
         StartCoroutine(WaitForChangeScale());
@@ -565,22 +621,88 @@ public class BattleController : MonoBehaviour
     {
         
         CurrentUron += Plus;
-        bombSlider.value += 0.3f; if (bombSlider.value >= 1) Bomb.interactable = true;
         StartCoroutine(CrashGemCoroutine());
+        
+    }
+
+    public void BombDamagePlus(int Plus)
+    {
+        
+        
+            for(int i = 0; i < _fills.Length; i++)
+            {
+                if(CurrentUron == _damagePerAnswer * 3)
+                {
+                    if(!_fills[i].enabled)
+                    {
+                       _fills[i].enabled = true;
+                       _saving._saving.IsBombsFillOpened[i] = true;
+                       if(i != _fills.Length - 1)
+                       {
+                            _fills[i + 1].enabled = true;
+                            _saving._saving.IsBombsFillOpened[i + 1] = true; 
+                       }
+                       break;
+                       
+                    }
+                }
+                else if(CurrentUron == _damagePerAnswer * 2)
+                {
+                    if(!_fills[i].enabled)
+                    {
+                       _fills[i].enabled = true;
+                       _saving._saving.IsBombsFillOpened[i] = true;
+                    }
+                    break;
+                }
+               
+               
+            }
+            if(_fills[_fills.Length - 1].enabled)
+            {
+                Bomb.transform.DOScale(new Vector3(0.55f, 0.55f, 0.6f), 0.6f);
+                Bomb.interactable = true;
+                
+
+            }
+            _saving.Save();
+
+        
+       
+       
+           
+        
+    }
+
+    public void BombDamageForhammerMod()
+    {
+        for(int i = 0; i < _fills.Length; i++)
+        {
+            if(!_fills[i].enabled)
+            {
+               _fills[i].enabled = true;
+               _saving._saving.IsBombsFillOpened[i] = true;
+            }
+            _saving.Save();
+        }
     }
 
     IEnumerator CrashGemCoroutine()
     {
+        
         Debug.Log("CrashGem");
         yield return new WaitForSeconds(3);
+        _doneAndMissed.ScaleGood(0, 250);
+        _sounds[4].PlaySound();
        _animation.ClosePanel();
         TimeGo = false;
         yield return new WaitForSeconds(0.5f);
-        OneWord.SetActive(false); OneFraze.SetActive(false); voiceRec.gameObject.SetActive(false);
-        yield return new WaitForSeconds(1f);
+        OneWord.SetActive(false); OneFraze.SetActive(false); //voiceRec.gameObject.SetActive(false);
+        yield return new WaitForSeconds(2f);
         tranfGem.position = gem[indexGem - 1].transform.position;
         gem[indexGem - 1].SetActive(false);
         Instantiate(ParticleCrashGem, tranfGem.transform);
+        _sounds[6].PlaySound();
 
         StartCoroutine(WaitForChangeScale());
 
@@ -613,22 +735,39 @@ public class BattleController : MonoBehaviour
             
             TimeText.text = allTime.ToString();
             allTime--;
+            if(allTime < 2)
+            {
+                voiceRec.StopRecordButtonOnClickHandler();
+            }
+            if(allTime < 3)
+            {
+                keyBoard.enter.interactable = false; 
+                if(FindObjectOfType<SomeWords>() != null)
+                {
+                    _doneSomeWordsButtonEnabled = GetComponent<SomeWords>()._done.interactable = false;
+                
+                }
+            
+            }
             if(allTime < 0||!TimeGo)
             {
-                if (allTime < 0)
+               
+                if (allTime <=0)
                 {
+                    _sounds[7].PlaySound();
                     if(infinitely)
                     {
-                        yield return new WaitForSeconds(2);
+                        keyBoard.enter.interactable = false;
                         StartCoroutine(Repeat());
                         if(LerningModeId == 2)
                         {
                             StartCoroutine(keyBoard.DestroyInstWord(2.2f));
+                            
                         }
                     }
                     else
                     {
-                        yield return new WaitForSeconds(2);
+                        keyBoard.enter.interactable = false;
                         StartCoroutine(ClosePanel());
                         TimeGo = false;
                         if(LerningModeId == 2)
@@ -652,13 +791,33 @@ public class BattleController : MonoBehaviour
       public void HP_Person_Controller(int damage)
     {
         hpPersonSlider.maxValue = Start_hp_Person;
-        HP_Person -= damage;
+        HP_Person = Mathf.Clamp(HP_Person - damage, 0, Start_hp_Person);
         TextPersonHP.text = HP_Person.ToString() + "/" + Start_hp_Person;
         hpPersonSlider.value = HP_Person;
         if (HP_Person <= 0)
         {
             StartCoroutine(FinishGame());
         }
+    }
+
+
+    private void OnClickBombButton()
+    {
+        Bomb.transform.DOScale(new Vector3(0, 0, 0), 0.6f);
+        LerningModeId = Random.Range(0,3);
+        StartCoroutine(InstantTaskNotInfently());
+        IsBomb = true;
+        IsBombTask = true;
+        LerningModeId = Random.Range(0, 2);
+        RandomString = Random.Range(0,_voiceRecognision.TaskNotInfently.Length);
+        _taskText.text = voiceRec.TaskNotInfently[RandomString];
+        voiceRec.gameObject.SetActive(true);
+        _mainMusik.Stop();
+        _animation.OpenPanel();
+        TimeGo = true;
+        Debug.Log("NewTask");
+        _sounds[0].PlaySound();
+        StartCoroutine(InstantTaskNotInfently());
     }
 
      public void EnemyDie()
@@ -668,16 +827,19 @@ public class BattleController : MonoBehaviour
        
         _enemiesController.LastHited.hpSlider.value -= CurrentUron;
       
-        if(_enemyController.Length == 1)
+        if(_enemyController.Count == 1)
         {
+            Debug.Log("One");
             OneEnemy();
         }
-        else if(_enemyController.Length == 2)
+        else if(_enemyController.Count== 2)
         {
+            Debug.Log("Two");
             TwoEnemy();
         }
-        else if(_enemyController.Length == 3)
+        else if(_enemyController.Count == 3)
         {
+            Debug.Log("Three");
             ThreeEnemy();
         }
         else
@@ -694,60 +856,81 @@ public class BattleController : MonoBehaviour
 
     private void OneEnemy()
     {
-       if(_enemyController[0].hpSlider.value >= 0)
-                {
-                    _damage = Random.Range(_minDamage, _maxDamage);
-                    StartCoroutine(_enemiesController.EnemyGiveUron(_damage));
-                }
-               else
-                {
-                    if(_enemiesController._enemies[_enemiesController.RandomEnemy].GetComponent<EnemyController>().hpSlider.value <= 0)
-                    {
-                        _enemyController[_enemiesController.RandomEnemy].EnemyAnim.SetTrigger("die");
-                        StartFightPanel();
-                    }
-                    _enemyController[0].EnemyAnim.SetTrigger("die");
-                    StartCoroutine(FinishGame()); 
-                    _enemyCanvas[0].enabled = false;
-                    _enemiesController.RemoveEnemy(0);
-                }
+       if(_enemyController[0].hpSlider.value <= 0 && _enemyController.Count == 1)
+        {
+            _enemyController.RemoveAt(0);
+            StartCoroutine(FinishGame()); 
+            _enemyCanvas[0].enabled = false;
+            _enemiesController.RemoveEnemy(0);
+            StartFightPanel();
+             if(_enemiesController._enemies[_enemiesController.RandomEnemy].GetComponent<EnemyController>().hpSlider.value >= 0)
+            {
+            Debug.Log("Start Attack");
+            _damage = Random.Range(_minDamage, _maxDamage);
+            StartCoroutine(_enemiesController.EnemyGiveUron(_damage));
+            }
+                   
+        }
+          else if(_enemiesController._enemies[_enemiesController.RandomEnemy].GetComponent<EnemyController>().hpSlider.value <= 0)
+        {
+            StartFightPanel();
+        }
+        else if(_enemyController.Count > 1)
+        {
+            _damage = Random.Range(_minDamage, _maxDamage);
+            StartCoroutine(_enemiesController.EnemyGiveUron(_damage));
+        }
+        else
+        {
+            StartCoroutine(FinishGame());
+        }
     }
 
 
     private void TwoEnemy()
     {
-        if(_enemyController[0].hpSlider.value >= 0 || _enemyController[1].hpSlider.value >= 0)
+         if(_enemyController[0].hpSlider.value <= 0 && _enemyController.Count == 1)
         {
-            _damage = Random.Range(_minDamage, _maxDamage);
-             StartCoroutine(_enemiesController.EnemyGiveUron(_damage));
-                    
-        }
-        else if(_enemyController[0].hpSlider.value <= 0)
-        {
-            _enemyController[0].EnemyAnim.SetTrigger("die");
+            _enemyController.RemoveAt(0);
             StartCoroutine(FinishGame()); 
             _enemyCanvas[0].enabled = false;
             _enemiesController.RemoveEnemy(0);
-            if(_enemiesController._enemies[_enemiesController.RandomEnemy].GetComponent<EnemyController>().hpSlider.value <= 0)
+            StartFightPanel();
+             if(_enemiesController._enemies[_enemiesController.RandomEnemy].GetComponent<EnemyController>().hpSlider.value >= 0)
             {
-                _enemyController[_enemiesController.RandomEnemy].EnemyAnim.SetTrigger("die");
-                StartFightPanel();
+            Debug.Log("Start Attack");
+            _damage = Random.Range(_minDamage, _maxDamage);
+            StartCoroutine(_enemiesController.EnemyGiveUron(_damage));
             }
                    
         }
-        else if(_enemyController[1].hpSlider.value <= 0)
+        else if(_enemyController[1].hpSlider.value <= 0 && _enemyController.Count == 2)
         {
-            _enemyController[1].EnemyAnim.SetTrigger("die");
+           _enemyController.RemoveAt(1);
             StartCoroutine(FinishGame()); 
             _enemyCanvas[1].enabled = false;
             _enemiesController.RemoveEnemy(1);
-            if(_enemiesController._enemies[_enemiesController.RandomEnemy].GetComponent<EnemyController>().hpSlider.value <= 0)
+            StartFightPanel();
+             if(_enemiesController._enemies[_enemiesController.RandomEnemy].GetComponent<EnemyController>().hpSlider.value >= 0)
             {
-                _enemyController[_enemiesController.RandomEnemy].EnemyAnim.SetTrigger("die");
-                StartFightPanel();
+            Debug.Log("Start Attack");
+            _damage = Random.Range(_minDamage, _maxDamage);
+            StartCoroutine(_enemiesController.EnemyGiveUron(_damage));
             }
         }
-        
+        else if(_enemiesController._enemies[_enemiesController.RandomEnemy].GetComponent<EnemyController>().hpSlider.value <= 0)
+        {
+            StartFightPanel();
+        }
+        else if(_enemyController.Count > 1)
+        {
+            _damage = Random.Range(_minDamage, _maxDamage);
+            StartCoroutine(_enemiesController.EnemyGiveUron(_damage));
+        }
+        else
+        {
+            StartCoroutine(FinishGame());
+        }
     }
 
     private void ThreeEnemy()
@@ -756,55 +939,62 @@ public class BattleController : MonoBehaviour
       
            
 
-        if(_enemyController[0].hpSlider.value <= 0)
+        if(_enemyController[0].hpSlider.value <= 0 && _enemyController.Count == 1)
         {
-            //_enemyController[0].EnemyAnim.SetTrigger("die");
+            _enemyController.RemoveAt(0);
             StartCoroutine(FinishGame()); 
             _enemyCanvas[0].enabled = false;
             _enemiesController.RemoveEnemy(0);
-            /*if(_enemiesController._enemies[_enemiesController.RandomEnemy].GetComponent<EnemyController>().hpSlider.value <= 0)
-            {
-                _enemyController[_enemiesController.RandomEnemy].EnemyAnim.SetTrigger("die");
-                
-            }*/
             StartFightPanel();
+            if(_enemiesController._enemies[_enemiesController.RandomEnemy].GetComponent<EnemyController>().hpSlider.value >= 0)
+            {
+            Debug.Log("Start Attack");
+            _damage = Random.Range(_minDamage, _maxDamage);
+            StartCoroutine(_enemiesController.EnemyGiveUron(_damage));
+            }
                    
         }
-        else if(_enemyController[1].hpSlider.value <= 0 && _enemyController.Length == 1)
+        else if(_enemyController[1].hpSlider.value <= 0 && _enemyController.Count == 2)
         {
-            //_enemyController[1].EnemyAnim.SetTrigger("die");
+           _enemyController.RemoveAt(1);
             StartCoroutine(FinishGame()); 
             _enemyCanvas[1].enabled = false;
             _enemiesController.RemoveEnemy(1);
-            /*if(_enemiesController._enemies[_enemiesController.RandomEnemy].GetComponent<EnemyController>().hpSlider.value <= 0)
-            {
-                _enemyController[_enemiesController.RandomEnemy].EnemyAnim.SetTrigger("die");
-                
-            }*/
             StartFightPanel();
+             if(_enemiesController._enemies[_enemiesController.RandomEnemy].GetComponent<EnemyController>().hpSlider.value >= 0)
+            {
+                   Debug.Log("Start Attack");
+            _damage = Random.Range(_minDamage, _maxDamage);
+            StartCoroutine(_enemiesController.EnemyGiveUron(_damage));
+            }
         }
-        else if(_enemyController[2].hpSlider.value <= 0 && _enemyController.Length == 2)
+        else if(_enemyController[2].hpSlider.value <= 0 && _enemyController.Count == 3)
         {
-            //_enemyController[2].EnemyAnim.SetTrigger("die");
+            _enemyController.RemoveAt(2);
             StartCoroutine(FinishGame()); 
             _enemyCanvas[2].enabled = false;
             _enemiesController.RemoveEnemy(2);
-           /* if(_enemiesController._enemies[_enemiesController.RandomEnemy - 1 ].GetComponent<EnemyController>().hpSlider.value <= 0)
-            {
-                _enemyController[_enemiesController.RandomEnemy - 1].EnemyAnim.SetTrigger("die");
-               
-            }*/
             StartFightPanel();
+            if(_enemiesController._enemies[_enemiesController.RandomEnemy].GetComponent<EnemyController>().hpSlider.value >= 0)
+            {
+                   Debug.Log("Start Attack");
+            _damage = Random.Range(_minDamage, _maxDamage);
+            StartCoroutine(_enemiesController.EnemyGiveUron(_damage));
+            }
         }
         else if(_enemiesController._enemies[_enemiesController.RandomEnemy].GetComponent<EnemyController>().hpSlider.value <= 0)
         {
-            //_enemyController[_enemiesController.RandomEnemy].EnemyAnim.SetTrigger("die");
             StartFightPanel();
+        }
+        else if(_enemyController.Count > 0)
+        {
+            Debug.Log("Start Attack");
+            _damage = Random.Range(_minDamage, _maxDamage);
+            StartCoroutine(_enemiesController.EnemyGiveUron(_damage));
         }
         else
         {
-             _damage = Random.Range(_minDamage, _maxDamage);
-            StartCoroutine(_enemiesController.EnemyGiveUron(_damage));
+            StartCoroutine(FinishGame());
         }
       
         
@@ -813,7 +1003,7 @@ public class BattleController : MonoBehaviour
 
     
 
-     IEnumerator FinishGame()
+     public IEnumerator FinishGame()
     {
          for(int i = 0; i < gem.Length; i++)
        {
@@ -825,29 +1015,33 @@ public class BattleController : MonoBehaviour
         _firstButton.GetComponent<Image>().enabled = true;
         _firstButton.transform.DOMoveY(-70,0.5f);
 
-      
-        if (HP_Person <= 0)
+      if(!infinitely)
+      {
+         if (HP_Person <= 0)
         {
             Cam.GetComponent<Animator>().SetTrigger("end");
-             animPerson.SetTrigger("Lose");
-             _player.DOMoveY(3.594f, 0.4f);
+            animPerson.SetTrigger("Lose");
+             
             for(int i = 0; i < gem.Length; i++)
             {
                 gem[i].SetActive(false);
             }
+            _sounds[10].PlaySound();
             yield return new WaitForSeconds(4);
+            _player.DOMoveY(3.8f, 0.4f);
             GoHome.gameObject.SetActive(true);
             GoHome.onClick.AddListener(GoHomeVoid);
             RESULT_TEXT.gameObject.SetActive(true);
-           
+           _sounds[11].PlaySound();
             RESULT_TEXT.text = "LOSE";
-           
+           StartCoroutine(GoHomeAvoidAutomatic());
             
         }
          else if(_enemyHP[0].value <= 0 && _enemyHP[1].value <= 0 && _enemyHP[2].value <= 0)
         {
             animPerson.SetTrigger("Win");
             Cam.GetComponent<Animator>().SetTrigger("end");
+            _sounds[8].PlaySound();
            for(int i = 0; i < gem.Length; i++)
             {
                 gem[i].SetActive(false);
@@ -857,6 +1051,7 @@ public class BattleController : MonoBehaviour
             GoHome.onClick.AddListener(GoHomeVoid);
             RESULT_TEXT.gameObject.SetActive(true);
             RESULT_TEXT.text = "WIN";
+            _sounds[9].PlaySound();
            for(int i = 0; i < _enemyHP.Length; i++)
            {
                if(_enemyHP[i].value <= 0)
@@ -867,7 +1062,35 @@ public class BattleController : MonoBehaviour
             
 
         }
+
+        StartCoroutine(GoHomeAvoidAutomatic());
        
+      }
+      else
+    {
+        animPerson.SetTrigger("Win");
+        Cam.GetComponent<Animator>().SetTrigger("end");
+        _sounds[8].PlaySound();
+        for(int i = 0; i < gem.Length; i++)
+        {
+            gem[i].SetActive(false);
+        }
+        yield return new WaitForSeconds(4);
+        GoHome.gameObject.SetActive(true);
+        GoHome.onClick.AddListener(GoHomeVoid);
+        RESULT_TEXT.gameObject.SetActive(true);
+        RESULT_TEXT.text = "WIN";
+        _sounds[9].PlaySound();
+        for(int i = 0; i < _enemyHP.Length; i++)
+        {
+            if(_enemyHP[i].value <= 0)
+            {
+                _enemyCanvas[i].enabled = false;
+            }
+        }
+        StartCoroutine(GoHomeAvoidAutomatic());
+    }
+        
        
     }
 
@@ -886,21 +1109,16 @@ public class BattleController : MonoBehaviour
         }
     }
 
-     public void bomb()
+    private IEnumerator GoHomeAvoidAutomatic()
     {
-        if(bombSlider.value >= 1)
-        {
-            //damage = Random.Range(_minDamage, _maxDamage);
-            bombSlider.value = 0;
-            Bomb.interactable = false;
-            
-        }
+        yield return new WaitForSeconds(7);
+        StartCoroutine(LoadYourAsyncScene());
     }
+
 
    private void OnHammerButtonCLick()
    {
        IsHammerTask = true;
-       _hammerBattle.transform.DOScale(new Vector3(0f, 0f, 0f), 0.5f);
        for(int i = 0; i < gem.Length; i++)
        {
            gem[i].SetActive(false);
@@ -923,6 +1141,7 @@ public class BattleController : MonoBehaviour
             _uiController._dialogPanel.SetActive(false);
             _hammerPanel.SetActive(true);
             _openPanelHammerMod.Play();
+            _hammerBattle._sounds[1].PlaySound();
             _hammerButton.transform.DOMoveY(-70, 0.5f);
             _secondButton.transform.DOMoveY(-70, 0.5f);
             StartCoroutine(_hammerBattle.OpenType());
@@ -941,6 +1160,11 @@ public class BattleController : MonoBehaviour
             ClickOnGem.GetComponent<Image>().enabled = false;
             _firstButton.GetComponent<Image>().enabled = false;
             _secondButton.GetComponent<Image>().enabled = false;
+            for(int i = 1; i < _enemies.Length; i++)
+            {
+                _enemies[i].SetActive(false);
+            }
+            _enemyCanvas[0].enabled = false;
         }
         else
         {

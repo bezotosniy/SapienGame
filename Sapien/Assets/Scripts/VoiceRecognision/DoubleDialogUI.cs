@@ -45,6 +45,7 @@ public class DoubleDialogUI : MonoBehaviour
     [SerializeField] private int index;
     public AudioSource _areYouSure;
     public AudioSource _sorryAudio;
+    [SerializeField] private GameObject _fragmentCardPanel;
 
 
 
@@ -211,6 +212,7 @@ public class DoubleDialogUI : MonoBehaviour
        _dialogBackgroundSecondComponent.DOColor(Color.green, 0.3f);
         if(index == 2)
         {
+            _fragmentCardPanel.SetActive(false);
             index = 0;
             yield break;
         }

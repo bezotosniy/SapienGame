@@ -2,13 +2,15 @@ using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition;
+using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.Examples;
 
 
 public class KeyBordController : MonoBehaviour
 {
     private BattleController _battleController;
     [SerializeField] private VoiceregonsionForBattle _voiceRecognision;
+    [SerializeField] private EnemiesController _enemiesController;
+    [SerializeField] private UIAnimation _uiAnimation;
     string textTask;
 
     public Transform position;
@@ -47,6 +49,7 @@ public class KeyBordController : MonoBehaviour
     [SerializeField] private GameObject[] _someWordsPrefabs;
     [SerializeField] private GameObject _someWordsParent;
     private GameObject _prefab;
+    [SerializeField] private DoneAndMissed _doneAndMissed;
 
 
     private void Start()
@@ -77,7 +80,7 @@ public class KeyBordController : MonoBehaviour
         }
         
         ID = id;
-        enter.interactable = false;
+        enter.interactable = true;
         instWord[_randomWord] = Instantiate(LetterList[_randomWord].gameObject, transform);
         instWord[_randomWord].transform.DOScale(new Vector3(0.5f, 0.5f, 0.5f), 0.01f);
         instWord[_randomWord].transform.DOMove(new Vector3(1039, 465, 0), 0.01f);
@@ -121,6 +124,7 @@ public class KeyBordController : MonoBehaviour
     }
     public void InstWordNotInfenetly(int id)
     {
+        enter.interactable = true;
         IsMainButtonsEnabled(true);
         IsButtonLetterInteractable(true);
        
@@ -247,30 +251,57 @@ public class KeyBordController : MonoBehaviour
         numberLetter = 0;
 
         
-          StartCoroutine(DestroyInstWord(3));
+          
         if (sp.textTaskOneWord.text == sp.TextTask)
         {
-            _battleController.TimeGo = false;
-            _battleController.CrashGem(25);
-            _battleController.LerningModeId++;
-            _counter = 0;
+            if(_battleController.IsBombTask)
+            {
+                _uiAnimation.ClosePanel();
+                StartCoroutine(DestroyInstWord(3));
+                _doneAndMissed.ScaleGood(1, 290);
+                _battleController.TimeGo = false;
+                _enemiesController.CanAttack = true;
+            }
+            else
+            {
+                StartCoroutine(DestroyInstWord(3));
+                _doneAndMissed.ScaleGood(1, 290);
+                _battleController.TimeGo = false;
+                _battleController.CrashGem(_battleController._damagePerAnswer);
+                _battleController.LerningModeId++;
+                _counter = 0;
+            }
+           
             
         }   
        
         else if(sp.textTaskOneWord.text != sp.TextTask)
         {
-            _battleController.TimeGo = false;
-            if(_battleController.infinitely)
+            if(_battleController.IsBombTask)
             {
-                
-                StartCoroutine(_battleController.Repeat());
+                StartCoroutine(DestroyInstWord(2.25f));
+                _doneAndMissed.ScaleMissed(1, 290);
+                _battleController.TimeGo = false;  
+                _uiAnimation.ClosePanel();
+                _battleController.StartFightPanel();
             }
             else
             {
+                StartCoroutine(DestroyInstWord(2.25f));
+                _doneAndMissed.ScaleMissed(1, 290);
+                _battleController.TimeGo = false;
+                if(_battleController.infinitely)
+                {
+                 
+                    StartCoroutine(_battleController.Repeat());
+                }
+                else
+                {
                 
-                StartCoroutine(_battleController.ClosePanel());
-                
+                    StartCoroutine(_battleController.ClosePanel());
+                }
             }
+           
            
                   
         }
@@ -282,6 +313,7 @@ public class KeyBordController : MonoBehaviour
     public IEnumerator DestroyInstWord(float destroyTime)
     {
         yield return new WaitForSeconds(destroyTime);
+       
         if(_battleController.infinitely)
         {
             Destroy(instWord[_randomWord]);
@@ -290,6 +322,9 @@ public class KeyBordController : MonoBehaviour
         {
             Destroy(_instWordNotInfenetly[_randomWord]);
         }
+        yield return new WaitForSeconds(0.7f);
+        _microphonePanel.SetActive(false);
+        _DialogPanel.SetActive(false);
         
     }
   
@@ -366,9 +401,9 @@ public class KeyBordController : MonoBehaviour
 
     private void IsMainButtonsEnabled(bool IsEnabled)
     {
-        enter.GetComponent<Image>().enabled = IsEnabled;
+        enter.enabled = IsEnabled;
         remove.enabled = IsEnabled;
-        removeAll.GetComponent<Image>().enabled = IsEnabled;
+        removeAll.enabled = IsEnabled;
     }
 
   

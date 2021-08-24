@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0815489763526248b18e46a0de8bc2c, type: 3}
+  m_Name: GCStreamingSpeechRecognitionConfig
+  m_EditorClassIdentifier: 
+  maxAlternatives: 1
+  googleCredentialLoadFromResources: 0
+  googleCredentialFilePath: google-service-account-private-key
+  googleCredentialJson: '{   "type": "service_account",   "project_id": "alpine-freedom-319808",  
+    "private_key_id": "a9813547e424f05fa0b93d586227cba56b09ca0a",   "private_key":
+    "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCLt7JWWmeZxfUX\nufU5Yiq617IK9/5NOQ0Urn3ktVBVz4o0R3zuD5I+xgaX2DAwijpIU8NlV73TwGOe\nDzXfEPzZKlnA2JMrXDaP2TsmgP/rQn7NnN4j40t85ux42G4igvijRYkQV3A47uFC\nsjvb10U+aCtNCx2xRYfXTFluuYtoXvqjSU4EYfPKXk/nW9hiT4z4PdY8r1siPzy3\n4I74RRKwZKckVK2zFMXeWJCiYZ/E2SabF7DBsgSODOYU0E1lvaAvnxbRcY/ZnvFf\nRtvEvA0tP9B+lJH+vYf39zmxpRLFhuTADX2utpt/zEoW2D4CZ630ZnBG9b2QdpbS\n3RgcHDidAgMBAAECggEAC9pDPG93lyROUiX0t1qBlM9+4M6q+cgbjk6YitIVhOy8\npQoPf26TZyngyKQ5alS/nv/OyrEdKcffa5A6Gg3/NTkSMM7upTYHFurvHqlrjHyx\nSdDDSONxCvaCxw8CliuVhjGm8AZK6eQx+I4q5SUnpaSr+mGKsk2GDu4A2ZN5+m+R\ngbROoifMnZV+Xe49+jZ/4kOsGSeNqEpwQoR00xgnjzf7jfxXJWTAZKwFf9XPrAHT\nOESuCjs4cPCawqf6PXaB6OYWWvupijF51mmGNLi6UykH8BSNkwz01AtwQoOxyBTO\nOcFRAjM1uAOPlPuUKYfP0I+B2f7G9DobvMmGDjTe7QKBgQDAn/EFkrZ9bEywYdYS\n3nBycpjYbPcsuXPhEgF4uscIsQt87azSDcSAc/oVjQvhBbQ5v/sxf6+ePninAN/g\ne5qSuQ0ycxQKFuVO/X9mlGPtKZ0l7SlzV5B+6j3r0O6tdmnH69AfBtgI5Mm+8UdQ\nEjpVXkJEO3HN6Ynqc2d2hmXIiwKBgQC5r5SeSHQ/ndZhL8HJ+dmS2dY+b+n3MS6L\n2D5POD57HXfTmkIDgMnbiVLSwuntoTjiI2SHiOxnn5rUVNhk7anTw6ahuLjSpg2a\n9Vb0V01ZIbPOYvtGVQlHUrA4Gah1/OznW/k3oY0TO2+4wNNaCJ0Fr8oWVY8Y0SFh\n2D3E9eQAdwKBgHSqKmNyuX57cnM9vleNS9O1XqduT8JRzEJcEnIZxeSYvll65joO\nxp36IFSfKbuvJbn4cd5H9IjGU3Lqj625jyQgWkLc+h0mQto1pMzvQRpqItjOrFVE\niqqjmr9Rus1qs6S3SUURcxTn5Nz163guohAEV+RVkJbjRHmwTdC2k70DAoGBAJ6R\ngFsDCLLi+RYZkGYJBXJQsJK1Q5mi2Fr4GY3RPBoq+g8r5j/TlY3y4VW2ucoCKe+D\nxe+wUCHVvISiyAC4rJR4ui3U75CD2Y6BAPa8LwN0snYHNQnEyJ2t0Wq3DpNjoHOa\nqWKGhVDtKuUdVd/HB0C589vKyN6qiNVjsqwmR8TVAoGAGqgJwPLvnTyUN03y6F5d\nL/5og1MAejs8AazSHoSZFe3CuDiKcUte4FjNDxBCEakUlNlYp0w/Ddog5C55jnM8\nQZgJxqpGA6NfEX3LJUXvSGJznaJh15fnAHFxp1XZrvNtTQ9OWf9d/+yht4AWSP6P\nbx0CyMzfpd7l6ncgUwBXpfU=\n-----END
+    PRIVATE KEY-----\n",   "client_email": "sapien@alpine-freedom-319808.iam.gserviceaccount.com",  
+    "client_id": "108804378511161514864",   "auth_uri": "https://accounts.google.com/o/oauth2/auth",  
+    "token_uri": "https://oauth2.googleapis.com/token",   "auth_provider_x509_cert_url":
+    "https://www.googleapis.com/oauth2/v1/certs",   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sapien%40alpine-freedom-319808.iam.gserviceaccount.com"
+    } '
+  interimResults: 1

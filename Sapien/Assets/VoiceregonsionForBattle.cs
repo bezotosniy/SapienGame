@@ -2,20 +2,24 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using FrostweepGames.Plugins.GoogleCloud.StreamingSpeechRecognition;
 
-namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
+namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.Examples
 {
 public class VoiceregonsionForBattle : MonoBehaviour
 {
-        public GCSpeechRecognition _speechRecognition;
+        public GCStreamingSpeechRecognition _speechRecognition;
 		[SerializeField] private BattleController _battleController;
 	    [SerializeField] private UIController _uiController;
 		[SerializeField] private HammerBattle _hammerBattle;
-
+		[SerializeField] private EnemiesController _enemiesController;
 		[SerializeField] private UIAnimation _uiAnimmation;
 		[SerializeField] private SpeakWithCard _speakWithCard;
 		[SerializeField] private SpeakWithVariant _speakWithVariant;
 		[SerializeField] private DoneAndMissed _doneAndMissed;
+		[SerializeField] private Dropdown _languageDropdown;
+		[SerializeField] private GameObject _dialogpanel;
+		[SerializeField] private GameObject _microphonePanel;
 
 		
 
@@ -44,198 +48,90 @@ public class VoiceregonsionForBattle : MonoBehaviour
 			
 		    
             Task = _battleController.VoiceTask;
-			_speechRecognition = GCSpeechRecognition.Instance;
-			_speechRecognition.RecognizeSuccessEvent += RecognizeSuccessEventHandler;
-			_speechRecognition.LongRunningRecognizeSuccessEvent += LongRunningRecognizeSuccessEventHandler;
-			_speechRecognition.FinishedRecordEvent += FinishedRecordEventHandler;
-			_speechRecognition.StartedRecordEvent += StartedRecordEventHandler;
-			_speechRecognition.RecordFailedEvent += RecordFailedEventHandler;
+			_speechRecognition = GCStreamingSpeechRecognition.Instance;
+			_speechRecognition.StreamingRecognitionStartedEvent += StreamingRecognitionStartedEventHandler;
+			_speechRecognition.StreamingRecognitionFailedEvent += StreamingRecognitionFailedEventHandler;
+			_speechRecognition.InterimResultDetectedEvent += InterimResultDetectedEventHandler;
+			_speechRecognition.FinalResultDetectedEvent += FinalResultDetectedEventHandler;
 
-			_speechRecognition.BeginTalkigEvent += BeginTalkigEventHandler;
-			_speechRecognition.EndTalkigEvent += EndTalkigEventHandler;
-
-			
-
-
-		
-
-
+            for (int i = 0; i < Enum.GetNames(typeof(Enumerators.LanguageCode)).Length; i++)
+			{
+				_languageDropdown.options.Add(new Dropdown.OptionData(((Enumerators.LanguageCode)i).Parse()));
+			}
+			_languageDropdown.value = _languageDropdown.options.IndexOf(_languageDropdown.options.Find(x => x.text == Enumerators.LanguageCode.en_GB.Parse()));
+	        
 			_speechRecognition.SetMicrophoneDevice(_speechRecognition.GetMicrophoneDevices()[PlayerPrefs.GetInt("SavedMic")]);
 
 
 		}
 
-		private void Update()
+		private void OnDestroy()
 		{
-			if (_speechRecognition.IsRecording)
-			{
-				if (_speechRecognition.GetMaxFrame() > 0)
-				{
-					max = (float)_speechRecognition.configs[_speechRecognition.currentConfigIndex].voiceDetectionThreshold;
-					current = _speechRecognition.GetLastFrame() / max;
-
-					if (current >= 1f)
-					{
-						_voiceLevelImage.fillAmount = Mathf.Lerp(_voiceLevelImage.fillAmount, Mathf.Clamp(current / 2f, 0, 1f), 30 * Time.deltaTime);
-					}
-					else
-					{
-						_voiceLevelImage.fillAmount = Mathf.Lerp(_voiceLevelImage.fillAmount, Mathf.Clamp(current / 2f, 0, 0.5f), 30 * Time.deltaTime);
-					}
-
-					_voiceLevelImage.color = current >= 1f ? Color.green : Color.red;
-				}
-			}
-			else
-			{
-				_voiceLevelImage.fillAmount = 0f;
-			}
-
-			/*if(_resultText != null)
-			{
-				SravnTask(_resultText);
-			}*/
+			_speechRecognition.StreamingRecognitionStartedEvent -= StreamingRecognitionStartedEventHandler;
+			_speechRecognition.StreamingRecognitionFailedEvent -= StreamingRecognitionFailedEventHandler;
+			_speechRecognition.StreamingRecognitionEndedEvent -= StreamingRecognitionEndedEventHandler;
+			_speechRecognition.InterimResultDetectedEvent -= InterimResultDetectedEventHandler;
+			_speechRecognition.FinalResultDetectedEvent -= FinalResultDetectedEventHandler;
 		}
 
+	
+
+		private void StreamingRecognitionStartedEventHandler()
+		{
+			
+		}
+
+		private void StreamingRecognitionFailedEventHandler(string error)
+		{
+		
+		}
+
+		private void StreamingRecognitionEndedEventHandler()
+        {
+		}
 
 
 		public void StartRecordButtonOnClickHandler()
 		{
 		
             _resultText = string.Empty;
-			StartCoroutine(StopRecordAuthomatic());
-			_speechRecognition.StartRecord(false);
+		    _speechRecognition.StartStreamingRecognition((Enumerators.LanguageCode)_languageDropdown.value, null);
 			Debug.Log("Speak");
 			
 		
 			
 		}
 
-		public void StopRecordButtonOnClickHandler()
+		public async void StopRecordButtonOnClickHandler()
 		{
-			
-			
-			StartCoroutine(StopRecordAuthomatic());
-			_speechRecognition.StopRecord();
-
+			await _speechRecognition.StopStreamingRecognition();
+			Debug.Log("Stop");
 		}
-		public IEnumerator StopRecordAuthomatic()
-		{
-			
-			while (true)
-			{
-				yield return new WaitForSeconds(1f);
-				if (current < 0.11f)
-				{
-					yield return new WaitForSeconds(1f);
-					if (current < 0.11f)
-					{
-						
-						
-						_speechRecognition.StopRecord();
-						Debug.Log("StopRecord");
+          
+
 	
-						
-						yield break;
-					}
-				}
-			}
-		}
+		
 
-		private void StartedRecordEventHandler()
-		{
-
-		}
-
-		private void RecordFailedEventHandler()
-		{
+		private void InterimResultDetectedEventHandler(string alternative)
+        {
+			_resultText += $"<b>Alternative:</b> {alternative}\n";
+            //Debug.Log(alternative);
 			
 		}
 
-		private void BeginTalkigEventHandler()
+		private void FinalResultDetectedEventHandler(string alternative)
 		{
+			_resultText += $"<b>Final:</b> {alternative}\n";
+			
 
+			Debug.Log(alternative);
+			CompareTask(alternative);
 		}
+ 
+		
 
-		private void EndTalkigEventHandler(AudioClip clip, float[] raw)
-		{
-			FinishedRecordEventHandler(clip, raw);
-		}
-
-		private void FinishedRecordEventHandler(AudioClip clip, float[] raw)
-		{
-
-			if (clip == null)
-				return;
-			string Phrases = "phrase, phrase2, phrase3";
-			RecognitionConfig config = RecognitionConfig.GetDefault();
-			config.languageCode = (Enumerators.LanguageCode.en_US.Parse());
-			config.speechContexts = new SpeechContext[]
-			{
-				new SpeechContext()
-				{
-					phrases = Phrases.Replace(" ", string.Empty).Split(',')
-				}
-			};
-			config.audioChannelCount = clip.channels;
-			// configure other parameters of the config if need
-
-			GeneralRecognitionRequest recognitionRequest = new GeneralRecognitionRequest()
-			{
-				audio = new RecognitionAudioContent()
-				{
-					content = raw.ToBase64()
-				},
-				//audio = new RecognitionAudioUri() // for Google Cloud Storage object
-				//{
-				//	uri = "gs://bucketName/object_name"
-				//},
-				config = config
-			};
-
-			_speechRecognition.Recognize(recognitionRequest);
-
-		}
-
-
-		private void RecognizeSuccessEventHandler(RecognitionResponse recognitionResponse)
-		{
-
-			InsertRecognitionResponseInfo(recognitionResponse);
-		}
-
-		private void LongRunningRecognizeSuccessEventHandler(Operation operation)
-		{
-			if (operation.error != null || !string.IsNullOrEmpty(operation.error.message))
-				return;
-
-
-
-			if (operation != null && operation.response != null && operation.response.results.Length > 0)
-			{
-
-				_resultText += "\n" + operation.response.results[0].alternatives[0].transcript;
-
-				string other = "\nDetected alternatives:\n";
-
-				foreach (var result in operation.response.results)
-				{
-					foreach (var alternative in result.alternatives)
-					{
-						if (operation.response.results[0].alternatives[0] != alternative)
-						{
-							other += alternative.transcript + ", ";
-						}
-					}
-				}
-
-				_resultText += other;
-			}
-			else
-			{
-				_resultText = "Long Running Recognize Success. Words not detected.";
-			}
-		}
+	
+		
 		IEnumerator Repeat()
         {
 			
@@ -243,83 +139,58 @@ public class VoiceregonsionForBattle : MonoBehaviour
 			yield return new WaitForSeconds(2);
 			StartRecordButtonOnClickHandler(); 
 		}
-		public void InsertRecognitionResponseInfo(RecognitionResponse recognitionResponse)
+	
+		public void CompareTask(string Result)
 		{
-			if (recognitionResponse == null || recognitionResponse.results.Length == 0)
-			{
-				StartCoroutine(Repeat());
-				return;
-			}
-
-			_resultText += "\n" + recognitionResponse.results[0].alternatives[0].transcript;
-
-			var words = recognitionResponse.results[0].alternatives[0].words;
-
-			if (words != null)
-			{
-				string times = string.Empty;
-
-				foreach (var item in recognitionResponse.results[0].alternatives[0].words)
-				{
-					times += "<color=green>" + item.word + "</color> -  start: " + item.startTime + "; end: " + item.endTime + "\n";
-				}
-
-				_resultText += "\n" + times;
-			}
-
-			string other = "\nDetected alternatives: ";
-
-			foreach (var result in recognitionResponse.results)
-			{
-				foreach (var alternative in result.alternatives)
-				{
-					if (recognitionResponse.results[0].alternatives[0] != alternative)
-					{
-						other += alternative.transcript + ", ";
-					}
-				}
-			}
-
-			_resultText += other;
-		
-			SravnTask(_resultText + other);
-			//_resultText.text += other;
-		}
-		public void SravnTask(string other)
-		{
+			StopRecordButtonOnClickHandler();
 			_battleController.TimeGo = false;
-			  //Debug.Log(other);
+			  
 
 
-				if ((other.Contains(Task) && _battleController.infinitely) || (other.Contains(TaskNotInfently[_battleController.RandomString]) && !_battleController.infinitely))
+				if ((Result.Contains(Task) && _battleController.infinitely) || (Result.Contains(TaskNotInfently[_battleController.RandomString]) && !_battleController.infinitely))
 				{
-					
-                    StartCoroutine(_uiController.OnCorrect());
-					_battleController.CrashGem(25);
-					_battleController.LerningModeId++;
+					if(_battleController.IsBombTask)
+					{
+                        _enemiesController.CanAttack = true;
+						StartCoroutine(_uiController.OnCorrect());
+						_uiAnimmation.ClosePanel();
+						_battleController.IsBombTask = false;
+						
+					}
+					else
+					{
+                        StartCoroutine(_uiController.OnCorrect());
+					    _battleController.CrashGem(_battleController._damagePerAnswer);
+					    _battleController.LerningModeId++;
+				        if(!_battleController.infinitely)
+				        {
+                            StartCoroutine(CloseDialogBackGround());
+				        }
+					}
+                   
 				}
-				else if(_speakWithCard.IsSpeakWithCard == true &&  other.Contains(_speakWithCard.Task))
+				else if(_speakWithCard.IsSpeakWithCard == true &&  Result.Contains(_speakWithCard.Task))
 				{
                     _doneAndMissed.ScaleGood(1,280);
 					StartCoroutine(_hammerBattle.CloseType());
 					_hammerBattle.IsAttack = true;
 					_hammerBattle._IsTimeGo = false;
 				}
-				else if(_speakWithCard.IsSpeakWithCard == true && !other.Contains(_speakWithCard.Task))
+				else if(_speakWithCard.IsSpeakWithCard == true && !Result.Contains(_speakWithCard.Task))
 				{
 					_doneAndMissed.ScaleMissed(1, 280);
 					_hammerBattle._type[_hammerBattle.index].SetActive(false);
                     StartCoroutine(_hammerBattle.ClosePanelIfMissed());
 					_hammerBattle._IsTimeGo = false;
 				}
-				else if(_speakWithVariant.IsSpeakWithVariants == true && other.Contains(_speakWithVariant._correctTask))
+				else if(_speakWithVariant.IsSpeakWithVariants == true && Result.Contains(_speakWithVariant._correctTask))
 				{ 
 					_doneAndMissed.ScaleGood(1,280);
 					StartCoroutine(_hammerBattle.CloseType());
 					_hammerBattle.IsAttack = true;
 					_hammerBattle._IsTimeGo = false;
 				}
-				else if(_speakWithVariant.IsSpeakWithVariants == true && !other.Contains(_speakWithVariant._correctTask))
+				else if(_speakWithVariant.IsSpeakWithVariants == true && !Result.Contains(_speakWithVariant._correctTask))
 				{
 					_doneAndMissed.ScaleMissed(1,280);
 					_hammerBattle._type[_hammerBattle.index].SetActive(false);
@@ -328,23 +199,38 @@ public class VoiceregonsionForBattle : MonoBehaviour
 				}
 				else
 				{
-					
-					_uiController.IncorrectUI();
-					_battleController.TimeGo = false;
-					if(_battleController.infinitely)
+					if(_battleController.IsBombTask)
 					{
-                        StartCoroutine(_battleController.Repeat());
+                        _uiAnimmation.ClosePanel();
+						_battleController.StartFightPanel();
 					}
 					else
 					{
-						
-						StartCoroutine(_battleController.ClosePanel());
+                        _uiController.IncorrectUI();
+					    _battleController.TimeGo = false;
+					    if(_battleController.infinitely)
+					    {
+                            StartCoroutine(_battleController.Repeat());
+					    }
+					    else
+					    {
+						    StartCoroutine(_battleController.ClosePanel());
+					    }
 					}
+					
 					
 				} 
 			_speakWithVariant.IsSpeakWithVariants = false;
 			_speakWithCard.IsSpeakWithCard = false;
 			
+		}
+
+
+		private IEnumerator CloseDialogBackGround()
+		{
+			yield return new WaitForSeconds(3);
+            _dialogpanel.SetActive(false);
+			_microphonePanel.SetActive(false);
 		}
 
 

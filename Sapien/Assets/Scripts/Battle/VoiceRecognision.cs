@@ -6,7 +6,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 {
 	public class VoiceRecognision : MonoBehaviour
 	{
-		public GCSpeechRecognition _speechRecognition;
+		//public GCSpeechRecognition _speechRecognition;
 
 		public Button _startRecordButton,
 					   _stopRecordButton;
@@ -34,7 +34,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 			
 		
 
-			_speechRecognition = GCSpeechRecognition.Instance;
+			/*_speechRecognition = GCSpeechRecognition.Instance;
 			_speechRecognition.RecognizeSuccessEvent += RecognizeSuccessEventHandler;
 			_speechRecognition.LongRunningRecognizeSuccessEvent += LongRunningRecognizeSuccessEventHandler;
 			_speechRecognition.FinishedRecordEvent += FinishedRecordEventHandler;
@@ -312,7 +312,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 				{
 					responce.text = "������� :(";
 					
-				}
+				}*/
 			
 		}
 	}
